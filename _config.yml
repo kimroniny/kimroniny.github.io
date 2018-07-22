@@ -8,7 +8,7 @@ subtitle:
 description: Hello啊，小郭儿同志
 keywords:
 author: kimroniny
-language: zh-Hans
+language: zh-CN
 timezone:
 
 # URL
@@ -74,7 +74,7 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 plugins: hexo-generate-feed
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: next_v6
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -89,3 +89,9 @@ search:
   field: post
   format: html
   limit: 10000
+
+symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
