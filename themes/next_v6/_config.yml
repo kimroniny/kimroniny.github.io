@@ -158,7 +158,7 @@ social:
   GitHub: https://github.com/kimroniny || github
   #E-Mail: mailto:yourname@gmail.com || envelope
   #Google: https://plus.google.com/yourname || google
-  Twitter: https://twitter.com/kimroniny || twitter
+  #Twitter: https://twitter.com/kimroniny || twitter
   FB Page: https://www.facebook.com/profile.php?id=100021735524497 || facebook
   #VK Group: https://vk.com/yourname || vk
   #StackOverflow: https://stackoverflow.com/yourname || stack-overflow
@@ -183,11 +183,15 @@ social_icons:
 
 # Blog rolls
 links_icon: link
-links_title: Links
-links_layout: block
-#links_layout: inline
-#links:
-  #Title: http://example.com/
+links_title: 友情链接
+#links_layout: block
+links_layout: inline
+links:
+  Github: https://www.github.com
+  V2EX: https://www.v2ex.com/
+  掘金: https://juejin.im/
+  36氪: http://36kr.com/
+  知乎: https://www.zhihu.com/
 
 # Sidebar Avatar
 avatar:
@@ -362,7 +366,7 @@ custom_logo:
 # Code Highlight theme
 # Available values: normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: normal
+highlight_theme: night bright
 
 # Enable "cheers" for archive page.
 cheers_enabled: true
@@ -499,7 +503,7 @@ valine:
   appkey:  lsSNBNE0MGiUHu4P51BsqTLc
   notify: false # mail notifier , https://github.com/xCss/Valine/wiki
   verify: false # Verification code
-  placeholder: 来啊 ~ 一起嘿嘿嘿？
+  placeholder: 静听真君一言......
   avatar: mm # gravatar style
   guest_info: nick,mail,link # custom comment header
   pageSize: 10 # pagination size
