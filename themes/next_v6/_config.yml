@@ -366,7 +366,7 @@ custom_logo:
 # Code Highlight theme
 # Available values: normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: night bright
+highlight_theme: normal
 
 # Enable "cheers" for archive page.
 cheers_enabled: true
@@ -499,8 +499,8 @@ changyan:
 # more info please open https://valine.js.org
 valine:
   enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.
-  appid:  mQ8vEoYrWGAjG2Aq1eI2ckaF-gzGzoHsz
-  appkey:  lsSNBNE0MGiUHu4P51BsqTLc
+  appid: mQ8vEoYrWGAjG2Aq1eI2ckaF-gzGzoHsz
+  appkey: lsSNBNE0MGiUHu4P51BsqTLc
   notify: false # mail notifier , https://github.com/xCss/Valine/wiki
   verify: false # Verification code
   placeholder: 静听真君一言......
