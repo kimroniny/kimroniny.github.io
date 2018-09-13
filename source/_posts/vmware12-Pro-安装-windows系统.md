@@ -14,11 +14,13 @@ categories: VMware
 > 原生系统：[https://msdn.itellyou.cn/](https://msdn.itellyou.cn/)
 > 
 
-还有几个小技巧：
+还有个小技巧：
 
 - 进入VMware 的 BIOS，右击系统名称，电源，固件。这样就不用像以前那样和VMware拼速度了。
 
 目前还没有解决的问题：
 
-- VMware usb3.0 接口 暂时不知道怎么改，试了集几种方法都有问题
+- VMware usb3.0 接口 暂时不知道怎么改，试了几种方法都有问题
+
+
 
