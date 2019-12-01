@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-11-30T17:14:57.430Z</updated>
+  <updated>2019-12-01T02:11:10.729Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>git基本操作</title>
+    <link href="http://yoursite.com/2019/12/01/git%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"/>
+    <id>http://yoursite.com/2019/12/01/git基本操作/</id>
+    <published>2019-12-01T02:07:46.000Z</published>
+    <updated>2019-12-01T02:11:10.729Z</updated>
+    
+    <content type="html"><![CDATA[<p>关于git的基本指令和操作，方便查询<br><a id="more"></a></p><h3 id="add时忽略某些文件"><a href="#add时忽略某些文件" class="headerlink" title="add时忽略某些文件"></a>add时忽略某些文件</h3><p>根目录添加<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">```bash</span><br><span class="line">touch .gitignore</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;关于git的基本指令和操作，方便查询&lt;br&gt;
+    
+    </summary>
+    
+      <category term="git" scheme="http://yoursite.com/categories/git/"/>
+    
+    
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo添加图片</title>
