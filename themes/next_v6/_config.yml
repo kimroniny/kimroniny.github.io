@@ -503,7 +503,7 @@ valine:
   appkey: lsSNBNE0MGiUHu4P51BsqTLc
   notify: false # mail notifier , https://github.com/xCss/Valine/wiki
   verify: false # Verification code
-  placeholder: 静听真君一言......
+  placeholder: 如有问题，请留言(*^▽^*)
   avatar: mm # gravatar style
   guest_info: nick,mail,link # custom comment header
   pageSize: 10 # pagination size
