@@ -16,3 +16,10 @@ tags:
 ```bash
 touch .gitignore
 ```
+
+### 配置本地用户名和邮箱
+
+```bash
+git config --local user.name ""
+git config --local user.email ""
+```
