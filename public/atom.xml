@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-12-04T11:30:59.846Z</updated>
+  <updated>2019-12-05T08:59:08.574Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>grpc</title>
+    <link href="http://yoursite.com/2019/12/05/grpc/"/>
+    <id>http://yoursite.com/2019/12/05/grpc/</id>
+    <published>2019-12-05T08:47:35.000Z</published>
+    <updated>2019-12-05T08:59:08.574Z</updated>
+    
+    <content type="html"><![CDATA[<p>关于google grpc的一些基础知识和操作流程</p><a id="more"></a><h3 id="必要的-packages"><a href="#必要的-packages" class="headerlink" title="必要的 packages"></a>必要的 packages</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install grpcio</span><br><span class="line">pip install grpcio-tools</span><br></pre></td></tr></table></figure><h3 id="将-protobuf-生成为-python-代码"><a href="#将-protobuf-生成为-python-代码" class="headerlink" title="将 protobuf 生成为 python 代码"></a>将 protobuf 生成为 python 代码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">python -m grpc_tools.protoc     -I../../protos      --python_out=.     --grpc_python_out=.     ../../protos/route_guide.proto</span><br><span class="line">// protoc.py [OPTION] PROTO_FILES</span><br><span class="line">// -IPATH: --proto_path=PATH, Specify the directory <span class="keyword">in</span> <span class="built_in">which</span> to search <span class="keyword">for</span> imports.</span><br><span class="line">// --python_out: Generate Python <span class="built_in">source</span> file</span><br><span class="line">// --grpc_python_out: Generate Python <span class="built_in">source</span> file</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;关于google grpc的一些基础知识和操作流程&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="python" scheme="http://yoursite.com/categories/python/"/>
+    
+      <category term="grpc" scheme="http://yoursite.com/categories/python/grpc/"/>
+    
+    
+      <category term="grpc" scheme="http://yoursite.com/tags/grpc/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python 系统级操作</title>
+    <link href="http://yoursite.com/2019/12/05/python-%E7%B3%BB%E7%BB%9F%E7%BA%A7%E6%93%8D%E4%BD%9C/"/>
+    <id>http://yoursite.com/2019/12/05/python-系统级操作/</id>
+    <published>2019-12-05T02:23:05.000Z</published>
+    <updated>2019-12-05T02:32:56.788Z</updated>
+    
+    <content type="html"><![CDATA[<p>关于python中对系统的一些操作，比如os模块等等</p><a id="more"></a><h2 id="模块-os"><a href="#模块-os" class="headerlink" title="模块 os"></a>模块 os</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">filepath = os.path.abspath(__file__)</span><br><span class="line">os.path.exists(filepath)</span><br><span class="line"></span><br><span class="line">os.path.isfile(filepath)</span><br><span class="line">os.path.isdir(filepath)</span><br><span class="line"></span><br><span class="line">os.mkdir() <span class="comment"># 单级目录</span></span><br><span class="line">os.makedirs() <span class="comment"># 多级目录</span></span><br></pre></td></tr></table></figure><h2 id="模块-sys"><a href="#模块-sys" class="headerlink" title="模块 sys"></a>模块 sys</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">sys.path.append()</span><br></pre></td></tr></table></figure><h2 id="模块-subprocess"><a href="#模块-subprocess" class="headerlink" title="模块 subprocess"></a>模块 subprocess</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"></span><br><span class="line">res = subprocess.Popen([<span class="string">'cmd1'</span>, <span class="string">'cmd2'</span>, ], shell=<span class="keyword">True</span>, stdout=subprocess.PIPE, stderr=subprocess.PIPE)</span><br><span class="line">err = res.stderr.read().decode(<span class="string">'gbk'</span>)</span><br><span class="line">out = res.stdout.read().decode(<span class="string">'gbk'</span>)</span><br><span class="line"><span class="comment"># read() 只能读取一次</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;关于python中对系统的一些操作，比如os模块等等&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="python" scheme="http://yoursite.com/categories/python/"/>
+    
+      <category term="系统操作" scheme="http://yoursite.com/categories/python/%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C/"/>
+    
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+      <category term="系统操作" scheme="http://yoursite.com/tags/%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>python 多线程</title>
@@ -39,9 +89,9 @@
     <link href="http://yoursite.com/2019/12/01/git%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"/>
     <id>http://yoursite.com/2019/12/01/git基本操作/</id>
     <published>2019-12-01T02:07:46.000Z</published>
-    <updated>2019-12-04T09:49:59.424Z</updated>
+    <updated>2019-12-04T13:55:58.211Z</updated>
     
-    <content type="html"><![CDATA[<p>关于git的基本指令和操作，方便查询<br><a id="more"></a></p><h3 id="add时忽略某些文件"><a href="#add时忽略某些文件" class="headerlink" title="add时忽略某些文件"></a>add时忽略某些文件</h3><p>根目录添加<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">```bash</span><br><span class="line">touch .gitignore</span><br></pre></td></tr></table></figure></p>]]></content>
+    <content type="html"><![CDATA[<p>关于git的基本指令和操作，方便查询<br><a id="more"></a></p><h3 id="add时忽略某些文件"><a href="#add时忽略某些文件" class="headerlink" title="add时忽略某些文件"></a>add时忽略某些文件</h3><p>根目录添加<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">```bash</span><br><span class="line">touch .gitignore</span><br></pre></td></tr></table></figure></p><h3 id="配置本地用户名和邮箱"><a href="#配置本地用户名和邮箱" class="headerlink" title="配置本地用户名和邮箱"></a>配置本地用户名和邮箱</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --<span class="built_in">local</span> user.name <span class="string">""</span></span><br><span class="line">git config --<span class="built_in">local</span> user.email <span class="string">""</span></span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
