@@ -3,3 +3,4 @@ node_modules
 db.json
 id_rsa
 id_rsa.pub
+public
