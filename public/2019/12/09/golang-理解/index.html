@@ -127,18 +127,17 @@
 
 
 
-  <meta name="description" content="使用VMware虚拟机安装操作系统的一点经历">
-<meta name="keywords" content="VMware">
+  <meta name="description" content="golang学习过程中的一些理解">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vmware12 Pro 安装 windows系统">
-<meta property="og:url" content="http://yoursite.com/2018/08/01/vmware12-Pro-安装-windows系统/index.html">
+<meta property="og:title" content="golang 理解">
+<meta property="og:url" content="http://yoursite.com/2019/12/09/golang-理解/index.html">
 <meta property="og:site_name" content="kimroniny的博客">
-<meta property="og:description" content="使用VMware虚拟机安装操作系统的一点经历">
+<meta property="og:description" content="golang学习过程中的一些理解">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-06T02:33:42.365Z">
+<meta property="og:updated_time" content="2020-03-06T02:33:42.352Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vmware12 Pro 安装 windows系统">
-<meta name="twitter:description" content="使用VMware虚拟机安装操作系统的一点经历">
+<meta name="twitter:title" content="golang 理解">
+<meta name="twitter:description" content="golang学习过程中的一些理解">
 
 
 
@@ -147,7 +146,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/01/vmware12-Pro-安装-windows系统/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/12/09/golang-理解/"/>
 
 
 
@@ -157,7 +156,7 @@
   };
 </script>
 
-  <title>vmware12 Pro 安装 windows系统 | kimroniny的博客</title>
+  <title>golang 理解 | kimroniny的博客</title>
   
 
 
@@ -371,7 +370,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/01/vmware12-Pro-安装-windows系统/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/09/golang-理解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="kimroniny">
@@ -388,7 +387,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">vmware12 Pro 安装 windows系统
+          <h1 class="post-title" itemprop="name headline">golang 理解
               
             
           </h1>
@@ -413,7 +412,7 @@
                 
               
 
-              <time title="创建时间：2018-08-01 09:44:25" itemprop="dateCreated datePublished" datetime="2018-08-01T09:44:25+08:00">2018-08-01</time>
+              <time title="创建时间：2019-12-09 14:43:06" itemprop="dateCreated datePublished" datetime="2019-12-09T14:43:06+08:00">2019-12-09</time>
             
 
             
@@ -436,24 +435,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/VMware/" itemprop="url" rel="index"><span itemprop="name">VMware</span></a></span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -462,8 +443,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/08/01/vmware12-Pro-安装-windows系统/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/08/01/vmware12-Pro-安装-windows系统/" itemprop="commentCount"></span>
+                <a href="/2019/12/09/golang-理解/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/12/09/golang-理解/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -471,7 +452,7 @@
 
           
           
-             <span id="/2018/08/01/vmware12-Pro-安装-windows系统/" class="leancloud_visitors" data-flag-title="vmware12 Pro 安装 windows系统">
+             <span id="/2019/12/09/golang-理解/" class="leancloud_visitors" data-flag-title="golang 理解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -496,7 +477,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">350</span>
+                <span title="本文字数">509</span>
               
 
               
@@ -530,19 +511,14 @@
       
 
       
-        <h3 id="使用VMware虚拟机安装操作系统的一点经历"><a href="#使用VMware虚拟机安装操作系统的一点经历" class="headerlink" title="使用VMware虚拟机安装操作系统的一点经历"></a>使用VMware虚拟机安装操作系统的一点经历</h3><a id="more"></a>
-<p>之前使用VMware12 pro安装Windows系统毫无问题，但是昨天安装的时候却总是出现 <code>operating system not found</code>的情况。经过一番百度和Google，换了各种iso镜像文件，也删过网络适配器，调整过BIOS启动项，但是都以失败告终，最终在一篇博客上看到说，<strong><em>VMware不支持各种 ghost 镜像，只能用原生系统文件，试验成功。</em></strong></p>
-<blockquote>
-<p>原生系统：<a href="https://msdn.itellyou.cn/" target="_blank" rel="noopener">https://msdn.itellyou.cn/</a></p>
-</blockquote>
-<p>还有个小技巧：</p>
-<ul>
-<li>进入VMware 的 BIOS，右击系统名称，电源，固件。这样就不用像以前那样和VMware拼速度了。</li>
-</ul>
-<p>目前还没有解决的问题：</p>
-<ul>
-<li>VMware usb3.0 接口 暂时不知道怎么改，试了几种方法都有问题</li>
-</ul>
+        <p>golang学习过程中的一些理解</p>
+<a id="more"></a>
+<h3 id="channel"><a href="#channel" class="headerlink" title="channel"></a>channel</h3><p>从main函数开始，main函数不堵塞，轮不到goroutine</p>
+<p>mian函数堵塞在 i := &lt;- c</p>
+<p>goroutine运行，channel c接收数据，c &lt;- x1, 此时不会堵塞（因为main函数在接收数据，相当于抵消掉），<br>goroutine继续执行，channel c接收数据，c <- x2，此时len(c)=""> cap(c)，goroutine堵塞，需要跳转到另一个goroutine，<br>从而把数据消掉，于是跳转到了main，而此时main函数正在处理的数据是x1，然后继续循环执行到 i := &lt;- c，此时获取x2，<br>然后继续执行到 i := &lt;- c, 因为channel没有数据了，所以堵塞，转到goroutine。</-></p>
+<p>综合理解：从channel中取数据时，没有数据就阻塞，有数据就继续执行；向channel中写数据时，如果没有goroutine等着接收数据，则阻塞，<br>如果有，则继续执行。</p>
+<p>可以理解为三部分: [ 抵消值 | 缓冲区 | 阻塞值 ]</p>
+<p>先满足抵消值，再填充缓冲区，然后到达阻塞值处，当前goroutine阻塞，跳转到另一个goroutine。</p>
 
       
     </div>
@@ -600,12 +576,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/VMware/" rel="tag"># VMware</a>
-          
-        </div>
-      
 
       
       
@@ -615,8 +585,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/23/博客创建流程/" rel="next" title="hexo+github_page 博客创建流程">
-                <i class="fa fa-chevron-left"></i> hexo+github_page 博客创建流程
+              <a href="/2019/12/05/grpc/" rel="next" title="grpc">
+                <i class="fa fa-chevron-left"></i> grpc
               </a>
             
           </div>
@@ -624,10 +594,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/21/pycharm-2018-02-激活码/" rel="prev" title="pycharm 2018.02 激活码">
-                pycharm 2018.02 激活码 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -871,7 +837,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用VMware虚拟机安装操作系统的一点经历"><span class="nav-number">1.</span> <span class="nav-text">使用VMware虚拟机安装操作系统的一点经历</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#channel"><span class="nav-number">1.</span> <span class="nav-text">channel</span></a></li></ol></div>
             
 
           </div>
