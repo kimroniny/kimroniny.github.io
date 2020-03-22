@@ -9,6 +9,8 @@ Leonardo DiCaprio`s Oscar Acceptance Speech
 
 <!--more-->
 
+<iframe width="853" height="480" src="https://www.youtube.com/embed/xpyrefzvTpI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Thank you all so very much. Thank you to the Academy, thank you to all of you in this room.I have to congratulate the other incredible nominees this year, for their unbelievable performances.
 
 The Revenant was a product of the tireless efforts of an unbelievable cast and crew I got to work alongside. First off, to my brother in this endeavor, Mr. Tom Hardy. Tom, your fierce talent on screen can only be surpassed by your friendship off screen to Mr. Alejandro Iñárritu. As the history of cinema unfolds, you have forged your way into history these past two years. What an unbelievable talent you are. Thank you, to you and Chivo for creating a transcendent cinematic experience for all of us. Thank you to everybody at Fox and New Regency, and particular Ana Milchan, you were the champion of this endeavor. My entire team. I have to thank everyone from the very onset of my career. Mr. Caton-Jones, for casting me in my first film. Mr. Scorsese for teaching me so much about this cinematic art form. To Mr. Ricky Yorn, thank you for helping me navigate my way through this industry. And to my parents, none of this would be possible without you. And to my friends, I love you dearly, you know who you are.  
