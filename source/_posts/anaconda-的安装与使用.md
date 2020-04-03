@@ -2,11 +2,11 @@
 title: anaconda 的安装与使用
 date: 2018-09-02 23:53:37
 tags: 
-- Anaconda
 - python
+- Anaconda
 categories:
-- Anaconda
 - python
+- Anaconda
 ---
 
 安装和使用anaconda以及miniconda过程中遇到的问题

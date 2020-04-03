@@ -2,7 +2,10 @@
 title: python 多线程
 date: 2019-12-04 19:05:03
 tags:
+- python
 categories:
+- python
+- threading
 ---
 
 关于python中多线程的实现以及一些知识点
@@ -24,9 +27,9 @@ for i in range(thread_num):
     threads[i].join() # join的含义就是阻塞在线程i，直到线程i停止，然后阻塞在下一个线程i+1，直到线程i+1停止
 
 # 线程锁
-# mutex = threading.RLock()
-# mutex.acquire()
-# mutex.release()
+mutex = threading.RLock()
+mutex.acquire()
+mutex.release()
 
 ```
 

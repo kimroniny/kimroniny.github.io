@@ -1,8 +1,10 @@
 ---
 title: 第一篇hexo博客
 date: 2018-07-14 13:02:52
-tags: [hexo介绍]
-categories: [hexo介绍]
+tags: 
+- [hexo]
+categories: 
+- [hexo]
 ---
 写下自己的一点想法
 <!--more-->

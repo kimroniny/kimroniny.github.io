@@ -3,6 +3,7 @@ title: Leonardo DiCaprio`s Oscar Acceptance Speech
 date: 2020-03-09 10:12:53
 tags: speech
 categories:
+- speech
 ---
 
 Leonardo DiCaprio`s Oscar Acceptance Speech

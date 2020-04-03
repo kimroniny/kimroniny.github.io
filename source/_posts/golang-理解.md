@@ -1,8 +1,10 @@
 ---
 title: golang 理解
 date: 2019-12-09 14:43:06
-tags:
+tags: 
+- golang
 categories:
+- golang
 ---
 
 golang学习过程中的一些理解

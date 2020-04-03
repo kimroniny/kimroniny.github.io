@@ -3,10 +3,10 @@ title: python 系统级操作
 date: 2019-12-05 10:23:05
 tags: 
 - python
-- 系统操作
+- os,sys
 categories:
 - python
-- 系统操作
+- os, sys
 ---
 
 关于python中对系统的一些操作，比如os模块等等

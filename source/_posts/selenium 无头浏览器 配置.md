@@ -1,8 +1,12 @@
 ---
 title: selenium 无头浏览器 配置
 date: 2018-09-02 23:31:41
-tags: selenium
-categories: selenum
+tags: 
+- python
+- selenium
+categories: 
+- python
+- selenium
 ---
 
 python 中selenium设置无头浏览器配置options

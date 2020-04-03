@@ -4,6 +4,8 @@ date: 2019-11-30 23:18:25
 tags: 
 - proxy
 - windows
+categories:
+- windows
 ---
 
 在Windows中设置本地代理

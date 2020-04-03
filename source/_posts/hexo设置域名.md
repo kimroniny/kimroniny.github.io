@@ -2,7 +2,10 @@
 title: hexo设置域名
 r: true
 date: 2019-12-01 00:23:41
-categories:
+tags: 
+- hexo
+categories: 
+- hexo
 ---
 
 如何为hexo设置域名呢

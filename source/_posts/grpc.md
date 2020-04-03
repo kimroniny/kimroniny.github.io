@@ -1,7 +1,9 @@
 ---
 title: grpc
 date: 2019-12-05 16:47:35
-tags: grpc
+tags: 
+- python 
+- grpc
 categories:
 - python
 - grpc
