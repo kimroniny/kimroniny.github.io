@@ -19,6 +19,7 @@ categories:
 
 ```bash
 remixd -s absolute_path --remix-ide https://remix.ethereum.org
+// 注意没有最后的左斜杠
 ```
 
 然后点击 `connect to localhost`
