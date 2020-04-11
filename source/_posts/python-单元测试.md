@@ -77,6 +77,12 @@ def getArg():
 ### 测试类
 class TestClass(AsyncHTTPTestCase): # 使用tornado内置测试类
 
+   def setUp(self):
+      super(TestServer, self).setUp() # 必须有这句
+    
+   def tearDown(self):
+      super(TestServer, self).tearDown() 
+
    def get_app(self): # 必须实现的方法, 调用make_app()函数
       self.args = entry.getArg()
       return entry.make_app(self.args)
