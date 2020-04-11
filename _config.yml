@@ -116,3 +116,4 @@ encrypt: # hexo-blog-encrypt
   message: 您好, 这里需要密码.
   tags:
   - {name: private, password: 1aikimroniny@}
+
