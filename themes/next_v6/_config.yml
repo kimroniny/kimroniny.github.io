@@ -23,7 +23,7 @@ cache:
   #head: source/_data/head.swig
   #header: source/_data/header.swig
   #sidebar: source/_data/sidebar.swig
-
+  footer: source/_data/footer.swig
   # Default path: source/css/_variables/custom.styl
   #variables: source/_data/variables.styl
   # Default path: source/css/_mixins/custom.styl
