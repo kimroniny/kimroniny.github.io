@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-11T09:50:39.563Z</updated>
+  <updated>2020-04-11T14:43:59.358Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>测试2</title>
+    <link href="http://yoursite.com/2020/04/11/%E6%B5%8B%E8%AF%952/"/>
+    <id>http://yoursite.com/2020/04/11/测试2/</id>
+    <published>2020-04-11T14:43:59.000Z</published>
+    <updated>2020-04-11T14:43:59.358Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>test.md</title>
@@ -467,32 +488,6 @@ Steve Jobs&lt;/p&gt;
       <category term="centos" scheme="http://yoursite.com/tags/centos/"/>
     
       <category term="vmware" scheme="http://yoursite.com/tags/vmware/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>anaconda 的安装与使用</title>
-    <link href="http://yoursite.com/2018/09/02/anaconda-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
-    <id>http://yoursite.com/2018/09/02/anaconda-的安装与使用/</id>
-    <published>2018-09-02T15:53:37.000Z</published>
-    <updated>2020-04-11T01:16:16.557Z</updated>
-    
-    <content type="html"><![CDATA[<p>安装和使用anaconda以及miniconda过程中遇到的问题</p><a id="more"></a><h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2><p><strong>问题1：</strong> centos7.5 64位安装miniconda遇到报错： <figure class="highlight plain"><figcaption><span>command not found```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**解决办法：**</span><br><span class="line"></span><br><span class="line"> 安装bzip2：</span><br></pre></td></tr></table></figure></p><p>yum install -y bzip2</p> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> **问题2：** 加入系统path</span><br><span class="line"> </span><br><span class="line"> **解决办法（永久生效）：**</span><br><span class="line">- 修改/etc/profile文件</span><br><span class="line"></span><br><span class="line"> ```bash</span><br><span class="line">vim /etc/profile</span><br></pre></td></tr></table></figure><ul><li>将以下文本加入到该文件末尾</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PATH=<span class="variable">$PATH</span>:/root/Anaconda3/bin</span><br><span class="line"><span class="built_in">export</span> PATH</span><br></pre></td></tr></table></figure><ul><li>输入以下命令激活PATH，否则是不起作用的（如果在安装cond的过程中已经选择了加入path，那么安装完之后如果不执行以下命令会发现conda依旧是<figure class="highlight plain"><figcaption><span>not found```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```bash</span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;安装和使用anaconda以及miniconda过程中遇到的问题&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="python" scheme="http://yoursite.com/categories/python/"/>
-    
-      <category term="Anaconda" scheme="http://yoursite.com/categories/python/Anaconda/"/>
-    
-    
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
-    
-      <category term="Anaconda" scheme="http://yoursite.com/tags/Anaconda/"/>
     
   </entry>
   
