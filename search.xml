@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>3</title>
+    <url>/2020/04/12/3/</url>
+    <content><![CDATA[<a id="more"></a>]]></content>
+  </entry>
+  <entry>
     <title>Leonardo DiCaprio`s Oscar Acceptance Speech</title>
     <url>/2020/03/09/Leonardo-DiCaprio-s-Oscar-Acceptance-Speech/</url>
     <content><![CDATA[<p>Leonardo DiCaprio`s Oscar Acceptance Speech</p>
@@ -185,6 +190,42 @@ goroutine继续执行，channel c接收数据，c &lt;- x2，此时len© &gt; ca
       </tags>
   </entry>
   <entry>
+    <title>hexo备份恢复</title>
+    <url>/2020/04/11/hexo%E5%A4%87%E4%BB%BD%E6%81%A2%E5%A4%8D/</url>
+    <content><![CDATA[<p>hexo 备份如何恢复</p>
+<a id="more"></a>
+<h3 id="下载仓库"><a class="markdownIt-Anchor" href="#下载仓库"></a> 下载仓库</h3>
+<p>从git上下载仓库，并切换分支</p>
+<h3 id="安装模块"><a class="markdownIt-Anchor" href="#安装模块"></a> 安装模块</h3>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 先安装npm</span><br><span class="line">yum install npm</span><br><span class="line"># 查看版本</span><br><span class="line">npm -v</span><br><span class="line">node -v</span><br></pre></td></tr></table></figure>
+<p>下载完之后，<a href="/2020/04/10/npm-%E6%9B%B4%E6%8D%A2%E6%BA%90/">更换npm下载源</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 安装modules, 速度非常慢, 可以先更换npm下载源</span><br><span class="line">npm install</span><br><span class="line">npm install -g hexo-cli</span><br><span class="line"># 查看hexo是否安装成功</span><br><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
+<p>如果执行<code>hexo</code>命令显示异常，如下图：</p>
+<p><img src="exception.png" alt="exception"></p>
+<p>那么需要更新nodejs</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 更新npm</span><br><span class="line">npm i -g npm@latest</span><br><span class="line"># 更新nodejs</span><br><span class="line">npm install -g n</span><br><span class="line">n latest</span><br><span class="line">n # 查看已安装的版本</span><br><span class="line">node -v # 查看是否更新成功</span><br></pre></td></tr></table></figure>
+<h3 id="部署git"><a class="markdownIt-Anchor" href="#部署git"></a> 部署git</h3>
+<p>主要是两个方面：</p>
+<ul>
+<li>设置全局用户名和邮箱(用于<code>commit</code>)</li>
+<li>生成密钥(用于<code>push</code>权限)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;your name&quot;</span><br><span class="line">git config --global user.email &quot;your email&quot;</span><br><span class="line">ssh-keygen -t rsa -C &quot;1301862177@qq.com&quot;</span><br><span class="line"># 生成公钥之后，复制到github账户的ssh_and_GPG_keys</span><br><span class="line"># 然后测试链接是否成功</span><br><span class="line">ssh -T git@github.com</span><br><span class="line"># 设置下面不用每次push时输入账号密码</span><br><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure>
+<h3 id="关于-hexo-server"><a class="markdownIt-Anchor" href="#关于-hexo-server"></a> 关于 hexo-server</h3>
+<p>因为是放在服务器上，所以希望执行 <code>hexo server</code> 之后，外网也可以预览。</p>
+<p>修改 <code>node_modules/hexo-server/lib/server.js</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function formatAddress(ip, port, root) &#123;</span><br><span class="line">  // if (ip === &apos;0.0.0.0&apos;) ip = &apos;localhost&apos;; 把这一行注释掉</span><br><span class="line"></span><br><span class="line">  return format(&apos;http://%s:%d%s&apos;, ip, port, root);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后打开服务器 <code>4000</code> 端口, <a href="/2020/04/11/linux%E5%BC%80%E5%90%AF%E7%AB%AF%E5%8F%A3/">服务器打开端口在这</a></p>
+<p>执行命令</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo server -i 0.0.0.0</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo添加图片</title>
     <url>/2019/12/01/hexo%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87/</url>
     <content><![CDATA[<p>如何为hexo网站添加图片呢？</p>
@@ -215,6 +256,25 @@ goroutine继续执行，channel c接收数据，c &lt;- x2，此时len© &gt; ca
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux开启端口</title>
+    <url>/2020/04/11/linux%E5%BC%80%E5%90%AF%E7%AB%AF%E5%8F%A3/</url>
+    <content><![CDATA[<p>关于linux系统中端口的那些事儿</p>
+<a id="more"></a>
+<h3 id="打开端口"><a class="markdownIt-Anchor" href="#打开端口"></a> 打开端口</h3>
+<p>首先看云服务器控制台安全组规则是否允许打开该端口</p>
+<p>然后在服务器上两种方式打开端口（Centos升级到7之后，内置的防火墙已经从iptables变成了firewalld）</p>
+<p><strong>防火墙</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 防火墙的启动关闭</span><br><span class="line">systemctl status firewalld</span><br><span class="line">systemctl start firewalld</span><br><span class="line">systemctl restart firewalld</span><br><span class="line">systemctl stop firewalld</span><br><span class="line"># 打开端口</span><br><span class="line">firewall-cmd --zone=public --add-port=4000/tcp --permanent </span><br><span class="line"># 关闭端口</span><br><span class="line">firewall-cmd --zone=public --remove-port=4000/tcp --permanent</span><br><span class="line"># 重启防火墙</span><br><span class="line">firewall-cmd --reload</span><br><span class="line"># 查询指定端口</span><br><span class="line">firewall-cmd --query-port=4000/tcp </span><br><span class="line"># 查询所有端口</span><br><span class="line">firewall-cmd --list-all</span><br></pre></td></tr></table></figure>
+<p><strong>iptables</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">iptables -I INPUT -p tcp -m state --state NEW -m tcp --dport 4000 -j ACCEPT</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -652,6 +712,11 @@ The speech was unavoidable. Just like countless wars emerged in Guo`s life endle
       <tags>
         <tag>hexo</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>测试 4</title>
+    <url>/2020/04/12/%E6%B5%8B%E8%AF%95-4/</url>
+    <content><![CDATA[<a id="more"></a>]]></content>
   </entry>
   <entry>
     <title>测试2</title>

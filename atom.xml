@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-11T14:43:59.358Z</updated>
+  <updated>2020-04-11T17:36:32.734Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>测试 4</title>
+    <link href="http://yoursite.com/2020/04/12/%E6%B5%8B%E8%AF%95-4/"/>
+    <id>http://yoursite.com/2020/04/12/测试-4/</id>
+    <published>2020-04-11T17:36:32.000Z</published>
+    <updated>2020-04-11T17:36:32.734Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>3</title>
+    <link href="http://yoursite.com/2020/04/12/3/"/>
+    <id>http://yoursite.com/2020/04/12/3/</id>
+    <published>2020-04-11T17:30:51.000Z</published>
+    <updated>2020-04-11T17:30:51.919Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>测试2</title>
@@ -55,6 +97,50 @@
     
     </summary>
     
+    
+  </entry>
+  
+  <entry>
+    <title>linux开启端口</title>
+    <link href="http://yoursite.com/2020/04/11/linux%E5%BC%80%E5%90%AF%E7%AB%AF%E5%8F%A3/"/>
+    <id>http://yoursite.com/2020/04/11/linux开启端口/</id>
+    <published>2020-04-11T02:31:45.000Z</published>
+    <updated>2020-04-11T17:05:49.516Z</updated>
+    
+    <content type="html"><![CDATA[<p>关于linux系统中端口的那些事儿</p><a id="more"></a><h3 id="打开端口"><a class="markdownIt-Anchor" href="#打开端口"></a> 打开端口</h3><p>首先看云服务器控制台安全组规则是否允许打开该端口</p><p>然后在服务器上两种方式打开端口（Centos升级到7之后，内置的防火墙已经从iptables变成了firewalld）</p><p><strong>防火墙</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 防火墙的启动关闭</span><br><span class="line">systemctl status firewalld</span><br><span class="line">systemctl start firewalld</span><br><span class="line">systemctl restart firewalld</span><br><span class="line">systemctl stop firewalld</span><br><span class="line"># 打开端口</span><br><span class="line">firewall-cmd --zone=public --add-port=4000/tcp --permanent </span><br><span class="line"># 关闭端口</span><br><span class="line">firewall-cmd --zone=public --remove-port=4000/tcp --permanent</span><br><span class="line"># 重启防火墙</span><br><span class="line">firewall-cmd --reload</span><br><span class="line"># 查询指定端口</span><br><span class="line">firewall-cmd --query-port=4000/tcp </span><br><span class="line"># 查询所有端口</span><br><span class="line">firewall-cmd --list-all</span><br></pre></td></tr></table></figure><p><strong>iptables</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -p tcp -m state --state NEW -m tcp --dport 4000 -j ACCEPT</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;关于linux系统中端口的那些事儿&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
+    
+    
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo备份恢复</title>
+    <link href="http://yoursite.com/2020/04/11/hexo%E5%A4%87%E4%BB%BD%E6%81%A2%E5%A4%8D/"/>
+    <id>http://yoursite.com/2020/04/11/hexo备份恢复/</id>
+    <published>2020-04-11T00:23:37.000Z</published>
+    <updated>2020-04-11T17:05:49.516Z</updated>
+    
+    <content type="html"><![CDATA[<p>hexo 备份如何恢复</p><a id="more"></a><h3 id="下载仓库"><a class="markdownIt-Anchor" href="#下载仓库"></a> 下载仓库</h3><p>从git上下载仓库，并切换分支</p><h3 id="安装模块"><a class="markdownIt-Anchor" href="#安装模块"></a> 安装模块</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 先安装npm</span><br><span class="line">yum install npm</span><br><span class="line"># 查看版本</span><br><span class="line">npm -v</span><br><span class="line">node -v</span><br></pre></td></tr></table></figure><p>下载完之后，<a href="/2020/04/10/npm-%E6%9B%B4%E6%8D%A2%E6%BA%90/">更换npm下载源</a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 安装modules, 速度非常慢, 可以先更换npm下载源</span><br><span class="line">npm install</span><br><span class="line">npm install -g hexo-cli</span><br><span class="line"># 查看hexo是否安装成功</span><br><span class="line">hexo -v</span><br></pre></td></tr></table></figure><p>如果执行<code>hexo</code>命令显示异常，如下图：</p><p><img src="exception.png" alt="exception"></p><p>那么需要更新nodejs</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 更新npm</span><br><span class="line">npm i -g npm@latest</span><br><span class="line"># 更新nodejs</span><br><span class="line">npm install -g n</span><br><span class="line">n latest</span><br><span class="line">n # 查看已安装的版本</span><br><span class="line">node -v # 查看是否更新成功</span><br></pre></td></tr></table></figure><h3 id="部署git"><a class="markdownIt-Anchor" href="#部署git"></a> 部署git</h3><p>主要是两个方面：</p><ul><li>设置全局用户名和邮箱(用于<code>commit</code>)</li><li>生成密钥(用于<code>push</code>权限)</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;your name&quot;</span><br><span class="line">git config --global user.email &quot;your email&quot;</span><br><span class="line">ssh-keygen -t rsa -C &quot;1301862177@qq.com&quot;</span><br><span class="line"># 生成公钥之后，复制到github账户的ssh_and_GPG_keys</span><br><span class="line"># 然后测试链接是否成功</span><br><span class="line">ssh -T git@github.com</span><br><span class="line"># 设置下面不用每次push时输入账号密码</span><br><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure><h3 id="关于-hexo-server"><a class="markdownIt-Anchor" href="#关于-hexo-server"></a> 关于 hexo-server</h3><p>因为是放在服务器上，所以希望执行 <code>hexo server</code> 之后，外网也可以预览。</p><p>修改 <code>node_modules/hexo-server/lib/server.js</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function formatAddress(ip, port, root) &#123;</span><br><span class="line">  // if (ip === &apos;0.0.0.0&apos;) ip = &apos;localhost&apos;; 把这一行注释掉</span><br><span class="line"></span><br><span class="line">  return format(&apos;http://%s:%d%s&apos;, ip, port, root);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>然后打开服务器 <code>4000</code> 端口, <a href="/2020/04/11/linux%E5%BC%80%E5%90%AF%E7%AB%AF%E5%8F%A3/">服务器打开端口在这</a></p><p>执行命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server -i 0.0.0.0</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;hexo 备份如何恢复&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="hexo" scheme="http://yoursite.com/categories/hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
     
   </entry>
   
@@ -398,96 +484,6 @@ Steve Jobs&lt;/p&gt;
     
     
       <category term="git" scheme="http://yoursite.com/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo添加图片</title>
-    <link href="http://yoursite.com/2019/12/01/hexo%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87/"/>
-    <id>http://yoursite.com/2019/12/01/hexo添加图片/</id>
-    <published>2019-11-30T17:10:14.000Z</published>
-    <updated>2020-04-11T01:16:16.557Z</updated>
-    
-    <content type="html"><![CDATA[<p>如何为hexo网站添加图片呢？</p><a id="more"></a><p><code>_config.yml</code>中的<code>post_asset_folder</code>设为<code>true</code></p><p>每次执行指令<code>hexo new &quot;new_post&quot;</code>，都会在<code>_post</code>目录下生成对应名称的文件夹，把图片放里面</p><p>md文件中的图片只需要图片名+后缀名</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;如何为hexo网站添加图片呢？&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="hexo" scheme="http://yoursite.com/categories/hexo/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>hexo设置域名</title>
-    <link href="http://yoursite.com/2019/12/01/hexo%E8%AE%BE%E7%BD%AE%E5%9F%9F%E5%90%8D/"/>
-    <id>http://yoursite.com/2019/12/01/hexo设置域名/</id>
-    <published>2019-11-30T16:23:41.000Z</published>
-    <updated>2020-04-11T01:16:16.557Z</updated>
-    
-    <content type="html"><![CDATA[<p>如何为hexo设置域名呢</p><a id="more"></a><ol><li>购买域名</li><li>在<code>blog/source/</code>文件夹下创建<code>CNAME</code>文件（无后缀）</li><li><code>CNAME</code>中写你的新域名</li><li><code>username.github.io</code> 项目中的<code>setting</code>中的<code>github pages</code>选项中，在<code>Custom domain</code>填写自己的域名</li></ol><p><img src="custom_domain.jpg" alt="自定义域名"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;如何为hexo设置域名呢&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="hexo" scheme="http://yoursite.com/categories/hexo/"/>
-    
-    
-      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>windows 设置代理</title>
-    <link href="http://yoursite.com/2019/11/30/windows-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/"/>
-    <id>http://yoursite.com/2019/11/30/windows-设置代理/</id>
-    <published>2019-11-30T15:18:25.000Z</published>
-    <updated>2020-04-11T01:16:16.558Z</updated>
-    
-    <content type="html"><![CDATA[<p>在Windows中设置本地代理</p><a id="more"></a><ol><li>命令行</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> HTTP_PROXY=http://user:password@proxy.domain.com:port</span><br><span class="line"><span class="built_in">set</span> HTTP_PROXY=http://127.0.0.1:12639</span><br><span class="line"><span class="built_in">set</span> HTTPS_PROXY=http://127.0.0.1:12639</span><br></pre></td></tr></table></figure><ol start="2"><li>系统变量</li></ol><p>创建两个系统变量</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HTTP_PROXY</span><br><span class="line">HTTPS_PROXY</span><br><span class="line"><span class="comment"># 内容：http://127.0.0.1:12639</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在Windows中设置本地代理&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="windows" scheme="http://yoursite.com/categories/windows/"/>
-    
-    
-      <category term="proxy" scheme="http://yoursite.com/tags/proxy/"/>
-    
-      <category term="windows" scheme="http://yoursite.com/tags/windows/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>centos7 安装vmware-tools</title>
-    <link href="http://yoursite.com/2018/09/03/centos7-%E5%AE%89%E8%A3%85vmware-tools/"/>
-    <id>http://yoursite.com/2018/09/03/centos7-安装vmware-tools/</id>
-    <published>2018-09-03T03:57:33.000Z</published>
-    <updated>2020-04-11T01:16:16.557Z</updated>
-    
-    <content type="html"><![CDATA[<p>在vmware12中，centos7安装vmware-tools的过程</p><a id="more"></a>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在vmware12中，centos7安装vmware-tools的过程&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="vmware" scheme="http://yoursite.com/categories/vmware/"/>
-    
-    
-      <category term="centos" scheme="http://yoursite.com/tags/centos/"/>
-    
-      <category term="vmware" scheme="http://yoursite.com/tags/vmware/"/>
     
   </entry>
   
