@@ -89,3 +89,5 @@ function formatAddress(ip, port, root) {
 ```
 hexo server -i 0.0.0.0
 ```
+
+打开浏览器，打开控制台，看看缺少哪些js文件，就到`theme`的`_config.yml`中找github地址进行下载
