@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>3</title>
-    <url>/2020/04/12/3/</url>
-    <content><![CDATA[<a id="more"></a>]]></content>
+    <title>Anaconda更新下载源</title>
+    <url>/2020/04/18/Anaconda%E6%9B%B4%E6%96%B0%E4%B8%8B%E8%BD%BD%E6%BA%90/</url>
+    <content><![CDATA[<p>Anaconda 更新下载源</p>
+<a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 清除索引</span></span><br><span class="line">conda clean -i</span><br><span class="line"><span class="comment"># url 不可以加引号</span></span><br><span class="line">conda config --add channels  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">conda config --add channels  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free</span><br><span class="line">conda config --add channels  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">conda config --add channels  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/pro</span><br><span class="line">conda config --add channels  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line"><span class="comment"># 搜索时显示通道地址</span></span><br><span class="line">conda config --<span class="built_in">set</span> show_channel_urls yes</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>python</category>
+        <category>Anaconda</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>Anaconda</tag>
+      </tags>
   </entry>
   <entry>
     <title>Leonardo DiCaprio`s Oscar Acceptance Speech</title>
@@ -131,6 +142,27 @@ Steve Jobs</p>
       </tags>
   </entry>
   <entry>
+    <title>docker基本命令</title>
+    <url>/2020/04/18/docker%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p>关于docker使用的一些基本命令</p>
+<a id="more"></a>
+<h3 id="镜像-容器-仓库的概念区分"><a class="markdownIt-Anchor" href="#镜像-容器-仓库的概念区分"></a> 镜像、容器、仓库的概念区分</h3>
+<p><img src="docker_1.png" alt="镜像容器仓库"></p>
+<h3 id="docker用户组加入当前用户"><a class="markdownIt-Anchor" href="#docker用户组加入当前用户"></a> docker用户组加入当前用户</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#添加docker用户组</span></span><br><span class="line">sudo groupadd docker     </span><br><span class="line"><span class="comment">#将登陆用户加入到docker用户组中</span></span><br><span class="line">sudo gpasswd -a <span class="variable">$USER</span> docker     </span><br><span class="line"><span class="comment">#更新用户组</span></span><br><span class="line">newgrp docker     </span><br><span class="line"><span class="comment">#测试docker命令是否可以使用sudo正常使用</span></span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+<h3 id="docker镜像源"><a class="markdownIt-Anchor" href="#docker镜像源"></a> docker镜像源</h3>
+<p>打开<code>/etc/docker/daemon.json</code>，添加如下信息</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"registry-mirrors"</span>: [<span class="string">"https://docker.mirrors.ustc.edu.cn"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="基本命令"><a class="markdownIt-Anchor" href="#基本命令"></a> 基本命令</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> -i 交互式; -t 在新容器内指定一个终端</span></span><br><span class="line">docker run -i -t ubuntu /bin/bash</span><br><span class="line"><span class="meta">#</span><span class="bash"> 在交互式中，查看系统版本，都可以</span></span><br><span class="line">cat /proc/version</span><br><span class="line">cat /etc/lsb-release</span><br><span class="line">uname -a</span><br><span class="line"><span class="meta">#</span><span class="bash"> 退出容器</span></span><br><span class="line">exit</span><br><span class="line"><span class="meta">#</span><span class="bash"> 显示所有的容器</span></span><br><span class="line">docker ps -a</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看容器的标准输出，2b1b7a428627是容器的ID号 </span></span><br><span class="line">docker logs 2b1b7a428627</span><br><span class="line"><span class="meta">#</span><span class="bash"> 拉取镜像到本地</span></span><br><span class="line">docker pull centos</span><br><span class="line"><span class="meta">#</span><span class="bash"> 停止容器</span></span><br><span class="line">docker stop 2b1b7a428627</span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动已经停止的容器</span></span><br><span class="line">docker start 2b1b7a428627</span><br><span class="line">docker restart 2b1b7a428627</span><br><span class="line"><span class="meta">#</span><span class="bash"> -d 是从后台运行容器</span></span><br><span class="line">docker run -itd --name ubuntu-test ubuntu /bin/bash</span><br><span class="line"><span class="meta">#</span><span class="bash"> 进入放在后台的容器，当使用<span class="built_in">exit</span>退出的时候，不会停止容器的运行</span></span><br><span class="line">docker exec -it 2b1b7a428627 /bin/bash</span><br><span class="line"><span class="meta">#</span><span class="bash"> 导出容器</span></span><br><span class="line">docker export 2b1b7a428627 &gt; ubuntu.tar</span><br><span class="line"><span class="meta">#</span><span class="bash"> 导入容器</span></span><br><span class="line">cat ubuntu.tar | docker import - ubuntu:v1</span><br><span class="line">docker import http://example.com/exampleimage.tgz imagerepo</span><br><span class="line"><span class="meta">#</span><span class="bash"> 显示本地镜像</span></span><br><span class="line">docker images</span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除容器</span></span><br><span class="line">docker rm -f 2b1b7a428627</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>git基本操作</title>
     <url>/2019/12/01/git%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<p>关于git的基本指令和操作，方便查询</p>
@@ -217,7 +249,9 @@ goroutine继续执行，channel c接收数据，c &lt;- x2，此时len© &gt; ca
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function formatAddress(ip, port, root) &#123;</span><br><span class="line">  // if (ip === &apos;0.0.0.0&apos;) ip = &apos;localhost&apos;; 把这一行注释掉</span><br><span class="line"></span><br><span class="line">  return format(&apos;http://%s:%d%s&apos;, ip, port, root);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后打开服务器 <code>4000</code> 端口, <a href="/2020/04/11/linux%E5%BC%80%E5%90%AF%E7%AB%AF%E5%8F%A3/">服务器打开端口在这</a></p>
 <p>执行命令</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo server -i 0.0.0.0</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo server -i 0.0.0.0</span><br></pre></td></tr></table></figure>
+<p>打开浏览器，打开控制台，看看缺少哪些js文件，就到<code>theme</code>的<code>_config.yml</code>中找github地址进行下载</p>
+]]></content>
       <categories>
         <category>hexo</category>
       </categories>
@@ -256,6 +290,23 @@ goroutine继续执行，channel c接收数据，c &lt;- x2，此时len© &gt; ca
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux keyboard</title>
+    <url>/2020/04/17/linux-keyboard/</url>
+    <content><![CDATA[<p>关于linux上的一些快捷键</p>
+<a id="more"></a>
+<h3 id="键盘指令文件-etcinputrc"><a class="markdownIt-Anchor" href="#键盘指令文件-etcinputrc"></a> 键盘指令文件  <em><strong>/etc/inputrc</strong></em></h3>
+<ol>
+<li><code>page-down/page-up</code>: 找到 history-search，删掉 # 符号</li>
+</ol>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -557,11 +608,6 @@ The speech was unavoidable. Just like countless wars emerged in Guo`s life endle
       </tags>
   </entry>
   <entry>
-    <title>test.md</title>
-    <url>/2020/04/11/test-md/</url>
-    <content><![CDATA[<a id="more"></a>]]></content>
-  </entry>
-  <entry>
     <title>vmware12 Pro 安装 windows系统</title>
     <url>/2018/08/01/vmware12-Pro-%E5%AE%89%E8%A3%85-windows%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<h3 id="使用vmware虚拟机安装操作系统的一点经历"><a class="markdownIt-Anchor" href="#使用vmware虚拟机安装操作系统的一点经历"></a> 使用VMware虚拟机安装操作系统的一点经历</h3>
@@ -587,6 +633,25 @@ The speech was unavoidable. Just like countless wars emerged in Guo`s life endle
       </tags>
   </entry>
   <entry>
+    <title>vmware共享主机代理</title>
+    <url>/2020/04/18/vmware%E5%85%B1%E4%BA%AB%E4%B8%BB%E6%9C%BA%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[<p>vmware虚拟机共享主机科学代理</p>
+<a id="more"></a>
+<ol>
+<li>宿主机科学代理打开“允许来自互联网的链接”。</li>
+<li>虚拟机采用桥接模式，即虚拟机可以连接到宿主机上。</li>
+<li>虚拟机系统代理全部设置为宿主机的IP和代理端口（通常是1080）。</li>
+</ol>
+<p><img src="proxy_share_1.png" alt="虚拟机代理设置"></p>
+]]></content>
+      <categories>
+        <category>vmware</category>
+      </categories>
+      <tags>
+        <tag>vmware</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>windows 设置代理</title>
     <url>/2019/11/30/windows-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/</url>
     <content><![CDATA[<p>在Windows中设置本地代理</p>
@@ -605,6 +670,24 @@ The speech was unavoidable. Just like countless wars emerged in Guo`s life endle
       </categories>
       <tags>
         <tag>proxy</tag>
+        <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows修改控制台默认编码</title>
+    <url>/2020/04/18/windows%E4%BF%AE%E6%94%B9%E6%8E%A7%E5%88%B6%E5%8F%B0%E9%BB%98%E8%AE%A4%E7%BC%96%E7%A0%81/</url>
+    <content><![CDATA[<p>修改windows控制台cmd的默认编码方式</p>
+<a id="more"></a>
+<p>命令行输入 <code>chcp</code>， 显示当前的控制台编码</p>
+<p>输入 <code>chcp 65001</code> 会转到新的代码页，编码方式是 <code>UTF-8</code></p>
+<p>永久修改方式，修改注册表</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[HKEY_CURRENT_USER\Console\%SystemRoot%_System32_WindowsPowerShell_v1.0_powershell.exe]</span><br><span class="line"><span class="string">"CodePage"</span>=dword:0000fde9</span><br></pre></td></tr></table></figure>
+<p><code>fde9</code> 是 <code>65001</code> 的16进制</p>
+]]></content>
+      <categories>
+        <category>windows</category>
+      </categories>
+      <tags>
         <tag>windows</tag>
       </tags>
   </entry>
@@ -712,16 +795,6 @@ The speech was unavoidable. Just like countless wars emerged in Guo`s life endle
       <tags>
         <tag>hexo</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>测试 4</title>
-    <url>/2020/04/12/%E6%B5%8B%E8%AF%95-4/</url>
-    <content><![CDATA[<a id="more"></a>]]></content>
-  </entry>
-  <entry>
-    <title>测试2</title>
-    <url>/2020/04/11/%E6%B5%8B%E8%AF%952/</url>
-    <content><![CDATA[<a id="more"></a>]]></content>
   </entry>
   <entry>
     <title>第一篇hexo博客</title>
