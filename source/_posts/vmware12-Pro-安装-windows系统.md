@@ -2,9 +2,9 @@
 title: vmware12 Pro 安装 windows系统
 date: 2018-08-01 09:44:25
 tags: 
-- VMware
+- vmware
 categories: 
-- VMware
+- vmware
 ---
 ### 使用VMware虚拟机安装操作系统的一点经历
 
