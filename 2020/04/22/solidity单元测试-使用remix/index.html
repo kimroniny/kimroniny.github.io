@@ -127,21 +127,21 @@
 
 
 
-  <meta name="description" content="在remix中对solidity进行单元测试。">
+  <meta name="description" content="一、激活测试插件 二、断言  Assert.ok(value[, message]) Assert.equal(actual, expected[, message]) Assert.notEqual(actual, expected[, message]) Assert.greaterThan(value1, value2[, message]) Assert.lesserThan(value">
 <meta name="keywords" content="blockchain,ethereum,solidity">
 <meta property="og:type" content="article">
 <meta property="og:title" content="solidity单元测试(使用remix)">
 <meta property="og:url" content="http://yoursite.com/2020/04/22/solidity单元测试-使用remix/index.html">
 <meta property="og:site_name" content="kimroniny的博客">
-<meta property="og:description" content="在remix中对solidity进行单元测试。">
+<meta property="og:description" content="一、激活测试插件 二、断言  Assert.ok(value[, message]) Assert.equal(actual, expected[, message]) Assert.notEqual(actual, expected[, message]) Assert.greaterThan(value1, value2[, message]) Assert.lesserThan(value">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2020/04/22/solidity单元测试-使用remix/plugin1.png">
 <meta property="og:image" content="http://yoursite.com/2020/04/22/solidity单元测试-使用remix/plugin2.png">
 <meta property="og:image" content="http://yoursite.com/2020/04/22/solidity单元测试-使用remix/generate.png">
-<meta property="og:updated_time" content="2020-04-22T13:12:56.175Z">
+<meta property="og:updated_time" content="2020-04-22T13:17:11.137Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="solidity单元测试(使用remix)">
-<meta name="twitter:description" content="在remix中对solidity进行单元测试。">
+<meta name="twitter:description" content="一、激活测试插件 二、断言  Assert.ok(value[, message]) Assert.equal(actual, expected[, message]) Assert.notEqual(actual, expected[, message]) Assert.greaterThan(value1, value2[, message]) Assert.lesserThan(value">
 <meta name="twitter:image" content="http://yoursite.com/2020/04/22/solidity单元测试-使用remix/plugin1.png">
 
 
@@ -415,7 +415,7 @@
                 
               
 
-              <time title="创建时间：2020-04-22 17:44:11 / 修改时间：21:12:56" itemprop="dateCreated datePublished" datetime="2020-04-22T17:44:11+08:00">2020-04-22</time>
+              <time title="创建时间：2020-04-22 17:44:11 / 修改时间：21:17:11" itemprop="dateCreated datePublished" datetime="2020-04-22T17:44:11+08:00">2020-04-22</time>
             
 
             
@@ -500,7 +500,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">9.4k</span>
+                <span title="本文字数">9.7k</span>
               
 
               
@@ -534,14 +534,36 @@
       
 
       
-        <p>在remix中对solidity进行单元测试。</p>
+        <ul>
+<li><a href="#%e4%b8%80%e6%bf%80%e6%b4%bb%e6%b5%8b%e8%af%95%e6%8f%92%e4%bb%b6">一、激活测试插件</a></li>
+<li><a href="#%e4%ba%8c%e6%96%ad%e8%a8%80">二、断言</a>
+<ul>
+<li><a href="#assertokvalue-message">Assert.ok(value[, message])</a></li>
+<li><a href="#assertequalactual-expected-message">Assert.equal(actual, expected[, message])</a></li>
+<li><a href="#assertnotequalactual-expected-message">Assert.notEqual(actual, expected[, message])</a></li>
+<li><a href="#assertgreaterthanvalue1-value2-message">Assert.greaterThan(value1, value2[, message])</a></li>
+<li><a href="#assertlesserthanvalue1-value2-message">Assert.lesserThan(value1, value2[, message])</a></li>
+</ul>
+</li>
+<li><a href="#%e4%b8%89%e7%89%b9%e6%ae%8a%e5%87%bd%e6%95%b0">三、特殊函数</a></li>
+<li><a href="#%e5%9b%9b%e7%89%b9%e6%ae%8a%e7%9a%84%e4%ba%a4%e6%98%93%e5%8f%82%e6%95%b0">四、特殊的交易参数</a></li>
+<li><a href="#%e4%ba%94%e6%a0%b7%e4%be%8b%e8%af%b4%e6%98%8e">五、样例说明</a>
+<ul>
+<li><a href="#%e4%b8%80%e5%9f%ba%e6%9c%ac%e6%b5%8b%e8%af%95%e6%a0%b7%e4%be%8b">（一）基本测试样例</a></li>
+<li><a href="#%e4%ba%8c%e6%b6%89%e5%8f%8a%e5%88%b0msgsender%e7%9a%84%e6%b5%8b%e8%af%95%e6%a0%b7%e4%be%8b">（二）涉及到<code>msg.sender</code>的测试样例</a></li>
+<li><a href="#%e4%b8%89%e6%b6%89%e5%8f%8a%e5%88%b0-msgvalue-%e7%9a%84%e6%b5%8b%e8%af%95%e6%a0%b7%e4%be%8b">（三）涉及到 <code>msg.value</code> 的测试样例</a></li>
+<li><a href="#%e5%9b%9b%e6%96%b9%e6%b3%95%e6%89%a7%e8%a1%8c%e8%bf%87%e7%a8%8b%e4%b8%ad%e7%9a%84%e9%94%99%e8%af%af%e5%a4%84%e7%90%86">（四）方法执行过程中的错误处理</a></li>
+</ul>
+</li>
+</ul>
+<p>在remix中对solidity进行单元测试。</p>
 <a id="more"></a>
-<h1 id="激活测试插件"><a class="markdownIt-Anchor" href="#激活测试插件"></a> 激活测试插件</h1>
+<h1 id="一-激活测试插件"><a class="markdownIt-Anchor" href="#一-激活测试插件"></a> 一、激活测试插件</h1>
 <p><img src="plugin1.png" alt="插件列表"></p>
 <p><img src="plugin2.png" alt="插件页面"></p>
 <p>激活插件之后，点击 <code>Generate test file</code>，就可以创建测试文件。</p>
 <p><img src="generate.png" alt="生成测试文件"></p>
-<h1 id="断言"><a class="markdownIt-Anchor" href="#断言"></a> 断言</h1>
+<h1 id="二-断言"><a class="markdownIt-Anchor" href="#二-断言"></a> 二、断言</h1>
 <p>断言很少，官方给出的只有5个。</p>
 <h2 id="assertokvalue-message"><a class="markdownIt-Anchor" href="#assertokvalue-message"></a> Assert.ok(value[, message])</h2>
 <ul>
@@ -572,14 +594,14 @@
 <li><em>value2</em>: uint | int</li>
 <li><em>message</em>: string</li>
 </ul>
-<h1 id="特殊函数"><a class="markdownIt-Anchor" href="#特殊函数"></a> 特殊函数</h1>
+<h1 id="三-特殊函数"><a class="markdownIt-Anchor" href="#三-特殊函数"></a> 三、特殊函数</h1>
 <ul>
 <li>beforeEach() - 在每个测试开始前运行</li>
 <li>beforeAll() - 在所有测试开始前运行</li>
 <li>afterEach() - 在每个测试结束后运行</li>
 <li>afterAll() - 在所有测试结束后运行</li>
 </ul>
-<h1 id="特殊的交易参数"><a class="markdownIt-Anchor" href="#特殊的交易参数"></a> 特殊的交易参数</h1>
+<h1 id="四-特殊的交易参数"><a class="markdownIt-Anchor" href="#四-特殊的交易参数"></a> 四、特殊的交易参数</h1>
 <p>对于涉及到 <code>msg.sender</code> 和 <code>msg.value</code> 的交易，remix采取特殊的方法来提供这两个参数。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// #sender: account-0</span></span><br><span class="line"><span class="comment">/// #value: 10</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkSenderIs0AndValueis10</span> (<span class="params"></span>) <span class="title">public</span> <span class="title">payable</span> </span>&#123;</span><br><span class="line">    Assert.equal(msg.sender, TestsAccounts.getAccount(<span class="number">0</span>), <span class="string">"wrong sender in checkSenderIs0AndValueis10"</span>);</span><br><span class="line">    Assert.equal(msg.value, <span class="number">10</span>, <span class="string">"wrong value in checkSenderIs0AndValueis10"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
@@ -590,7 +612,7 @@
 <li>如果说用到 <code>#sender</code> 这个参数，那么必须在合约文件中导入 <code>import remix_accounts.sol</code></li>
 <li>参数 <code>#value</code> 的单位是 <code>wei</code></li>
 </ul>
-<h1 id="样例说明"><a class="markdownIt-Anchor" href="#样例说明"></a> 样例说明</h1>
+<h1 id="五-样例说明"><a class="markdownIt-Anchor" href="#五-样例说明"></a> 五、样例说明</h1>
 <h2 id="一基本测试样例"><a class="markdownIt-Anchor" href="#一基本测试样例"></a> （一）基本测试样例</h2>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// @notice - 源程序</span></span><br><span class="line"><span class="comment">/// @filename - Simple_storage.sol</span></span><br><span class="line"></span><br><span class="line">pragma solidity &gt;=<span class="number">0.4</span><span class="number">.22</span> &lt;<span class="number">0.7</span><span class="number">.0</span>;</span><br><span class="line"></span><br><span class="line">contract SimpleStorage &#123;</span><br><span class="line">    uint public storedData;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>() public &#123;</span><br><span class="line">        storedData = <span class="number">100</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">set</span>(<span class="params">uint x</span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        storedData = x;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params"></span>) <span class="title">public</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params">uint retVal</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> storedData;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// @notice - 测试程序</span></span><br><span class="line"><span class="comment">/// @filename - Simple_storage_test.sol</span></span><br><span class="line"></span><br><span class="line">pragma solidity &gt;=<span class="number">0.4</span><span class="number">.22</span> &lt;<span class="number">0.7</span><span class="number">.0</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">"remix_tests.sol"</span>;  <span class="comment">// 自动导入</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"./Simple_storage.sol"</span>;  <span class="comment">// 待测试的合约</span></span><br><span class="line"></span><br><span class="line">contract MyTest &#123;</span><br><span class="line">    SimpleStorage foo;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">beforeEach</span>(<span class="params"></span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        foo = <span class="keyword">new</span> SimpleStorage();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">initialValueShouldBe100</span>(<span class="params"></span>) <span class="title">public</span> <span class="title">returns</span> (<span class="params">bool</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Assert.equal(foo.get(), <span class="number">100</span>, <span class="string">"initial value is not correct"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">valueIsSet200</span>(<span class="params"></span>) <span class="title">public</span> <span class="title">returns</span> (<span class="params">bool</span>) </span>&#123;</span><br><span class="line">        foo.set(<span class="number">200</span>);</span><br><span class="line">        <span class="keyword">return</span> Assert.equal(foo.get(), <span class="number">200</span>, <span class="string">"value is not 200"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -974,7 +996,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#激活测试插件"><span class="nav-number">1.</span> <span class="nav-text"> 激活测试插件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#断言"><span class="nav-number">2.</span> <span class="nav-text"> 断言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#assertokvalue-message"><span class="nav-number">2.1.</span> <span class="nav-text"> Assert.ok(value[, message])</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#assertequalactual-expected-message"><span class="nav-number">2.2.</span> <span class="nav-text"> Assert.equal(actual, expected[, message])</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#assertnotequalactual-expected-message"><span class="nav-number">2.3.</span> <span class="nav-text"> Assert.notEqual(actual, expected[, message])</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#assertgreaterthanvalue1-value2-message"><span class="nav-number">2.4.</span> <span class="nav-text"> Assert.greaterThan(value1, value2[, message])</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#assertlesserthanvalue1-value2-message"><span class="nav-number">2.5.</span> <span class="nav-text"> Assert.lesserThan(value1, value2[, message])</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特殊函数"><span class="nav-number">3.</span> <span class="nav-text"> 特殊函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特殊的交易参数"><span class="nav-number">4.</span> <span class="nav-text"> 特殊的交易参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例说明"><span class="nav-number">5.</span> <span class="nav-text"> 样例说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一基本测试样例"><span class="nav-number">5.1.</span> <span class="nav-text"> （一）基本测试样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二涉及到msgsender的测试样例"><span class="nav-number">5.2.</span> <span class="nav-text"> （二）涉及到msg.sender的测试样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三涉及到-msgvalue-的测试样例"><span class="nav-number">5.3.</span> <span class="nav-text"> （三）涉及到 msg.value 的测试样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四方法执行过程中的错误处理"><span class="nav-number">5.4.</span> <span class="nav-text"> （四）方法执行过程中的错误处理</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-激活测试插件"><span class="nav-number">1.</span> <span class="nav-text"> 一、激活测试插件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-断言"><span class="nav-number">2.</span> <span class="nav-text"> 二、断言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#assertokvalue-message"><span class="nav-number">2.1.</span> <span class="nav-text"> Assert.ok(value[, message])</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#assertequalactual-expected-message"><span class="nav-number">2.2.</span> <span class="nav-text"> Assert.equal(actual, expected[, message])</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#assertnotequalactual-expected-message"><span class="nav-number">2.3.</span> <span class="nav-text"> Assert.notEqual(actual, expected[, message])</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#assertgreaterthanvalue1-value2-message"><span class="nav-number">2.4.</span> <span class="nav-text"> Assert.greaterThan(value1, value2[, message])</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#assertlesserthanvalue1-value2-message"><span class="nav-number">2.5.</span> <span class="nav-text"> Assert.lesserThan(value1, value2[, message])</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-特殊函数"><span class="nav-number">3.</span> <span class="nav-text"> 三、特殊函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四-特殊的交易参数"><span class="nav-number">4.</span> <span class="nav-text"> 四、特殊的交易参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五-样例说明"><span class="nav-number">5.</span> <span class="nav-text"> 五、样例说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一基本测试样例"><span class="nav-number">5.1.</span> <span class="nav-text"> （一）基本测试样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二涉及到msgsender的测试样例"><span class="nav-number">5.2.</span> <span class="nav-text"> （二）涉及到msg.sender的测试样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三涉及到-msgvalue-的测试样例"><span class="nav-number">5.3.</span> <span class="nav-text"> （三）涉及到 msg.value 的测试样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四方法执行过程中的错误处理"><span class="nav-number">5.4.</span> <span class="nav-text"> （四）方法执行过程中的错误处理</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1008,7 +1030,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">107k</span>
+    <span title="站点总字数">108k</span>
   
 
   
