@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-atom.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+  
+
+
+
+
+  <meta name="description" content="在remix中对solidity进行单元测试。">
+<meta name="keywords" content="blockchain,ethereum,solidity">
+<meta property="og:type" content="article">
+<meta property="og:title" content="solidity单元测试(使用remix)">
+<meta property="og:url" content="http://yoursite.com/2020/04/22/solidity单元测试-使用remix/index.html">
+<meta property="og:site_name" content="kimroniny的博客">
+<meta property="og:description" content="在remix中对solidity进行单元测试。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2020/04/22/solidity单元测试-使用remix/plugin1.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/22/solidity单元测试-使用remix/plugin2.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/22/solidity单元测试-使用remix/generate.png">
+<meta property="og:updated_time" content="2020-04-22T13:12:56.175Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="solidity单元测试(使用remix)">
+<meta name="twitter:description" content="在remix中对solidity进行单元测试。">
+<meta name="twitter:image" content="http://yoursite.com/2020/04/22/solidity单元测试-使用remix/plugin1.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="kimroniny的博客" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/22/solidity单元测试-使用remix/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>solidity单元测试(使用remix) | kimroniny的博客</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b36c865c67d2bd4db9ebe2412384f9e1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/kimroniny" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">kimroniny的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/22/solidity单元测试-使用remix/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kimroniny">
+      <meta itemprop="description" content="夜阑卧听风吹雨">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/76eb1075ly1ftj1m6xwxnj20ci0ciwf6.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kimroniny的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">solidity单元测试(使用remix)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-04-22 17:44:11 / 修改时间：21:12:56" itemprop="dateCreated datePublished" datetime="2020-04-22T17:44:11+08:00">2020-04-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/blockchain/" itemprop="url" rel="index"><span itemprop="name">blockchain</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/blockchain/ethereum/" itemprop="url" rel="index"><span itemprop="name">ethereum</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/blockchain/ethereum/solidity/" itemprop="url" rel="index"><span itemprop="name">solidity</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/22/solidity单元测试-使用remix/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2020/04/22/solidity单元测试-使用remix/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/04/22/solidity单元测试-使用remix/" class="leancloud_visitors" data-flag-title="solidity单元测试(使用remix)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">9.4k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">9 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在remix中对solidity进行单元测试。</p>
+<a id="more"></a>
+<h1 id="激活测试插件"><a class="markdownIt-Anchor" href="#激活测试插件"></a> 激活测试插件</h1>
+<p><img src="plugin1.png" alt="插件列表"></p>
+<p><img src="plugin2.png" alt="插件页面"></p>
+<p>激活插件之后，点击 <code>Generate test file</code>，就可以创建测试文件。</p>
+<p><img src="generate.png" alt="生成测试文件"></p>
+<h1 id="断言"><a class="markdownIt-Anchor" href="#断言"></a> 断言</h1>
+<p>断言很少，官方给出的只有5个。</p>
+<h2 id="assertokvalue-message"><a class="markdownIt-Anchor" href="#assertokvalue-message"></a> Assert.ok(value[, message])</h2>
+<ul>
+<li>value: bool</li>
+<li>message: string</li>
+</ul>
+<h2 id="assertequalactual-expected-message"><a class="markdownIt-Anchor" href="#assertequalactual-expected-message"></a> Assert.equal(actual, expected[, message])</h2>
+<ul>
+<li><em>actual</em>: uint | int | bool | address | bytes32 | string</li>
+<li><em>expected</em>: uint | int | bool | address | bytes32 | string</li>
+<li><em>message</em>: string</li>
+</ul>
+<h2 id="assertnotequalactual-expected-message"><a class="markdownIt-Anchor" href="#assertnotequalactual-expected-message"></a> Assert.notEqual(actual, expected[, message])</h2>
+<ul>
+<li><em>actual</em>: uint | int | bool | address | bytes32 | string</li>
+<li><em>expected</em>: uint | int | bool | address | bytes32 | string</li>
+<li><em>message</em>: string</li>
+</ul>
+<h2 id="assertgreaterthanvalue1-value2-message"><a class="markdownIt-Anchor" href="#assertgreaterthanvalue1-value2-message"></a> Assert.greaterThan(value1, value2[, message])</h2>
+<ul>
+<li><em>value1</em>: uint | int</li>
+<li><em>value2</em>: uint | int</li>
+<li><em>message</em>: string</li>
+</ul>
+<h2 id="assertlesserthanvalue1-value2-message"><a class="markdownIt-Anchor" href="#assertlesserthanvalue1-value2-message"></a> Assert.lesserThan(value1, value2[, message])</h2>
+<ul>
+<li><em>value1</em>: uint | int</li>
+<li><em>value2</em>: uint | int</li>
+<li><em>message</em>: string</li>
+</ul>
+<h1 id="特殊函数"><a class="markdownIt-Anchor" href="#特殊函数"></a> 特殊函数</h1>
+<ul>
+<li>beforeEach() - 在每个测试开始前运行</li>
+<li>beforeAll() - 在所有测试开始前运行</li>
+<li>afterEach() - 在每个测试结束后运行</li>
+<li>afterAll() - 在所有测试结束后运行</li>
+</ul>
+<h1 id="特殊的交易参数"><a class="markdownIt-Anchor" href="#特殊的交易参数"></a> 特殊的交易参数</h1>
+<p>对于涉及到 <code>msg.sender</code> 和 <code>msg.value</code> 的交易，remix采取特殊的方法来提供这两个参数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// #sender: account-0</span></span><br><span class="line"><span class="comment">/// #value: 10</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkSenderIs0AndValueis10</span> (<span class="params"></span>) <span class="title">public</span> <span class="title">payable</span> </span>&#123;</span><br><span class="line">    Assert.equal(msg.sender, TestsAccounts.getAccount(<span class="number">0</span>), <span class="string">"wrong sender in checkSenderIs0AndValueis10"</span>);</span><br><span class="line">    Assert.equal(msg.value, <span class="number">10</span>, <span class="string">"wrong value in checkSenderIs0AndValueis10"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>格式：在函数前加上 <code>/// #sender: account-0</code> 或者 <code>/// #value: 10</code></li>
+<li>目前只提供 <code>#sender</code> 和 <code>#value</code> 两种参数</li>
+<li>发送者地址的格式是固定的，就是 <code>account-x</code> 这个样子的，<code>x</code> 的取值只有三个 <code>[0-2]</code> (v0.10.0之后可以在<code>[0-9]</code>取值，提供10个地址)</li>
+<li>使用 <code>TestsAccounts.getAccount(idx)</code>  来获取测试地址，首地址是合约创建者的地址</li>
+<li>如果说用到 <code>#sender</code> 这个参数，那么必须在合约文件中导入 <code>import remix_accounts.sol</code></li>
+<li>参数 <code>#value</code> 的单位是 <code>wei</code></li>
+</ul>
+<h1 id="样例说明"><a class="markdownIt-Anchor" href="#样例说明"></a> 样例说明</h1>
+<h2 id="一基本测试样例"><a class="markdownIt-Anchor" href="#一基本测试样例"></a> （一）基本测试样例</h2>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// @notice - 源程序</span></span><br><span class="line"><span class="comment">/// @filename - Simple_storage.sol</span></span><br><span class="line"></span><br><span class="line">pragma solidity &gt;=<span class="number">0.4</span><span class="number">.22</span> &lt;<span class="number">0.7</span><span class="number">.0</span>;</span><br><span class="line"></span><br><span class="line">contract SimpleStorage &#123;</span><br><span class="line">    uint public storedData;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>() public &#123;</span><br><span class="line">        storedData = <span class="number">100</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">set</span>(<span class="params">uint x</span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        storedData = x;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params"></span>) <span class="title">public</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params">uint retVal</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> storedData;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// @notice - 测试程序</span></span><br><span class="line"><span class="comment">/// @filename - Simple_storage_test.sol</span></span><br><span class="line"></span><br><span class="line">pragma solidity &gt;=<span class="number">0.4</span><span class="number">.22</span> &lt;<span class="number">0.7</span><span class="number">.0</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">"remix_tests.sol"</span>;  <span class="comment">// 自动导入</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"./Simple_storage.sol"</span>;  <span class="comment">// 待测试的合约</span></span><br><span class="line"></span><br><span class="line">contract MyTest &#123;</span><br><span class="line">    SimpleStorage foo;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">beforeEach</span>(<span class="params"></span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        foo = <span class="keyword">new</span> SimpleStorage();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">initialValueShouldBe100</span>(<span class="params"></span>) <span class="title">public</span> <span class="title">returns</span> (<span class="params">bool</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Assert.equal(foo.get(), <span class="number">100</span>, <span class="string">"initial value is not correct"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">valueIsSet200</span>(<span class="params"></span>) <span class="title">public</span> <span class="title">returns</span> (<span class="params">bool</span>) </span>&#123;</span><br><span class="line">        foo.set(<span class="number">200</span>);</span><br><span class="line">        <span class="keyword">return</span> Assert.equal(foo.get(), <span class="number">200</span>, <span class="string">"value is not 200"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="二涉及到msgsender的测试样例"><a class="markdownIt-Anchor" href="#二涉及到msgsender的测试样例"></a> （二）涉及到<code>msg.sender</code>的测试样例</h2>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// @notice - 源程序</span></span><br><span class="line"><span class="comment">/// @filename - Sender.sol</span></span><br><span class="line"></span><br><span class="line">pragma solidity &gt;=<span class="number">0.4</span><span class="number">.22</span> &lt;<span class="number">0.7</span><span class="number">.0</span>;</span><br><span class="line">contract Sender &#123;</span><br><span class="line">    address private owner;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">constructor</span>() public &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 先判断发送者是否和当前owner一致，只有一致时才可以修改</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">updateOwner</span>(<span class="params">address newOwner</span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        <span class="built_in">require</span>(msg.sender == owner, <span class="string">"only current owner can update owner"</span>);</span><br><span class="line">        owner = newOwner;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getOwner</span>(<span class="params"></span>) <span class="title">public</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params">address</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> owner;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// @notice - 测试程序</span></span><br><span class="line"><span class="comment">/// @filename - Sender_test.sol</span></span><br><span class="line"></span><br><span class="line">pragma solidity &gt;=<span class="number">0.4</span><span class="number">.22</span> &lt;<span class="number">0.7</span><span class="number">.0</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">"remix_tests.sol"</span>; </span><br><span class="line"><span class="keyword">import</span> <span class="string">"remix_accounts.sol"</span>;  <span class="comment">// 因为使用到了 #sender , 所以必须导入该package</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"./Sender.sol"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意，这里是继承合约</span></span><br><span class="line">contract SenderTest is Sender &#123;</span><br><span class="line">    address acc0;</span><br><span class="line">    address acc1;</span><br><span class="line">    address acc2;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// 这里的TestsAccounts用来获取测试用户，acc0（首地址） 就是合约的创建者地址</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">beforeAll</span>(<span class="params"></span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        acc0 = TestsAccounts.getAccount(<span class="number">0</span>); </span><br><span class="line">        acc1 = TestsAccounts.getAccount(<span class="number">1</span>);</span><br><span class="line">        acc2 = TestsAccounts.getAccount(<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">testInitialOwner</span>(<span class="params"></span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 合约初始化之后，owner代表着合约发布者的地址，也就是acc0</span></span><br><span class="line">        Assert.equal(getOwner(), acc0, <span class="string">'owner should be acc0'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// 如果不指定 #sender 参数，那么默认 msg.sender 是测试用的首地址</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">updateOwnerOnce</span>(<span class="params"></span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        Assert.ok(msg.sender == acc0, <span class="string">'caller should be default account i.e. acc0'</span>);</span><br><span class="line"></span><br><span class="line">        updateOwner(acc1);</span><br><span class="line"></span><br><span class="line">        Assert.equal(getOwner(), acc1, <span class="string">'owner should be updated to acc1'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// 通过 #sender: account-1 来指定 msg.sender，即为测试用的编号为 1 的地址</span></span><br><span class="line">    <span class="comment">/// #sender: account-1 </span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">updateOwnerOnceAgain</span>(<span class="params"></span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        Assert.ok(msg.sender == acc1, <span class="string">'caller should be custom account i.e. acc1'</span>);</span><br><span class="line">        updateOwner(acc2);</span><br><span class="line">        Assert.equal(getOwner(), acc2, <span class="string">'owner should be updated to acc2'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="三涉及到-msgvalue-的测试样例"><a class="markdownIt-Anchor" href="#三涉及到-msgvalue-的测试样例"></a> （三）涉及到 <code>msg.value</code> 的测试样例</h2>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// @notice - 源程序</span></span><br><span class="line"><span class="comment">/// @filename - Value.sol</span></span><br><span class="line"></span><br><span class="line">pragma solidity &gt;=<span class="number">0.4</span><span class="number">.22</span> &lt;<span class="number">0.7</span><span class="number">.0</span>;</span><br><span class="line">contract Value &#123;</span><br><span class="line">    uint256 public tokenBalance;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">constructor</span>() public &#123;</span><br><span class="line">        tokenBalance = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">addValue</span>(<span class="params"></span>) <span class="title">payable</span> <span class="title">public</span> </span>&#123;</span><br><span class="line">        tokenBalance = tokenBalance + (msg.value/<span class="number">10</span>);</span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getTokenBalance</span>(<span class="params"></span>) <span class="title">view</span> <span class="title">public</span> <span class="title">returns</span> (<span class="params">uint256</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> tokenBalance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity &gt;=<span class="number">0.4</span><span class="number">.22</span> &lt;<span class="number">0.7</span><span class="number">.0</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">"remix_tests.sol"</span>; </span><br><span class="line"><span class="keyword">import</span> <span class="string">"./Value.sol"</span>;</span><br><span class="line"></span><br><span class="line">contract ValueTest&#123;</span><br><span class="line">    Value v;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">beforeAll</span>(<span class="params"></span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        v = <span class="keyword">new</span> Value();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">testInitialBalance</span>(<span class="params"></span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        Assert.equal(v.getTokenBalance(), <span class="number">0</span>, <span class="string">'token balance should be 0 initially'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// 自定义 #value ，也就是 msg.value</span></span><br><span class="line">    <span class="comment">/// #value: 200</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">addValueOnce</span>(<span class="params"></span>) <span class="title">public</span> <span class="title">payable</span> </span>&#123;</span><br><span class="line">        Assert.equal(msg.value, <span class="number">200</span>, <span class="string">'value should be 200'</span>);</span><br><span class="line">        <span class="comment">// execute 'addValue'</span></span><br><span class="line">        v.addValue&#123;<span class="attr">gas</span>: <span class="number">40000</span>, <span class="attr">value</span>: <span class="number">200</span>&#125;(); <span class="comment">// 注意这种写法，solidity的版本必须大于 0.6.2，若版本低于0.6.2，就采用 addValueAgain() 中的方法。</span></span><br><span class="line">        Assert.equal(v.getTokenBalance(), <span class="number">20</span>, <span class="string">'token balance should be 20'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">/// 对于 solidity 版本小于 0.6.2 的，使用下面这种方式。</span></span><br><span class="line">    <span class="comment">/// #value: 100</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">addValueAgain</span>(<span class="params"></span>) <span class="title">public</span> <span class="title">payable</span> </span>&#123;</span><br><span class="line">        Assert.equal(msg.value, <span class="number">100</span>, <span class="string">'value should be 100'</span>);</span><br><span class="line">        bytes memory methodSign = abi.encodeWithSignature(<span class="string">'addValue()'</span>);</span><br><span class="line">        (bool success, bytes memory data) = address(v).call.gas(<span class="number">40000</span>).value(<span class="number">100</span>)(methodSign);</span><br><span class="line">        Assert.equal(success, <span class="literal">true</span>, <span class="string">'execution should be successful'</span>);</span><br><span class="line">        Assert.equal(v.getTokenBalance(), <span class="number">30</span>, <span class="string">'token balance should be 30'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="四方法执行过程中的错误处理"><a class="markdownIt-Anchor" href="#四方法执行过程中的错误处理"></a> （四）方法执行过程中的错误处理</h2>
+<p>如果 <code>solidity</code> 大于 0.6.0， 就是用 <code>try...catch</code> 结构，否则使用执行状态返回值的方法，具体见样例。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// @notice - 源程序</span></span><br><span class="line"><span class="comment">/// @filename - AttendanceRegister.sol</span></span><br><span class="line"></span><br><span class="line">pragma solidity &gt;=<span class="number">0.4</span><span class="number">.22</span> &lt;<span class="number">0.7</span><span class="number">.0</span>;</span><br><span class="line">contract AttendanceRegister &#123;</span><br><span class="line">    struct Student&#123;</span><br><span class="line">            string name;</span><br><span class="line">            uint <span class="class"><span class="keyword">class</span></span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    event Added(string name, uint <span class="class"><span class="keyword">class</span>, <span class="title">uint</span> <span class="title">time</span>)</span>;</span><br><span class="line"></span><br><span class="line">    mapping(<span class="function"><span class="params">uint</span> =&gt;</span> Student) public register; </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">uint rollNumber, string memory name, uint class</span>) <span class="title">public</span> <span class="title">returns</span> (<span class="params">uint256</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">require</span>(<span class="class"><span class="keyword">class</span> &gt; 0 &amp;&amp; <span class="title">class</span> &lt;</span>= <span class="number">12</span>, <span class="string">"Invalid class"</span>);</span><br><span class="line">        <span class="built_in">require</span>(register[rollNumber].class == <span class="number">0</span>, <span class="string">"Roll number not available"</span>);</span><br><span class="line">        Student memory s = Student(name, <span class="class"><span class="keyword">class</span>)</span>;</span><br><span class="line">        register[rollNumber] = s;</span><br><span class="line">        emit Added(name, <span class="class"><span class="keyword">class</span>, <span class="title">now</span>)</span>;</span><br><span class="line">        <span class="keyword">return</span> rollNumber;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getStudentName</span>(<span class="params">uint rollNumber</span>) <span class="title">public</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params">string memory</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> register[rollNumber].name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// @notice - 测试程序</span></span><br><span class="line"><span class="comment">/// @filename - AttendanceRegister_test.sol</span></span><br><span class="line"></span><br><span class="line">pragma solidity &gt;=<span class="number">0.4</span><span class="number">.22</span> &lt;<span class="number">0.7</span><span class="number">.0</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">"remix_tests.sol"</span>; </span><br><span class="line"><span class="keyword">import</span> <span class="string">"./AttendanceRegister.sol"</span>;</span><br><span class="line"></span><br><span class="line">contract AttendanceRegisterTest &#123;</span><br><span class="line">   </span><br><span class="line">    AttendanceRegister ar;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">beforeAll</span> (<span class="params"></span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        ar = <span class="keyword">new</span> AttendanceRegister();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// solidity 版本大于等于 0.6.0 的时候，使用 try-catch 结构 </span></span><br><span class="line">    <span class="comment">/// try-catch 的具体用法参考: https://solidity.readthedocs.io/en/v0.6.0/control-structures.html#try-catch</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">testAddSuccessUsingTryCatch</span>(<span class="params"></span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> ar.add(<span class="number">101</span>, <span class="string">'secondStudent'</span>, <span class="number">11</span>) returns (uint256 r) &#123;</span><br><span class="line">            Assert.equal(r, <span class="number">101</span>, <span class="string">'wrong rollNumber'</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> <span class="built_in">Error</span>(string memory <span class="comment">/*reason*/</span>) &#123;</span><br><span class="line">            Assert.ok(<span class="literal">false</span>, <span class="string">'failed with reason'</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (bytes memory <span class="comment">/*lowLevelData*/</span>) &#123;</span><br><span class="line">            Assert.ok(<span class="literal">false</span>, <span class="string">'failed unexpected'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">testAddFailureUsingTryCatch2</span>(<span class="params"></span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> ar.add(<span class="number">101</span>, <span class="string">'secondStudent'</span>, <span class="number">11</span>) returns (uint256 r) &#123;</span><br><span class="line">            Assert.ok(<span class="literal">false</span>, <span class="string">'method execution should fail'</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> <span class="built_in">Error</span>(string memory reason) &#123;</span><br><span class="line">            Assert.equal(reason, <span class="string">'Roll number not available'</span>, <span class="string">'failed with unexpected reason'</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (bytes memory <span class="comment">/*lowLevelData*/</span>) &#123;</span><br><span class="line">            Assert.ok(<span class="literal">false</span>, <span class="string">'failed unexpected'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// solidity版本小于 0.6.0，使用下面这种方式</span></span><br><span class="line">    <span class="comment">/// 具体参考: https://solidity.readthedocs.io/en/v0.6.0/units-and-global-variables.html#members-of-address-types</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">testAddSuccessUsingCall</span>(<span class="params"></span>) <span class="title">public</span> </span>&#123;</span><br><span class="line">        bytes memory methodSign = abi.encodeWithSignature(<span class="string">'add(uint256,string,uint256)'</span>, <span class="number">102</span>, <span class="string">'firstStudent'</span>, <span class="number">10</span>);</span><br><span class="line">        (bool success, bytes memory data) = address(ar).call(methodSign);</span><br><span class="line">        <span class="comment">// success 代表了方法是否被正确执行。</span></span><br><span class="line">        Assert.equal(success, <span class="literal">true</span>, <span class="string">'execution should be successful'</span>);</span><br><span class="line">        <span class="comment">// data 代表了返回结果，需要进行解码</span></span><br><span class="line">        uint rollNumber = abi.decode(data, (uint256));</span><br><span class="line">        Assert.equal(rollNumber, <span class="number">102</span>, <span class="string">'wrong rollNumber'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-receive.png" alt="kimroniny 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-receive.jpg" alt="kimroniny 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/blockchain/" rel="tag"># blockchain</a>
+          
+            <a href="/tags/ethereum/" rel="tag"># ethereum</a>
+          
+            <a href="/tags/solidity/" rel="tag"># solidity</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/20/Ronald-Reagan-The-Space-Shuttle-Challenger-Tragedy-Address/" rel="next" title="Ronald Reagan: The Space Shuttle " challenger" tragedy address">
+                <i class="fa fa-chevron-left"></i> Ronald Reagan: The Space Shuttle "Challenger" Tragedy Address
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://ww1.sinaimg.cn/large/76eb1075ly1ftj1m6xwxnj20ci0ciwf6.jpg" alt="kimroniny">
+            
+              <p class="site-author-name" itemprop="name">kimroniny</p>
+              <p class="site-description motion-element" itemprop="description">夜阑卧听风吹雨</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/kimroniny" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/profile.php?id=100021735524497" target="_blank" title="FB Page"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.github.com" title="Github" target="_blank">Github</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.v2ex.com/" title="V2EX" target="_blank">V2EX</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://juejin.im/" title="掘金" target="_blank">掘金</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://36kr.com/" title="36氪" target="_blank">36氪</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.zhihu.com/" title="知乎" target="_blank">知乎</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#激活测试插件"><span class="nav-number">1.</span> <span class="nav-text"> 激活测试插件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#断言"><span class="nav-number">2.</span> <span class="nav-text"> 断言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#assertokvalue-message"><span class="nav-number">2.1.</span> <span class="nav-text"> Assert.ok(value[, message])</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#assertequalactual-expected-message"><span class="nav-number">2.2.</span> <span class="nav-text"> Assert.equal(actual, expected[, message])</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#assertnotequalactual-expected-message"><span class="nav-number">2.3.</span> <span class="nav-text"> Assert.notEqual(actual, expected[, message])</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#assertgreaterthanvalue1-value2-message"><span class="nav-number">2.4.</span> <span class="nav-text"> Assert.greaterThan(value1, value2[, message])</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#assertlesserthanvalue1-value2-message"><span class="nav-number">2.5.</span> <span class="nav-text"> Assert.lesserThan(value1, value2[, message])</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特殊函数"><span class="nav-number">3.</span> <span class="nav-text"> 特殊函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特殊的交易参数"><span class="nav-number">4.</span> <span class="nav-text"> 特殊的交易参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例说明"><span class="nav-number">5.</span> <span class="nav-text"> 样例说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一基本测试样例"><span class="nav-number">5.1.</span> <span class="nav-text"> （一）基本测试样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二涉及到msgsender的测试样例"><span class="nav-number">5.2.</span> <span class="nav-text"> （二）涉及到msg.sender的测试样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三涉及到-msgvalue-的测试样例"><span class="nav-number">5.3.</span> <span class="nav-text"> （三）涉及到 msg.value 的测试样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四方法执行过程中的错误处理"><span class="nav-number">5.4.</span> <span class="nav-text"> （四）方法执行过程中的错误处理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">created by kimroniny</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">107k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">1:38</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'mQ8vEoYrWGAjG2Aq1eI2ckaF-gzGzoHsz',
+        appKey: 'lsSNBNE0MGiUHu4P51BsqTLc',
+        placeholder: '如有问题，请留言(*^▽^*)',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("mQ8vEoYrWGAjG2Aq1eI2ckaF-gzGzoHsz", "lsSNBNE0MGiUHu4P51BsqTLc");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+</body>
+</html>
