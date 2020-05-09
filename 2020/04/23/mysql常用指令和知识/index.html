@@ -135,7 +135,7 @@
 <meta property="og:site_name" content="五 · 更 · 案">
 <meta property="og:description" content="关于mysql的基本操作，平时自己用的比较多的，以后方便用。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-28T03:39:03.159Z">
+<meta property="og:updated_time" content="2020-05-09T08:57:21.889Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql常用指令和知识">
 <meta name="twitter:description" content="关于mysql的基本操作，平时自己用的比较多的，以后方便用。">
@@ -430,7 +430,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-04-28 11:39:03" itemprop="dateModified" datetime="2020-04-28T11:39:03+08:00">2020-04-28</time>
+                <time title="修改时间：2020-05-09 16:57:21" itemprop="dateModified" datetime="2020-05-09T16:57:21+08:00">2020-05-09</time>
               
             
           </span>
@@ -503,7 +503,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">2.8k</span>
+                <span title="本文字数">5.1k</span>
               
 
               
@@ -517,7 +517,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">3 分钟</span>
+                <span title="阅读时长">5 分钟</span>
               
             </div>
           
@@ -559,11 +559,29 @@
 <li><a href="#delete">delete</a></li>
 </ul>
 </li>
+<li><a href="#%e5%a4%8d%e5%88%b6%e8%a1%a8">复制表</a></li>
+<li><a href="#%e4%bf%ae%e6%94%b9%e8%a1%a8%e7%bb%93%e6%9e%84">修改表结构</a></li>
+<li><a href="#%e5%88%9b%e5%bb%ba">创建</a>
+<ul>
+<li><a href="#%e5%88%9b%e5%bb%ba%e6%95%b0%e6%8d%ae%e5%ba%93">创建数据库</a></li>
+<li><a href="#%e5%88%9b%e5%bb%ba%e8%a1%a8">创建表</a></li>
+</ul>
+</li>
+<li><a href="#%e6%89%a7%e8%a1%8csql%e6%96%87%e4%bb%b6">执行sql文件</a></li>
+<li><a href="#%e6%95%b0%e6%8d%ae%e5%a4%87%e4%bb%bd">数据备份</a></li>
 </ul>
 </li>
 <li><a href="#%e5%9f%ba%e6%9c%ac%e7%9f%a5%e8%af%86">基本知识</a>
 <ul>
 <li><a href="#%e5%90%84%e7%a7%8d%e5%bc%95%e5%8f%b7">各种引号</a></li>
+<li><a href="#datetime">datetime</a></li>
+<li><a href="#%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b">数据类型</a>
+<ul>
+<li><a href="#%e6%95%b0%e5%80%bc">数值</a></li>
+<li><a href="#%e6%97%a5%e6%9c%9f">日期</a></li>
+<li><a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2">字符串</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -614,16 +632,251 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 多个字段更新，用逗号分隔</span><br><span class="line"><span class="keyword">UPDATE</span> table_name <span class="keyword">SET</span> column1 = value1, column2 = value2 <span class="keyword">WHERE</span> condition;</span><br></pre></td></tr></table></figure>
 <h3 id="delete"><a class="markdownIt-Anchor" href="#delete"></a> delete</h3>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> condition;</span><br></pre></td></tr></table></figure>
-<h3 id="复制表"><a class="markdownIt-Anchor" href="#复制表"></a> 复制表</h3>
+<h2 id="复制表"><a class="markdownIt-Anchor" href="#复制表"></a> 复制表</h2>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 复制表结构和数据</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 新表 <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> 旧表;</span><br><span class="line"><span class="comment">-- 仅复制表结构</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 新表 <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> 旧表 <span class="keyword">WHERE</span> <span class="number">1</span>=<span class="number">2</span>;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 新表  <span class="keyword">LIKE</span> 旧表;</span><br><span class="line"><span class="comment">-- 复制旧表数据到新表</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 新表(字段<span class="number">1</span>,字段<span class="number">2</span>,.......) <span class="keyword">SELECT</span> 字段<span class="number">1</span>,字段<span class="number">2</span>,...... <span class="keyword">FROM</span> 旧表;</span><br><span class="line"><span class="comment">-- 如果两个表的结构一致，则可以</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 新表 <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> 旧表;</span><br><span class="line"><span class="comment">-- 复制旧表内容到新表</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">INTO</span> 新表 <span class="keyword">FROM</span> 旧表;</span><br><span class="line"><span class="comment">-- 旧表结构复制到新表</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">INTO</span> 表<span class="number">2</span> <span class="keyword">FROM</span> 表<span class="number">1</span> <span class="keyword">WHERE</span> <span class="number">1</span>=<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="修改表结构"><a class="markdownIt-Anchor" href="#修改表结构"></a> 修改表结构</h3>
+<h2 id="修改表结构"><a class="markdownIt-Anchor" href="#修改表结构"></a> 修改表结构</h2>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 增加字段</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> perple <span class="keyword">add</span> <span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">default</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'名称'</span>;</span><br><span class="line"><span class="comment">-- 修改字段</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> perple <span class="keyword">change</span> oldname newname <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">'0'</span>;</span><br><span class="line"><span class="comment">-- 删除字段</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> perple <span class="keyword">drop</span> <span class="keyword">name</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="创建"><a class="markdownIt-Anchor" href="#创建"></a> 创建</h2>
+<h3 id="数据库"><a class="markdownIt-Anchor" href="#数据库"></a> 数据库</h3>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> <span class="keyword">test</span> <span class="keyword">default</span> <span class="built_in">character</span> <span class="keyword">set</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci;</span><br></pre></td></tr></table></figure>
+<h3 id="表"><a class="markdownIt-Anchor" href="#表"></a> 表</h3>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`test`</span>;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> <span class="string">`test`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`type`</span> <span class="built_in">int</span>(<span class="number">4</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`time`</span> datetime <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br></pre></td></tr></table></figure>
+<h2 id="执行sql文件"><a class="markdownIt-Anchor" href="#执行sql文件"></a> 执行sql文件</h2>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source absolute_path</span><br><span class="line">\. absolute_path</span><br></pre></td></tr></table></figure>
+<h2 id="数据备份"><a class="markdownIt-Anchor" href="#数据备份"></a> 数据备份</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导出数据库中所有的表结构和数据</span></span><br><span class="line">mysqldump -u root -p dbname &gt; dump.txt</span><br><span class="line">mysqldump -u root -p dbname tablename &gt; dump.txt</span><br><span class="line"><span class="comment"># 只导出表结构</span></span><br><span class="line">mysqldump --opt -d dbname -uroot -p &gt; xxx.sql</span><br><span class="line">mysqldump --opt -d dbname tablename -uroot -p &gt; xxx.sql</span><br><span class="line"><span class="comment"># 只导出数据</span></span><br><span class="line">mysqldump -t dbname -uroot -p &gt; xxx.sql</span><br><span class="line">mysqldump -t dbname tablename -uroot -p &gt; xxx.sql</span><br></pre></td></tr></table></figure>
 <h1 id="基本知识"><a class="markdownIt-Anchor" href="#基本知识"></a> 基本知识</h1>
 <h2 id="各种引号"><a class="markdownIt-Anchor" href="#各种引号"></a> 各种引号</h2>
 <ul>
 <li>严格上，sql没有双引号，只有单引号和反引号，但是某些数据库对sql进行了一定的扩展，所以也支持双引号</li>
 <li>单引号，用来表示字符串</li>
 <li>反引号，用来表示表名或者列名，防止与关键字冲突</li>
+</ul>
+<h2 id="datetime"><a class="markdownIt-Anchor" href="#datetime"></a> datetime</h2>
+<p>插入的时候一般按照<code>2020-5-9 16:02:22</code>这种格式。</p>
+<p>系统也会自动识别数据格式:</p>
+<ul>
+<li>20191221010203</li>
+<li>2019/12/21/1/21/3</li>
+</ul>
+<h2 id="数据类型"><a class="markdownIt-Anchor" href="#数据类型"></a> 数据类型</h2>
+<ul>
+<li>数字类型
+<ul>
+<li>整数: tinyint、smallint、mediumint、int、bigint</li>
+<li>浮点数: float、double、real、decimal</li>
+</ul>
+</li>
+<li>日期和时间: date、time、datetime、timestamp、year</li>
+<li>字符串类型
+<ul>
+<li>字符串: char、varchar</li>
+<li>文本: tinytext、text、mediumtext、longtext</li>
+</ul>
+</li>
+<li>二进制(可用来存储图片、音乐等): tinyblob、blob、mediumblob、longblob</li>
+</ul>
+<h3 id="数值"><a class="markdownIt-Anchor" href="#数值"></a> 数值</h3>
+<p><em><strong>整型</strong></em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">type</th>
+<th style="text-align:left">Storage</th>
+<th style="text-align:left">Minumun Value</th>
+<th style="text-align:left">Maximum Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">(Bytes)</td>
+<td style="text-align:left">(Signed/Unsigned)</td>
+<td style="text-align:left">(Signed/Unsigned)</td>
+</tr>
+<tr>
+<td style="text-align:left">TINYINT</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">-128</td>
+<td style="text-align:left">127</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">255</td>
+</tr>
+<tr>
+<td style="text-align:left">SMALLINT</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">-32768</td>
+<td style="text-align:left">32767</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">65535</td>
+</tr>
+<tr>
+<td style="text-align:left">MEDIUMINT</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">-8388608</td>
+<td style="text-align:left">8388607</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">16777215</td>
+</tr>
+<tr>
+<td style="text-align:left">INT</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">-2147483648</td>
+<td style="text-align:left">2147483647</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">4294967295</td>
+</tr>
+<tr>
+<td style="text-align:left">BIGINT</td>
+<td style="text-align:left">8</td>
+<td style="text-align:left">-9223372036854775808</td>
+<td style="text-align:left">9223372036854775807</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">18446744073709551615</td>
+</tr>
+</tbody>
+</table>
+<p><em><strong>浮点型</strong></em></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>存储空间</th>
+<th>精度</th>
+<th>精确性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FLOAT(M, D)</td>
+<td>4 bytes</td>
+<td>单精度</td>
+<td>非精确</td>
+<td>单精度浮点型，m总个数，d小数位</td>
+</tr>
+<tr>
+<td>DOUBLE(M, D)</td>
+<td>8 bytes</td>
+<td>双精度</td>
+<td>比Float精度高</td>
+<td>双精度浮点型，m总个数，d小数位</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>FLOAT容易造成精度丢失</li>
+</ul>
+<p><em><strong>定点数DECIMAL</strong></em></p>
+<ul>
+<li>高精度的数据类型，常用来存储交易相关的数据</li>
+<li>DECIMAL(M,N).M代表总精度，N代表小数点右侧的位数（标度）</li>
+<li>1 &lt; M &lt; 254, 0 &lt; N &lt; 60;</li>
+<li>存储空间变长</li>
+</ul>
+<h3 id="日期"><a class="markdownIt-Anchor" href="#日期"></a> 日期</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>字节</th>
+<th>例</th>
+<th>精确性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DATE</td>
+<td>三字节</td>
+<td>2015-05-01</td>
+<td>精确到年月日</td>
+</tr>
+<tr>
+<td>TIME</td>
+<td>三字节</td>
+<td>11:12:00</td>
+<td>精确到时分秒</td>
+</tr>
+<tr>
+<td>DATETIME</td>
+<td>八字节</td>
+<td>2015-05-01 11::12:00</td>
+<td>精确到年月日时分秒</td>
+</tr>
+<tr>
+<td>TIMESTAMP</td>
+<td></td>
+<td>2015-05-01 11::12:00</td>
+<td>精确到年月日时分秒</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>MySQL在<code>5.6.4</code>版本之后，<code>TIMESTAMP</code>和<code>DATETIME</code>支持到微秒。</li>
+<li><code>TIMESTAMP</code>会根据系统时区进行转换，<code>DATETIME</code>则不会</li>
+<li>存储范围的区别
+<ul>
+<li><code>TIMESTAMP</code>存储范围：1970-01-01 00::00:01 to 2038-01-19 03:14:07</li>
+<li><code>DATETIME</code>的存储范围：1000-01-01 00:00:00 to 9999-12-31 23:59:59</li>
+</ul>
+</li>
+<li>一般使用<code>TIMESTAMP</code>国际化</li>
+<li>如存时间戳使用数字类型<code>BIGINT</code></li>
+</ul>
+<h3 id="字符串"><a class="markdownIt-Anchor" href="#字符串"></a> 字符串</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>单位</th>
+<th>最大</th>
+<th>特性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CHAR</td>
+<td>字符</td>
+<td>最大为255字符</td>
+<td>存储定长，容易造成空间的浪费</td>
+</tr>
+<tr>
+<td>VARCHAR</td>
+<td>字符</td>
+<td>可以超过255个字符</td>
+<td>存储变长，节省存储空间</td>
+</tr>
+<tr>
+<td>TEXT</td>
+<td>字节</td>
+<td>总大小为65535字节，约为64KB</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>TEXT在MySQL内部大多存储格式为溢出页，效率不如CHAR</li>
+<li>Mysql默认为utf-8，那么在英文模式下1个字符=1个字节，在中文模式下1个字符=3个字节。</li>
 </ul>
 
       
@@ -1011,7 +1264,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#下载与安装"><span class="nav-number">1.</span> <span class="nav-text"> 下载与安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#windows"><span class="nav-number">1.1.</span> <span class="nav-text"> windows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linux"><span class="nav-number">1.2.</span> <span class="nav-text"> linux</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本操作"><span class="nav-number">2.</span> <span class="nav-text"> 基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#登录"><span class="nav-number">2.1.</span> <span class="nav-text"> 登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改密码"><span class="nav-number">2.2.</span> <span class="nav-text"> 更改密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询基本信息"><span class="nav-number">2.3.</span> <span class="nav-text"> 查询基本信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增删改查"><span class="nav-number">2.4.</span> <span class="nav-text"> 增删改查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#select"><span class="nav-number">2.4.1.</span> <span class="nav-text"> select</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#insert"><span class="nav-number">2.4.2.</span> <span class="nav-text"> insert</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#update"><span class="nav-number">2.4.3.</span> <span class="nav-text"> update</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#delete"><span class="nav-number">2.4.4.</span> <span class="nav-text"> delete</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制表"><span class="nav-number">2.4.5.</span> <span class="nav-text"> 复制表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改表结构"><span class="nav-number">2.4.6.</span> <span class="nav-text"> 修改表结构</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本知识"><span class="nav-number">3.</span> <span class="nav-text"> 基本知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#各种引号"><span class="nav-number">3.1.</span> <span class="nav-text"> 各种引号</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#下载与安装"><span class="nav-number">1.</span> <span class="nav-text"> 下载与安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#windows"><span class="nav-number">1.1.</span> <span class="nav-text"> windows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linux"><span class="nav-number">1.2.</span> <span class="nav-text"> linux</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本操作"><span class="nav-number">2.</span> <span class="nav-text"> 基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#登录"><span class="nav-number">2.1.</span> <span class="nav-text"> 登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改密码"><span class="nav-number">2.2.</span> <span class="nav-text"> 更改密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询基本信息"><span class="nav-number">2.3.</span> <span class="nav-text"> 查询基本信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增删改查"><span class="nav-number">2.4.</span> <span class="nav-text"> 增删改查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#select"><span class="nav-number">2.4.1.</span> <span class="nav-text"> select</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#insert"><span class="nav-number">2.4.2.</span> <span class="nav-text"> insert</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#update"><span class="nav-number">2.4.3.</span> <span class="nav-text"> update</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#delete"><span class="nav-number">2.4.4.</span> <span class="nav-text"> delete</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复制表"><span class="nav-number">2.5.</span> <span class="nav-text"> 复制表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改表结构"><span class="nav-number">2.6.</span> <span class="nav-text"> 修改表结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建"><span class="nav-number">2.7.</span> <span class="nav-text"> 创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库"><span class="nav-number">2.7.1.</span> <span class="nav-text"> 数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表"><span class="nav-number">2.7.2.</span> <span class="nav-text"> 表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行sql文件"><span class="nav-number">2.8.</span> <span class="nav-text"> 执行sql文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据备份"><span class="nav-number">2.9.</span> <span class="nav-text"> 数据备份</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本知识"><span class="nav-number">3.</span> <span class="nav-text"> 基本知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#各种引号"><span class="nav-number">3.1.</span> <span class="nav-text"> 各种引号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#datetime"><span class="nav-number">3.2.</span> <span class="nav-text"> datetime</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">3.3.</span> <span class="nav-text"> 数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数值"><span class="nav-number">3.3.1.</span> <span class="nav-text"> 数值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日期"><span class="nav-number">3.3.2.</span> <span class="nav-text"> 日期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">3.3.3.</span> <span class="nav-text"> 字符串</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1045,7 +1298,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">121k</span>
+    <span title="站点总字数">123k</span>
   
 
   
@@ -1056,7 +1309,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">1:50</span>
+    <span title="站点阅读时长">1:52</span>
   
 </div>
 
