@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[VMware 安装 win10]]></title>
+    <url>%2F2020%2F07%2F13%2FVMware-%E5%AE%89%E8%A3%85-win10%2F</url>
+    <content type="text"><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[linux分区]]></title>
     <url>%2F2020%2F04%2F26%2Flinux%E5%88%86%E5%8C%BA%2F</url>
     <content type="text"><![CDATA[安装linux过程中的分区大小设置。 分区 容量 备注 swap 和内存大小一致即可 交换分区 /. 根据系统安装程序多少来定，大概10G-20G 系统程序安装的位置 /boot 1G-2G（网上都推荐几十兆） 启动分区 /home 用户的文件什么的都在这里，就分配完上面的几个分区，剩下的给他就行，尽量大一些 用户主分区]]></content>
