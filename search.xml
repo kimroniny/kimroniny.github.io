@@ -1,9 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[golang解决下载问题]]></title>
+    <url>%2F2020%2F07%2F23%2Fgolang%E8%A7%A3%E5%86%B3%E4%B8%8B%E8%BD%BD%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[12go env -w GO111MODULE=on // 不打开这个的话，下面的代理无效，需要把golang更新到最新版（好像得大于1.12）go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/]]></content>
+      <categories>
+        <category>golang</category>
+      </categories>
+      <tags>
+        <tag>golang</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[VMware 安装 win10]]></title>
     <url>%2F2020%2F07%2F13%2FVMware-%E5%AE%89%E8%A3%85-win10%2F</url>
-    <content type="text"><![CDATA[]]></content>
+    <content type="text"><![CDATA[关于VMware安装win10的过程 制作 U 盘启动器，把 diskgenius 软件的最新版放到U盘里，用于磁盘分区，格式转换 vmware创建一个新的虚拟机 win10_test 创建完成之后，打开 win10_test 的配置，选择新建]]></content>
+      <categories>
+        <category>vmware</category>
+      </categories>
+      <tags>
+        <tag>vmware</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[pycharm 文件模板]]></title>
+    <url>%2F2020%2F07%2F13%2Fpycharm%E6%96%87%E4%BB%B6%E6%A8%A1%E6%9D%BF%2F</url>
+    <content type="text"><![CDATA[变量 说明 ${PROJECT_NAME} 当前Project名称; ${NAME} 在创建文件的对话框中指定的文件名; ${USER} 当前用户名; ${DATE} 当前系统日期; ${TIME} 当前系统时间; ${YEAR} 年; ${MONTH} 月; ${DAY} 日; ${HOUR} 小时; ${MINUTE} 分钟； ${PRODUCT_NAME} 创建文件的IDE名称; ${MONTH_NAME_SHORT} 英文月份缩写, 如: Jan, Feb, etc; ${MONTH_NAME_FULL} 英文月份全称, 如: January, February, etc；]]></content>
+      <categories>
+        <category>vmware</category>
+      </categories>
+      <tags>
+        <tag>vmware</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[VMware 安装 win10]]></title>
+    <url>%2F2020%2F07%2F13%2Fvmware%E5%AE%89%E8%A3%85win10%2F</url>
+    <content type="text"><![CDATA[关于VMware安装win10的过程 制作 U 盘启动器，把 diskgenius 软件的最新版放到U盘里，用于磁盘分区，格式转换； vmware创建一个新的虚拟机 win10_test； 创建完成之后，打开 win10_test 的配置： 新建 -&gt; 硬盘 -&gt; SCSI -&gt; 使用物理磁盘 -&gt; PhysicalDriver1 -&gt; 一路确定， 选择 打开电源时进入固件，进入 BIOS，调整启动顺序，启动PE系统； 在PE系统中，使用diskgenius将磁盘转换为GUID格式：硬盘 -&gt; 转换分区表类型为GUID格式 接下来进行分区，安装系统即可。]]></content>
+      <categories>
+        <category>vmware</category>
+      </categories>
+      <tags>
+        <tag>vmware</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[linux分区]]></title>
@@ -368,8 +407,8 @@
         <category>vmware</category>
       </categories>
       <tags>
-        <tag>centos</tag>
         <tag>vmware</tag>
+        <tag>centos</tag>
       </tags>
   </entry>
   <entry>

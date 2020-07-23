@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wugengan.cn/"/>
-  <updated>2020-07-13T02:05:34.072Z</updated>
+  <updated>2020-07-23T14:31:28.167Z</updated>
   <id>http://www.wugengan.cn/</id>
   
   <author>
@@ -17,23 +17,109 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>VMware 安装 win10</title>
-    <link href="http://www.wugengan.cn/2020/07/13/VMware-%E5%AE%89%E8%A3%85-win10/"/>
-    <id>http://www.wugengan.cn/2020/07/13/VMware-安装-win10/</id>
-    <published>2020-07-13T02:05:34.000Z</published>
-    <updated>2020-07-13T02:05:34.072Z</updated>
+    <title>golang解决下载问题</title>
+    <link href="http://www.wugengan.cn/2020/07/23/golang%E8%A7%A3%E5%86%B3%E4%B8%8B%E8%BD%BD%E9%97%AE%E9%A2%98/"/>
+    <id>http://www.wugengan.cn/2020/07/23/golang解决下载问题/</id>
+    <published>2020-07-23T10:35:29.000Z</published>
+    <updated>2020-07-23T14:31:28.167Z</updated>
     
-    <content type="html"><![CDATA[<a id="more"></a>]]></content>
+    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">go env -w GO111MODULE=on // 不打开这个的话，下面的代理无效，需要把golang更新到最新版（好像得大于1.12）</span><br><span class="line">go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+        &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;
       
     
     </summary>
     
+      <category term="golang" scheme="http://www.wugengan.cn/categories/golang/"/>
+    
+    
+      <category term="golang" scheme="http://www.wugengan.cn/tags/golang/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>VMware 安装 win10</title>
+    <link href="http://www.wugengan.cn/2020/07/13/VMware-%E5%AE%89%E8%A3%85-win10/"/>
+    <id>http://www.wugengan.cn/2020/07/13/VMware-安装-win10/</id>
+    <published>2020-07-13T02:05:34.000Z</published>
+    <updated>2020-07-13T02:10:31.362Z</updated>
+    
+    <content type="html"><![CDATA[<p>关于VMware安装win10的过程</p><a id="more"></a><p>制作 U 盘启动器，把 diskgenius 软件的最新版放到U盘里，用于磁盘分区，格式转换</p><p>vmware创建一个新的虚拟机 win10_test</p><p>创建完成之后，打开 win10_test 的配置，选择新建</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;关于VMware安装win10的过程&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="vmware" scheme="http://www.wugengan.cn/categories/vmware/"/>
+    
+    
+      <category term="vmware" scheme="http://www.wugengan.cn/tags/vmware/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>pycharm 文件模板</title>
+    <link href="http://www.wugengan.cn/2020/07/13/pycharm%E6%96%87%E4%BB%B6%E6%A8%A1%E6%9D%BF/"/>
+    <id>http://www.wugengan.cn/2020/07/13/pycharm文件模板/</id>
+    <published>2020-07-13T02:05:34.000Z</published>
+    <updated>2020-07-23T14:31:28.047Z</updated>
+    
+    <content type="html"><![CDATA[<table><thead><tr><th>变量</th><th>说明</th></tr></thead><tbody><tr><td>${PROJECT_NAME}</td><td>当前Project名称;</td></tr><tr><td>${NAME}</td><td>在创建文件的对话框中指定的文件名;</td></tr><tr><td>${USER}</td><td>当前用户名;</td></tr><tr><td>${DATE}</td><td>当前系统日期;</td></tr><tr><td>${TIME}</td><td>当前系统时间;</td></tr><tr><td>${YEAR}</td><td>年;</td></tr><tr><td>${MONTH}</td><td>月;</td></tr><tr><td>${DAY}</td><td>日;</td></tr><tr><td>${HOUR}</td><td>小时;</td></tr><tr><td>${MINUTE}</td><td>分钟；</td></tr><tr><td>${PRODUCT_NAME}</td><td>创建文件的IDE名称;</td></tr><tr><td>${MONTH_NAME_SHORT}</td><td>英文月份缩写, 如: Jan, Feb, etc;</td></tr><tr><td>${MONTH_NAME_FULL}</td><td>英文月份全称, 如: January, February, etc；</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;变量&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;${PROJECT_NAME}&lt;/td&gt;
+&lt;td&gt;当前Project名称;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;${NAM
+      
+    
+    </summary>
+    
+      <category term="vmware" scheme="http://www.wugengan.cn/categories/vmware/"/>
+    
+    
+      <category term="vmware" scheme="http://www.wugengan.cn/tags/vmware/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>VMware 安装 win10</title>
+    <link href="http://www.wugengan.cn/2020/07/13/vmware%E5%AE%89%E8%A3%85win10/"/>
+    <id>http://www.wugengan.cn/2020/07/13/vmware安装win10/</id>
+    <published>2020-07-13T02:05:34.000Z</published>
+    <updated>2020-07-23T14:31:28.211Z</updated>
+    
+    <content type="html"><![CDATA[<p>关于VMware安装win10的过程</p><a id="more"></a><p>制作 U 盘启动器，把 diskgenius 软件的最新版放到U盘里，用于磁盘分区，格式转换；</p><p>vmware创建一个新的虚拟机 win10_test；</p><p>创建完成之后，打开 win10_test 的配置： 新建 -&gt; 硬盘 -&gt; SCSI -&gt; 使用物理磁盘 -&gt; PhysicalDriver1 -&gt; 一路确定，</p><p>选择 <code>打开电源时进入固件</code>，进入 BIOS，调整启动顺序，启动PE系统；</p><p>在PE系统中，使用diskgenius<code>将磁盘转换为GUID格式</code>：硬盘 -&gt; 转换分区表类型为GUID格式</p><p>接下来进行分区，安装系统即可。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;关于VMware安装win10的过程&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="vmware" scheme="http://www.wugengan.cn/categories/vmware/"/>
+    
+    
+      <category term="vmware" scheme="http://www.wugengan.cn/tags/vmware/"/>
     
   </entry>
   
@@ -410,84 +496,6 @@
     
     
       <category term="npm" scheme="http://www.wugengan.cn/tags/npm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python 单元测试</title>
-    <link href="http://www.wugengan.cn/2020/04/09/python-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
-    <id>http://www.wugengan.cn/2020/04/09/python-单元测试/</id>
-    <published>2020-04-09T09:26:53.000Z</published>
-    <updated>2020-04-18T15:41:41.829Z</updated>
-    
-    <content type="html"><![CDATA[<p>关于python单元测试的常用内容</p><a id="more"></a><h2 id="基本单元测试"><a class="markdownIt-Anchor" href="#基本单元测试"></a> 基本单元测试</h2><p>使用python自带的unittest进行单元测试, 非常方便。</p><ol><li>首先创建测试类, 继承 <code>unittest.TestCase</code>。</li><li>编写测试用例, 一般命名为 <code>test+函数名</code></li><li><code>setUp()</code> 方法是在运行测试用例开始之前执行, <code>tearDown()</code> 则是在运行测试用例结束之后执行</li><li>使用断言, unittest有丰富的断言方法。</li></ol><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestCase</span><span class="params">(unittest.TestCase)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setUp</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(TestCase, self).setUp()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tearDown</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(TestCase, self).tearDown()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">testFunc</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.assertTrue(<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    unittest.main()</span><br></pre></td></tr></table></figure><h2 id="tornado-单元测试"><a class="markdownIt-Anchor" href="#tornado-单元测试"></a> tornado 单元测试</h2><p>tornado服务测试采用内置的测试类 <code>AsyncHTTPTestCase</code>, 不需要单独在后台开启服务, 只需要实现 <code>get_app()</code> 方法, 就可以达到<strong>在测试过程中自动开启服务，测试结束后自动关闭服务</strong>的效果。</p><p>示例如下：</p><ol><li>创建tornado服务类 <code>class MapCheck(tornado.web.RequestHandler)</code></li><li>创建测试类 <code>class TestClass(AsyncHTTPTestCase)</code></li></ol><ul><li>继承tornado内置单元测试类 <code>AsyncHTTPTestCase</code></li><li>实现 <code>get_app()</code>方法</li><li>创建测试用例 <code>test_server()</code><ul><li>使用requests模块构造请求体 <code>body</code></li><li>使用 <code>AsyncHTTPTestCase</code> 类的 <code>fetch()</code> 方法请求接口</li></ul></li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*-encoding=utf-8-*-</span></span><br><span class="line"><span class="comment"># filename: test_tornado</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> unittest, sys</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> tornado.web</span><br><span class="line"><span class="keyword">from</span> tornado.testing <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> test_tornado <span class="keyword">as</span> entry</span><br><span class="line"></span><br><span class="line"><span class="comment">### tornado服务</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MapCheck</span><span class="params">(tornado.web.RequestHandler)</span>:</span></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self)</span>:</span></span><br><span class="line">      self.write(<span class="string">"success"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_app</span><span class="params">(args)</span>:</span></span><br><span class="line">   <span class="keyword">return</span> tornado.web.Application([</span><br><span class="line">      (<span class="string">r"/map_check"</span>, MapCheck, dict(args=args)),</span><br><span class="line">   ])</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getArg</span><span class="params">()</span>:</span></span><br><span class="line">   <span class="keyword">return</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">### 测试类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestClass</span><span class="params">(AsyncHTTPTestCase)</span>:</span> <span class="comment"># 使用tornado内置测试类</span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">setUp</span><span class="params">(self)</span>:</span></span><br><span class="line">      super(TestServer, self).setUp() <span class="comment"># 必须有这句</span></span><br><span class="line">    </span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">tearDown</span><span class="params">(self)</span>:</span></span><br><span class="line">      super(TestServer, self).tearDown() </span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">get_app</span><span class="params">(self)</span>:</span> <span class="comment"># 必须实现的方法, 调用make_app()函数</span></span><br><span class="line">      self.args = entry.getArg()</span><br><span class="line">      <span class="keyword">return</span> entry.make_app(self.args)</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">test_server</span><span class="params">(self)</span>:</span></span><br><span class="line">      files = []</span><br><span class="line">      data = &#123;&#125;</span><br><span class="line">      <span class="comment"># 构造请求体</span></span><br><span class="line">      a = requests.Request(url=<span class="string">"http://localhost/test"</span>, files=files, data=data)</span><br><span class="line">      prepare = a.prepare()</span><br><span class="line">      content_type = prepare.headers.get(<span class="string">'Content-Type'</span>)</span><br><span class="line">      body = prepare.body</span><br><span class="line">      <span class="comment"># 使用fetch()调用tornado接口，传入请求body, 返回response</span></span><br><span class="line">      headers = &#123;<span class="string">"Content-Type"</span>: content_type,&#125;</span><br><span class="line">      response = self.fetch(<span class="string">'/map_check'</span>, method=<span class="string">"POST"</span>, body=body, headers=headers)</span><br><span class="line">      self.assertEqual(response.code, <span class="number">200</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">   unittest.main()</span><br></pre></td></tr></table></figure><h2 id="grpc-单元测试"><a class="markdownIt-Anchor" href="#grpc-单元测试"></a> grpc 单元测试</h2><p>grpc服务的单元测试, 使用到 <code>setUp()</code> 以及 <code>tearDown()</code> 两个方法。</p><ul><li>在 <code>setUp()</code> 中启动grpc服务</li><li>在 <code>tearDown()</code> 中结束grpc服务</li><li>在测试用例中直接按照grpc客户端访问服务端写法来写即可</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf8 -*-</span></span><br><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> grpc_http_server <span class="keyword">as</span> entry</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> proto <span class="keyword">import</span> audio_pb2, audio_pb2_grpc</span><br><span class="line"><span class="keyword">from</span> concurrent <span class="keyword">import</span> futures</span><br><span class="line"><span class="keyword">import</span> grpc</span><br><span class="line"></span><br><span class="line">port = <span class="number">10051</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AudioClassificationTest</span><span class="params">(unittest.TestCase)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setUp</span><span class="params">(self)</span>:</span></span><br><span class="line">        options = [(<span class="string">'grpc.max_send_message_length'</span>, <span class="number">1000</span> * <span class="number">1024</span> * <span class="number">1024</span> * <span class="number">2</span>),</span><br><span class="line">                   (<span class="string">'grpc.max_receive_message_length'</span>, <span class="number">1000</span> * <span class="number">1024</span> * <span class="number">1024</span> * <span class="number">2</span>)]</span><br><span class="line">        self.server = grpc.server(futures.ThreadPoolExecutor(max_workers=args.max_workers), options=options)</span><br><span class="line">        audio_pb2_grpc.add_GreeterServicer_to_server(entry.Greeter(), self.server)</span><br><span class="line">        self.server.add_insecure_port(<span class="string">'[::]:%d'</span> % port)</span><br><span class="line">        self.server.start()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tearDown</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.server.stop(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_video_check</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">with</span> grpc.insecure_channel(<span class="string">'localhost:%d'</span> % port) <span class="keyword">as</span> channel:</span><br><span class="line">            stub = audio_pb2_grpc.GreeterStub(channel)</span><br><span class="line">            req = audio_pb2.VideoRequest()</span><br><span class="line">            rep = stub.audio_classify(req)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    unittest.main()</span><br></pre></td></tr></table></figure><h2 id="coverage-代码覆盖率单元测试"><a class="markdownIt-Anchor" href="#coverage-代码覆盖率单元测试"></a> Coverage 代码覆盖率单元测试</h2><p>coverage 用来检测测试代码对被测代码的覆盖率如何。</p><p>有两种组织方式:</p><ul><li>写在 <code>main</code> 主体中。</li></ul><blockquote><p>在这种方式中, 不能通过 <code>unittest.main()</code> 的方式执行测试, 需要通过 <code>runner</code> 来执行测试用例, 这一点可以通过 <code>main</code> 主体中的代码看到。</p></blockquote><ul><li>写在测试用例中。</li></ul><blockquote><p>在这种方式中, <code>main</code>主体中的执行方式随意, coverage的启动与结束需要包裹在测试用例之中, 这一点可以在 <code>test_server()</code>方法中的注释部分看到。</p></blockquote><p>最后生成报告有多种方式(xml, json, html), 通过指定 <code>omit</code> 参数, 可以排除不需要的测试覆盖路径(比如某些系统函数)</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*-encoding=utf-8-*-</span></span><br><span class="line"><span class="keyword">import</span> unittest, sys</span><br><span class="line"><span class="keyword">import</span> coverage</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestCase</span><span class="params">(unittest.TestCase)</span>:</span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">test_server</span><span class="params">(self)</span>:</span></span><br><span class="line">      <span class="string">"""</span></span><br><span class="line"><span class="string">      如果不在main函数里面写cov，也可以直接在测试用例里面写</span></span><br><span class="line"><span class="string">      """</span></span><br><span class="line">      <span class="comment"># cov = coverage.Coverage()</span></span><br><span class="line">      <span class="comment"># cov.start()</span></span><br><span class="line">      self.assertTrue(<span class="keyword">True</span>)</span><br><span class="line">      <span class="comment"># cov.stop()</span></span><br><span class="line">      <span class="comment"># cov.save()</span></span><br><span class="line">      <span class="comment"># cov.report()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">   runner = unittest.TextTestRunner()</span><br><span class="line">   suite = unittest.TestLoader().loadTestsFromTestCase(TestCase)</span><br><span class="line"></span><br><span class="line">   <span class="comment"># 如果不在main函数里面写cov，也可以直接在测试用例里面写，见 test_server()</span></span><br><span class="line">   <span class="comment"># 启动 cov</span></span><br><span class="line">   cov = coverage.Coverage()</span><br><span class="line">   cov.start()</span><br><span class="line"></span><br><span class="line">   <span class="comment"># 运行测试用例</span></span><br><span class="line">   runner.run(suite)</span><br><span class="line"></span><br><span class="line">   <span class="comment"># 关闭 cov</span></span><br><span class="line">   cov.stop()</span><br><span class="line">   cov.save()</span><br><span class="line">   cov.xml_report(</span><br><span class="line">      outfile=<span class="string">"coverage.xml"</span>,</span><br><span class="line">      omit=[<span class="string">"./map_check/china_map_pb2*"</span>, <span class="string">"./modulecall/*"</span>, <span class="string">"/usr/local/ons_agent/names/nameapi.py"</span>]</span><br><span class="line">   )</span><br></pre></td></tr></table></figure><h2 id="mock-单元测试"><a class="markdownIt-Anchor" href="#mock-单元测试"></a> Mock 单元测试</h2><p>用来指定某些函数的返回值, 当调用该函数的时候, 直接返回该指定值。</p><p>在下面的简单示例中, <code>beishu()</code>的返回值是10, 但是在测试用例中通过 <code>mock.Mock(return_value=5)</code> 指定它的返回值为5, 再继续进行测试。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*-encoding=utf-8-*-</span></span><br><span class="line"><span class="comment"># filename: test_mock</span></span><br><span class="line"><span class="keyword">import</span> unittest, sys, mock</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> test_mock <span class="keyword">as</span> client</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">beishu</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_add</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> beishu() * (a+b)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestMathFunc</span><span class="params">(unittest.TestCase)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">testAdd</span><span class="params">(self)</span>:</span></span><br><span class="line">        beishu = mock.Mock(return_value=<span class="number">5</span>)</span><br><span class="line">        client.beishu = beishu</span><br><span class="line">        self.assertEqual(test_add(<span class="number">2</span>, <span class="number">3</span>), <span class="number">25</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    unittest.main()</span><br></pre></td></tr></table></figure><h2 id="单元测试-生成测试报告"><a class="markdownIt-Anchor" href="#单元测试-生成测试报告"></a> 单元测试, 生成测试报告</h2><p>可以使用包 <code>HtmlTestRunner</code> 来生成html类型的单元测试报告。</p><p>使用 <code>pip</code> 进行安装, <code>pip install html-testRunner</code></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*-encoding=utf-8-*-</span></span><br><span class="line"><span class="keyword">import</span> unittest, HtmlTestRunner</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> a+b</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestCase</span><span class="params">(unittest.TestCase)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">testAdd</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.assertEqual(add(<span class="number">1</span>, <span class="number">2</span>), <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    runner = HtmlTestRunner.HTMLTestRunner(</span><br><span class="line">        report_title=<span class="string">'TestCase Test'</span>,</span><br><span class="line">        report_name=<span class="string">'TestCase'</span>,</span><br><span class="line">        output=<span class="string">'reports/'</span></span><br><span class="line">    )</span><br><span class="line">    itersuite = unittest.TestLoader().loadTestsFromTestCase(TestCase)</span><br><span class="line">    runner.run(itersuite)</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;关于python单元测试的常用内容&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="python" scheme="http://www.wugengan.cn/categories/python/"/>
-    
-      <category term="unittest" scheme="http://www.wugengan.cn/categories/python/unittest/"/>
-    
-    
-      <category term="python" scheme="http://www.wugengan.cn/tags/python/"/>
-    
-      <category term="unittest" scheme="http://www.wugengan.cn/tags/unittest/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>solidity合约开发</title>
-    <link href="http://www.wugengan.cn/2020/04/02/solidity%E5%90%88%E7%BA%A6%E5%BC%80%E5%8F%91/"/>
-    <id>http://www.wugengan.cn/2020/04/02/solidity合约开发/</id>
-    <published>2020-04-02T14:15:37.000Z</published>
-    <updated>2020-04-18T15:41:41.829Z</updated>
-    
-    <content type="html"><![CDATA[<p>关于以太坊智能合约solidity开发过程中的一个tips</p><a id="more"></a><ol><li>remix访问本地文件</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">remixd -s absolute_path --remix-ide https://remix.ethereum.org</span><br><span class="line">// 注意没有最后的左斜杠</span><br></pre></td></tr></table></figure><p>然后点击 <code>connect to localhost</code></p><ol start="2"><li>pycharm中的solidity插件</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;关于以太坊智能合约solidity开发过程中的一个tips&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="blockchain" scheme="http://www.wugengan.cn/categories/blockchain/"/>
-    
-      <category term="ethereum" scheme="http://www.wugengan.cn/categories/blockchain/ethereum/"/>
-    
-      <category term="solidity" scheme="http://www.wugengan.cn/categories/blockchain/ethereum/solidity/"/>
-    
-    
-      <category term="blockchain" scheme="http://www.wugengan.cn/tags/blockchain/"/>
-    
-      <category term="ethereum" scheme="http://www.wugengan.cn/tags/ethereum/"/>
-    
-      <category term="solidity" scheme="http://www.wugengan.cn/tags/solidity/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>self-introduction</title>
-    <link href="http://www.wugengan.cn/2020/03/30/self-introduction/"/>
-    <id>http://www.wugengan.cn/2020/03/30/self-introduction/</id>
-    <published>2020-03-30T01:28:30.000Z</published>
-    <updated>2020-04-18T15:41:41.829Z</updated>
-    
-    <content type="html"><![CDATA[<p>self-introduction in English class.</p><a id="more"></a><p>I believe that most of you heard a famous and excellent politician whose name is Ziyi Guo living in the Tang Dynasty. Not only we both have similar name but also I always regard him as my spirit leader. His courage fighting enemies and wisdom settling political challenges influence my personality deeply. With his spirit shining in my heart, an unforgettable experience which reshapes my character hit my life.</p><p>Once a time in university, I was very lucky to be nominated for The Star of Self-Improvement. But what followed happiness was anxiety about making a campaign speech in front of all of students. What a terrible thing! For about twenty years, I almost hadn`t done that. Whenever I thought of that speech at that time, my heart seemed to be blocked by a huge stone. I counldn`t forget the terrible experience that I was laughed by two girls when giving a lecture in font of the classroom. How shy, unconfident and even scared I was at that time!<br>The speech was unavoidable. Just like countless wars emerged in Guo`s life endlessly. He must face them and devote himself to those wars. His unfearful spirit shows me that the best way to eliminate fear is to face it. After thinking and thinking, I decided to make speech trainings at seaside in the moring.</p><p>Facing the choppy sea that was always roaring, it seemed that I was fighting against it. The louder it yelled, the more enthusiastic I felt. With heavy wind coming, it was just like the sea monster would swallow me whole up. I had no place to hide in but to staring at the huge monster. Although my whole body kept trembling fiercely, I must keep standing there firmly and shout back with my loudest sound that was full of power. I had to defeat it! At that moment, the sense of fear in front of thousands of students was fading away. The audience is far less fearful than the violent monster.</p><p>With successful speech, I succeeded in getting that award. It is not only about the award itself but about the reshaping of personality. Led by Ziyi Guo`s living example, confidence, courage and passion run to my life shining like the sun. There goes a fashion saying that those who can’t kill you will eventually make you stronger. I believe that firmly with no doubt. Challenges are always appearing endlessly and what I can do is just used to facing them courageously.</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;self-introduction in English class.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="speech" scheme="http://www.wugengan.cn/categories/speech/"/>
-    
-    
-      <category term="speech" scheme="http://www.wugengan.cn/tags/speech/"/>
     
   </entry>
   
