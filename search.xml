@@ -12,17 +12,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[VMware 安装 win10]]></title>
-    <url>%2F2020%2F07%2F13%2FVMware-%E5%AE%89%E8%A3%85-win10%2F</url>
-    <content type="text"><![CDATA[关于VMware安装win10的过程 制作 U 盘启动器，把 diskgenius 软件的最新版放到U盘里，用于磁盘分区，格式转换 vmware创建一个新的虚拟机 win10_test 创建完成之后，打开 win10_test 的配置，选择新建]]></content>
-      <categories>
-        <category>vmware</category>
-      </categories>
-      <tags>
-        <tag>vmware</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[pycharm 文件模板]]></title>
     <url>%2F2020%2F07%2F13%2Fpycharm%E6%96%87%E4%BB%B6%E6%A8%A1%E6%9D%BF%2F</url>
     <content type="text"><![CDATA[变量 说明 ${PROJECT_NAME} 当前Project名称; ${NAME} 在创建文件的对话框中指定的文件名; ${USER} 当前用户名; ${DATE} 当前系统日期; ${TIME} 当前系统时间; ${YEAR} 年; ${MONTH} 月; ${DAY} 日; ${HOUR} 小时; ${MINUTE} 分钟； ${PRODUCT_NAME} 创建文件的IDE名称; ${MONTH_NAME_SHORT} 英文月份缩写, 如: Jan, Feb, etc; ${MONTH_NAME_FULL} 英文月份全称, 如: January, February, etc；]]></content>
