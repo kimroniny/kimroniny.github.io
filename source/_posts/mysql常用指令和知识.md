@@ -26,8 +26,20 @@ categories:
     - [insert](#insert)
     - [update](#update)
     - [delete](#delete)
+  - [复制表](#%e5%a4%8d%e5%88%b6%e8%a1%a8)
+  - [修改表结构](#%e4%bf%ae%e6%94%b9%e8%a1%a8%e7%bb%93%e6%9e%84)
+  - [创建](#%e5%88%9b%e5%bb%ba)
+    - [创建数据库](#%e5%88%9b%e5%bb%ba%e6%95%b0%e6%8d%ae%e5%ba%93)
+    - [创建表](#%e5%88%9b%e5%bb%ba%e8%a1%a8)
+  - [执行sql文件](#%e6%89%a7%e8%a1%8csql%e6%96%87%e4%bb%b6)
+  - [数据备份](#%e6%95%b0%e6%8d%ae%e5%a4%87%e4%bb%bd)
 - [基本知识](#%e5%9f%ba%e6%9c%ac%e7%9f%a5%e8%af%86)
   - [各种引号](#%e5%90%84%e7%a7%8d%e5%bc%95%e5%8f%b7)
+  - [datetime](#datetime)
+  - [数据类型](#%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b)
+    - [数值](#%e6%95%b0%e5%80%bc)
+    - [日期](#%e6%97%a5%e6%9c%9f)
+    - [字符串](#%e5%ad%97%e7%ac%a6%e4%b8%b2)
 
 # 下载与安装
 
@@ -134,7 +146,7 @@ UPDATE table_name SET column1 = value1, column2 = value2 WHERE condition;
 DELETE FROM table_name WHERE condition;
 ```
 
-### 复制表
+## 复制表
 
 ```sql
 -- 复制表结构和数据
@@ -152,7 +164,7 @@ SELECT * INTO 新表 FROM 旧表;
 SELECT * INTO 表2 FROM 表1 WHERE 1=2;
 ```
 
-### 修改表结构
+## 修改表结构
 
 ```sql
 -- 增加字段
@@ -163,6 +175,48 @@ alter table perple change oldname newname varchar(20) not null default '0';
 alter table perple drop name;
 ```
 
+## 创建
+
+### 数据库
+
+```sql
+CREATE DATABASE IF NOT EXISTS test default character set utf8 COLLATE utf8_general_ci;
+```
+
+### 表
+
+```sql
+DROP TABLE IF EXISTS `test`;
+CREATE TABLE IF NOT EXISTS `test` (
+  `id` bigint(20) NOT NULL,
+  `type` int(4) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+
+## 执行sql文件
+
+```sql
+source absolute_path
+\. absolute_path
+```
+
+## 数据备份
+
+```bash
+# 导出数据库中所有的表结构和数据
+mysqldump -u root -p dbname > dump.txt
+mysqldump -u root -p dbname tablename > dump.txt
+# 只导出表结构
+mysqldump --opt -d dbname -uroot -p > xxx.sql
+mysqldump --opt -d dbname tablename -uroot -p > xxx.sql
+# 只导出数据
+mysqldump -t dbname -uroot -p > xxx.sql
+mysqldump -t dbname tablename -uroot -p > xxx.sql
+```
+
 # 基本知识
 
 ## 各种引号
@@ -170,3 +224,84 @@ alter table perple drop name;
 - 严格上，sql没有双引号，只有单引号和反引号，但是某些数据库对sql进行了一定的扩展，所以也支持双引号
 - 单引号，用来表示字符串
 - 反引号，用来表示表名或者列名，防止与关键字冲突
+
+## datetime
+
+插入的时候一般按照`2020-5-9 16:02:22`这种格式。
+
+系统也会自动识别数据格式:
+- 20191221010203
+- 2019/12/21/1/21/3
+
+## 数据类型
+
+- 数字类型
+  - 整数: tinyint、smallint、mediumint、int、bigint
+  - 浮点数: float、double、real、decimal
+- 日期和时间: date、time、datetime、timestamp、year
+- 字符串类型
+  - 字符串: char、varchar
+  - 文本: tinytext、text、mediumtext、longtext
+- 二进制(可用来存储图片、音乐等): tinyblob、blob、mediumblob、longblob
+
+### 数值
+
+***整型***
+
+| type | Storage | Minumun Value | Maximum Value|
+| :------------- | :------------- | :------------- | :------------- |
+||(Bytes)|(Signed/Unsigned)|(Signed/Unsigned)|
+|TINYINT|1|-128|127|
+|||0|255|
+|SMALLINT|2|-32768|32767|
+|||0|65535|
+|MEDIUMINT|3|-8388608|8388607|
+|||0|16777215|
+|INT|4|-2147483648|2147483647|
+|||0|4294967295|
+|BIGINT|8|-9223372036854775808|9223372036854775807|
+|||0|18446744073709551615|
+
+***浮点型***
+
+| 属性 | 存储空间 | 精度 | 精确性 | 说明 |
+| ---- | ----  | ---- | ---- | ---- |
+|FLOAT(M, D)|4 bytes|单精度|非精确| 单精度浮点型，m总个数，d小数位 |
+|DOUBLE(M, D)|8 bytes|双精度|比Float精度高| 双精度浮点型，m总个数，d小数位 |
+
+- FLOAT容易造成精度丢失
+
+***定点数DECIMAL***
+
+- 高精度的数据类型，常用来存储交易相关的数据
+- DECIMAL(M,N).M代表总精度，N代表小数点右侧的位数（标度）
+- 1 < M < 254, 0 < N < 60;
+- 存储空间变长
+
+### 日期
+
+| 类型 | 字节 | 例 | 精确性 |
+| ---- | ----  | ---- | ---- |
+| DATE | 三字节 | 2015-05-01 | 精确到年月日 |
+| TIME | 三字节 | 11:12:00 | 精确到时分秒 |
+| DATETIME | 八字节 | 2015-05-01 11::12:00 | 精确到年月日时分秒 |
+| TIMESTAMP |  | 2015-05-01 11::12:00 | 精确到年月日时分秒 |
+
+- MySQL在`5.6.4`版本之后，`TIMESTAMP`和`DATETIME`支持到微秒。
+- `TIMESTAMP`会根据系统时区进行转换，`DATETIME`则不会
+- 存储范围的区别  
+    - `TIMESTAMP`存储范围：1970-01-01 00::00:01 to 2038-01-19 03:14:07
+    - `DATETIME`的存储范围：1000-01-01 00:00:00 to 9999-12-31 23:59:59
+- 一般使用`TIMESTAMP`国际化
+- 如存时间戳使用数字类型`BIGINT`
+
+### 字符串
+
+| 类型 | 单位 | 最大 | 特性 |
+| ---- | ----  | ---- | ---- |
+| CHAR | 字符 | 最大为255字符 | 存储定长，容易造成空间的浪费 |
+| VARCHAR | 字符 | 可以超过255个字符 | 存储变长，节省存储空间 |
+| TEXT | 字节 | 总大小为65535字节，约为64KB | - |
+
+- TEXT在MySQL内部大多存储格式为溢出页，效率不如CHAR
+- Mysql默认为utf-8，那么在英文模式下1个字符=1个字节，在中文模式下1个字符=3个字节。
