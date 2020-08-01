@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wugengan.cn/"/>
-  <updated>2020-08-01T13:46:24.946Z</updated>
+  <updated>2020-08-01T15:20:11.895Z</updated>
   <id>http://www.wugengan.cn/</id>
   
   <author>
@@ -17,13 +17,49 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>python生成器与迭代器</title>
+    <link href="http://www.wugengan.cn/2020/08/01/python%E7%94%9F%E6%88%90%E5%99%A8%E4%B8%8E%E8%BF%AD%E4%BB%A3%E5%99%A8/"/>
+    <id>http://www.wugengan.cn/2020/08/01/python生成器与迭代器/</id>
+    <published>2020-08-01T15:07:07.000Z</published>
+    <updated>2020-08-01T15:20:11.895Z</updated>
+    
+    <content type="html"><![CDATA[<p>区分python中生成器与迭代器</p><a id="more"></a><p>可迭代对象(Iterable)不是迭代器(Iterator)。</p><p>生成器(generator)。</p><p>可用于for循环的数据类型:</p><ol><li>for, list, str, dict等</li><li>generator</li></ol><p>统称为 Iterable（可迭代的对象），实现了__iter__()函数</p><p>迭代器既实现了__iter__()，有实现了__next__()的对象被称作迭代器</p><p>把Iterable对象变成Iterator，可以使用iter([1, 2, 3])函数</p><p>yield的典例:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">实现斐波那契数。</span></span><br><span class="line"><span class="string">若想获得generator函数的返回值，必须抛异常，用e.value获取返回值</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib</span><span class="params">(max)</span>:</span></span><br><span class="line">    n,a,b =<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> n &lt; max:</span><br><span class="line">        <span class="keyword">yield</span> b</span><br><span class="line">        a,b =b,a+b</span><br><span class="line">        n = n+<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'done'</span></span><br><span class="line">g = fib(<span class="number">6</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        x = next(g)</span><br><span class="line">        print(<span class="string">'generator: '</span>,x)</span><br><span class="line">    <span class="keyword">except</span> StopIteration <span class="keyword">as</span> e:</span><br><span class="line">        print(<span class="string">"生成器返回值："</span>,e.value)</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">生产者消费者模式。</span></span><br><span class="line"><span class="string">只有调用next()函数的时候，才执行generator函数</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">consumer</span><span class="params">(name)</span>:</span></span><br><span class="line">    print(<span class="string">"%s 准备学习啦!"</span> %name)</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">       lesson = <span class="keyword">yield</span></span><br><span class="line"> </span><br><span class="line">       print(<span class="string">"开始[%s]了,[%s]老师来讲课了!"</span> %(lesson,name))</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">producer</span><span class="params">(name)</span>:</span></span><br><span class="line">    c = consumer(<span class="string">'A'</span>)</span><br><span class="line">    c2 = consumer(<span class="string">'B'</span>)</span><br><span class="line">    c.__next__()</span><br><span class="line">    c2.__next__()</span><br><span class="line">    print(<span class="string">"同学们开始上课 了!"</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        print(<span class="string">"到了两个同学!"</span>)</span><br><span class="line">        c.send(i)</span><br><span class="line">        c2.send(i)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;区分python中生成器与迭代器&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>restful与传统接口的区别</title>
+    <link href="http://www.wugengan.cn/2020/08/01/restful%E4%B8%8E%E4%BC%A0%E7%BB%9F%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://www.wugengan.cn/2020/08/01/restful与传统接口的区别/</id>
+    <published>2020-08-01T13:51:58.000Z</published>
+    <updated>2020-08-01T13:53:09.516Z</updated>
+    
+    <content type="html"><![CDATA[<p>restful与传统api接口的区别</p><a id="more"></a><p>示例：一个状态数据操作接口</p><p><strong>传统模式：</strong></p><p>api/getstate.aspx - 获取状态信息</p><p>api/updatestate.aspx - 更新状态信息</p><p>api/deletestate.aspx - 删除该状态的数据</p><p><strong>RESTful模式：</strong></p><p>api/state 只需要这一个接口</p><p>GET 方式请求 api/state - 获取该状态的数据</p><p>POST 方式请求 api/state - 更新该状态的数据</p><p>DELETE 方式请求 api/state - 删除该状态的数据</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;restful与传统api接口的区别&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>linux自定义服务</title>
     <link href="http://www.wugengan.cn/2020/08/01/linux%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9C%8D%E5%8A%A1/"/>
     <id>http://www.wugengan.cn/2020/08/01/linux自定义服务/</id>
     <published>2020-08-01T13:28:10.000Z</published>
-    <updated>2020-08-01T13:46:24.946Z</updated>
+    <updated>2020-08-01T14:02:35.501Z</updated>
     
-    <content type="html"><![CDATA[<p>在linux系统中自定义 service 并设置开机启动。</p><a id="more"></a><blockquote><p><em><strong>Tip:</strong></em> SELinux prevents you from running a system service where the binary is in a user’s home directory, or in your case, the root user’s home directory. To fix the problem, copy the binary to a proper directory such as /usr/local/bin and call it from there.<br><br><br><em><strong>Source</strong>: <a href="https://serverfault.com/questions/957084/failed-at-step-exec-spawning-permission-denied" target="_blank" rel="noopener">https://serverfault.com/questions/957084/failed-at-step-exec-spawning-permission-denied</a></em></p></blockquote><p>service 文件存放在 <code>/usr/lib/systemd/system/</code> 文件夹下</p><p>示例</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Frp Server Service</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">User=nobody</span><br><span class="line">Restart=on-failure</span><br><span class="line">RestartSec=5s</span><br><span class="line">ExecStart=/usr/bin/frps_start.sh</span><br><span class="line">ExecReload=/usr/bin/frps_reload.sh</span><br><span class="line">ExecStop=/usr/bin/frps_stop.sh</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure><p>关于开机启动</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> servicename <span class="comment"># 开机启动</span></span><br><span class="line">systemctl <span class="built_in">disable</span> servicename <span class="comment"># 关闭开机启动</span></span><br><span class="line">systemctl list-units --<span class="built_in">type</span>=service <span class="comment"># 列出已经启动的服务</span></span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>在linux系统中自定义 service 并设置开机启动。</p><a id="more"></a><blockquote><p><em><strong>Tip:</strong></em> SELinux prevents you from running a system service where the binary is in a user’s home directory, or in your case, the root user’s home directory. To fix the problem, copy the binary to a proper directory such as /usr/local/bin and call it from there.<br><br><br><em><strong>Source</strong>: <a href="https://serverfault.com/questions/957084/failed-at-step-exec-spawning-permission-denied" target="_blank" rel="noopener">https://serverfault.com/questions/957084/failed-at-step-exec-spawning-permission-denied</a></em></p></blockquote><p>service 文件存放在 <code>/usr/lib/systemd/system/</code> 文件夹下</p><p>示例</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Frp Server Service</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">User=nobody</span><br><span class="line">Restart=on-failure</span><br><span class="line">RestartSec=5s</span><br><span class="line">ExecStart=/usr/bin/frps_start.sh</span><br><span class="line">ExecReload=/usr/bin/frps_reload.sh</span><br><span class="line">ExecStop=/usr/bin/frps_stop.sh</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure><p>关于开机启动</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> servicename <span class="comment"># 开机启动</span></span><br><span class="line">systemctl <span class="built_in">disable</span> servicename <span class="comment"># 关闭开机启动</span></span><br><span class="line">systemctl list-units --<span class="built_in">type</span>=service <span class="comment"># 列出已经启动的服务</span></span><br></pre></td></tr></table></figure><p>详细参考: <a href="https://www.cnblogs.com/wutao666/p/9781567.html" target="_blank" rel="noopener">https://www.cnblogs.com/wutao666/p/9781567.html</a></p>]]></content>
     
     <summary type="html">
     
@@ -31,6 +67,12 @@
     
     </summary>
     
+      <category term="linux" scheme="http://www.wugengan.cn/categories/linux/"/>
+    
+      <category term="service" scheme="http://www.wugengan.cn/categories/linux/service/"/>
+    
+    
+      <category term="linux" scheme="http://www.wugengan.cn/tags/linux/"/>
     
   </entry>
   
@@ -425,50 +467,6 @@
       <category term="python" scheme="http://www.wugengan.cn/tags/python/"/>
     
       <category term="Anaconda" scheme="http://www.wugengan.cn/tags/Anaconda/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>linux keyboard</title>
-    <link href="http://www.wugengan.cn/2020/04/17/linux-keyboard/"/>
-    <id>http://www.wugengan.cn/2020/04/17/linux-keyboard/</id>
-    <published>2020-04-17T11:38:26.000Z</published>
-    <updated>2020-04-18T15:27:22.545Z</updated>
-    
-    <content type="html"><![CDATA[<p>关于linux上的一些快捷键</p><a id="more"></a><h3 id="键盘指令文件-etcinputrc"><a class="markdownIt-Anchor" href="#键盘指令文件-etcinputrc"></a> 键盘指令文件  <em><strong>/etc/inputrc</strong></em></h3><ol><li><code>page-down/page-up</code>: 找到 history-search，删掉 # 符号</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;关于linux上的一些快捷键&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="linux" scheme="http://www.wugengan.cn/categories/linux/"/>
-    
-    
-      <category term="linux" scheme="http://www.wugengan.cn/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>linux开启端口</title>
-    <link href="http://www.wugengan.cn/2020/04/11/linux%E5%BC%80%E5%90%AF%E7%AB%AF%E5%8F%A3/"/>
-    <id>http://www.wugengan.cn/2020/04/11/linux开启端口/</id>
-    <published>2020-04-11T02:31:45.000Z</published>
-    <updated>2020-08-01T01:13:27.097Z</updated>
-    
-    <content type="html"><![CDATA[<p>关于linux系统中端口的那些事儿</p><a id="more"></a><h1 id="打开端口"><a class="markdownIt-Anchor" href="#打开端口"></a> 打开端口</h1><p>首先看云服务器控制台安全组规则是否允许打开该端口</p><p>然后在服务器上两种方式打开端口（Centos升级到7之后，内置的防火墙已经从iptables变成了firewalld）</p><h3 id="centos"><a class="markdownIt-Anchor" href="#centos"></a> centos</h3><p><strong>防火墙</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 防火墙的启动关闭</span></span><br><span class="line">systemctl status firewalld</span><br><span class="line">systemctl start firewalld</span><br><span class="line">systemctl restart firewalld</span><br><span class="line">systemctl stop firewalld</span><br><span class="line"><span class="comment"># 打开端口</span></span><br><span class="line">firewall-cmd --zone=public --add-port=4000/tcp --permanent </span><br><span class="line"><span class="comment"># 关闭端口</span></span><br><span class="line">firewall-cmd --zone=public --remove-port=4000/tcp --permanent</span><br><span class="line"><span class="comment"># 重启防火墙</span></span><br><span class="line">firewall-cmd --reload</span><br><span class="line"><span class="comment"># 查询指定端口</span></span><br><span class="line">firewall-cmd --query-port=4000/tcp </span><br><span class="line"><span class="comment"># 查询所有端口</span></span><br><span class="line">firewall-cmd --list-all</span><br></pre></td></tr></table></figure><h3 id="ubuntu"><a class="markdownIt-Anchor" href="#ubuntu"></a> ubuntu</h3><p>使用<code>ufw</code></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># install</span></span><br><span class="line">sudo apt-get install ufw</span><br><span class="line"></span><br><span class="line"><span class="comment"># start and stop</span></span><br><span class="line">sudo ufw <span class="built_in">enable</span></span><br><span class="line">sudo ufw <span class="built_in">disable</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># status</span></span><br><span class="line">sudo ufw status verbose</span><br><span class="line"></span><br><span class="line"><span class="comment"># open port</span></span><br><span class="line"><span class="comment">### 允许ssh连接22端口</span></span><br><span class="line">sudo ufw allow ssh</span><br><span class="line"><span class="comment">### 允许 HTTP 连接：</span></span><br><span class="line">sudo ufw allow http</span><br><span class="line"><span class="comment">### 也可以直接指定端口号 80：</span></span><br><span class="line">sudo ufw allow 80/tcp</span><br><span class="line"><span class="comment">### 也可以使用应用程序配置文件，在本例中为「Nginx HTTP」：</span></span><br><span class="line">sudo ufw allow <span class="string">'Nginx HTTP'</span></span><br><span class="line"><span class="comment">### 允许 HTTPS 连接：</span></span><br><span class="line">sudo ufw allow https</span><br><span class="line"><span class="comment">### 也可以直接指定端口号 443：</span></span><br><span class="line">sudo ufw allow 443/tcp</span><br><span class="line"><span class="comment">### 也可以使用应用程序配置文件，在本例中为「Nginx HTTPS」：</span></span><br><span class="line">sudo ufw allow <span class="string">'Nginx HTTPS'</span></span><br><span class="line"><span class="comment">### 打开8080端口</span></span><br><span class="line">sudo ufw allow 8080/tcp</span><br><span class="line"></span><br><span class="line"><span class="comment"># deny port</span></span><br><span class="line"><span class="comment">### both tcp and udp</span></span><br><span class="line">sudo ufw deny 53</span><br><span class="line"><span class="comment">### only tcp</span></span><br><span class="line">sudo ufw deny 53/tcp</span><br><span class="line"></span><br><span class="line"><span class="comment"># delete rule</span></span><br><span class="line">sudo ufw delete deny 80/tcp</span><br><span class="line">sudo ufw delete allow 53/udp</span><br><span class="line"></span><br><span class="line"><span class="comment"># add port range, use ":"</span></span><br><span class="line">ufw allow 11200:11299/tcp</span><br></pre></td></tr></table></figure><h3 id="linux原始"><a class="markdownIt-Anchor" href="#linux原始"></a> linux原始</h3><p><strong>iptables</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -p tcp -m state --state NEW -m tcp --dport 4000 -j ACCEPT</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;关于linux系统中端口的那些事儿&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="linux" scheme="http://www.wugengan.cn/categories/linux/"/>
-    
-    
-      <category term="linux" scheme="http://www.wugengan.cn/tags/linux/"/>
     
   </entry>
   

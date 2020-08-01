@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[python生成器与迭代器]]></title>
+    <url>%2F2020%2F08%2F01%2Fpython%E7%94%9F%E6%88%90%E5%99%A8%E4%B8%8E%E8%BF%AD%E4%BB%A3%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[区分python中生成器与迭代器 可迭代对象(Iterable)不是迭代器(Iterator)。 生成器(generator)。 可用于for循环的数据类型: for, list, str, dict等 generator 统称为 Iterable（可迭代的对象），实现了__iter__()函数 迭代器既实现了__iter__()，有实现了__next__()的对象被称作迭代器 把Iterable对象变成Iterator，可以使用iter([1, 2, 3])函数 yield的典例: 12345678910111213141516171819"""实现斐波那契数。若想获得generator函数的返回值，必须抛异常，用e.value获取返回值"""def fib(max): n,a,b =0,0,1 while n &lt; max: yield b a,b =b,a+b n = n+1 return 'done'g = fib(6)while True: try: x = next(g) print('generator: ',x) except StopIteration as e: print("生成器返回值：",e.value) break 123456789101112131415161718192021222324"""生产者消费者模式。只有调用next()函数的时候，才执行generator函数"""import timedef consumer(name): print("%s 准备学习啦!" %name) while True: lesson = yield print("开始[%s]了,[%s]老师来讲课了!" %(lesson,name)) def producer(name): c = consumer('A') c2 = consumer('B') c.__next__() c2.__next__() print("同学们开始上课 了!") for i in range(10): time.sleep(1) print("到了两个同学!") c.send(i) c2.send(i)]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[restful与传统接口的区别]]></title>
+    <url>%2F2020%2F08%2F01%2Frestful%E4%B8%8E%E4%BC%A0%E7%BB%9F%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
+    <content type="text"><![CDATA[restful与传统api接口的区别 示例：一个状态数据操作接口 传统模式： api/getstate.aspx - 获取状态信息 api/updatestate.aspx - 更新状态信息 api/deletestate.aspx - 删除该状态的数据 RESTful模式： api/state 只需要这一个接口 GET 方式请求 api/state - 获取该状态的数据 POST 方式请求 api/state - 更新该状态的数据 DELETE 方式请求 api/state - 删除该状态的数据]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[linux自定义服务]]></title>
     <url>%2F2020%2F08%2F01%2Flinux%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9C%8D%E5%8A%A1%2F</url>
-    <content type="text"><![CDATA[在linux系统中自定义 service 并设置开机启动。 Tip: SELinux prevents you from running a system service where the binary is in a user’s home directory, or in your case, the root user’s home directory. To fix the problem, copy the binary to a proper directory such as /usr/local/bin and call it from there. Source: https://serverfault.com/questions/957084/failed-at-step-exec-spawning-permission-denied service 文件存放在 /usr/lib/systemd/system/ 文件夹下 示例 123456789101112131415[Unit]Description=Frp Server ServiceAfter=network.target[Service]Type=simpleUser=nobodyRestart=on-failureRestartSec=5sExecStart=/usr/bin/frps_start.shExecReload=/usr/bin/frps_reload.shExecStop=/usr/bin/frps_stop.sh[Install]WantedBy=multi-user.target 关于开机启动 123systemctl enable servicename # 开机启动systemctl disable servicename # 关闭开机启动systemctl list-units --type=service # 列出已经启动的服务]]></content>
+    <content type="text"><![CDATA[在linux系统中自定义 service 并设置开机启动。 Tip: SELinux prevents you from running a system service where the binary is in a user’s home directory, or in your case, the root user’s home directory. To fix the problem, copy the binary to a proper directory such as /usr/local/bin and call it from there. Source: https://serverfault.com/questions/957084/failed-at-step-exec-spawning-permission-denied service 文件存放在 /usr/lib/systemd/system/ 文件夹下 示例 123456789101112131415[Unit]Description=Frp Server ServiceAfter=network.target[Service]Type=simpleUser=nobodyRestart=on-failureRestartSec=5sExecStart=/usr/bin/frps_start.shExecReload=/usr/bin/frps_reload.shExecStop=/usr/bin/frps_stop.sh[Install]WantedBy=multi-user.target 关于开机启动 123systemctl enable servicename # 开机启动systemctl disable servicename # 关闭开机启动systemctl list-units --type=service # 列出已经启动的服务 详细参考: https://www.cnblogs.com/wutao666/p/9781567.html]]></content>
+      <categories>
+        <category>linux</category>
+        <category>service</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[物理机安装操作系统]]></title>
