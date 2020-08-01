@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wugengan.cn/"/>
-  <updated>2020-08-01T13:24:13.117Z</updated>
+  <updated>2020-08-01T13:46:24.946Z</updated>
   <id>http://www.wugengan.cn/</id>
   
   <author>
@@ -17,13 +17,31 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>linux自定义服务</title>
+    <link href="http://www.wugengan.cn/2020/08/01/linux%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9C%8D%E5%8A%A1/"/>
+    <id>http://www.wugengan.cn/2020/08/01/linux自定义服务/</id>
+    <published>2020-08-01T13:28:10.000Z</published>
+    <updated>2020-08-01T13:46:24.946Z</updated>
+    
+    <content type="html"><![CDATA[<p>在linux系统中自定义 service 并设置开机启动。</p><a id="more"></a><blockquote><p><em><strong>Tip:</strong></em> SELinux prevents you from running a system service where the binary is in a user’s home directory, or in your case, the root user’s home directory. To fix the problem, copy the binary to a proper directory such as /usr/local/bin and call it from there.<br><br><br><em><strong>Source</strong>: <a href="https://serverfault.com/questions/957084/failed-at-step-exec-spawning-permission-denied" target="_blank" rel="noopener">https://serverfault.com/questions/957084/failed-at-step-exec-spawning-permission-denied</a></em></p></blockquote><p>service 文件存放在 <code>/usr/lib/systemd/system/</code> 文件夹下</p><p>示例</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Frp Server Service</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">User=nobody</span><br><span class="line">Restart=on-failure</span><br><span class="line">RestartSec=5s</span><br><span class="line">ExecStart=/usr/bin/frps_start.sh</span><br><span class="line">ExecReload=/usr/bin/frps_reload.sh</span><br><span class="line">ExecStop=/usr/bin/frps_stop.sh</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure><p>关于开机启动</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> servicename <span class="comment"># 开机启动</span></span><br><span class="line">systemctl <span class="built_in">disable</span> servicename <span class="comment"># 关闭开机启动</span></span><br><span class="line">systemctl list-units --<span class="built_in">type</span>=service <span class="comment"># 列出已经启动的服务</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在linux系统中自定义 service 并设置开机启动。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>物理机安装操作系统</title>
     <link href="http://www.wugengan.cn/2020/08/01/%E7%89%A9%E7%90%86%E6%9C%BA%E5%AE%89%E8%A3%85%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     <id>http://www.wugengan.cn/2020/08/01/物理机安装操作系统/</id>
     <published>2020-08-01T13:13:05.000Z</published>
-    <updated>2020-08-01T13:24:13.117Z</updated>
+    <updated>2020-08-01T13:27:12.688Z</updated>
     
-    <content type="html"><![CDATA[<p>在物理机上安装win10和linux(ubuntu, centos)操作系统</p><a id="more"></a><h3 id="linux"><a class="markdownIt-Anchor" href="#linux"></a> linux</h3><p>对于linux系统，使用 <code>ultraIso</code> 烧录到U盘中进行安装，分四个区</p><table><thead><tr><th style="text-align:center">分区</th><th style="text-align:left">大小</th><th style="text-align:left">备注</th></tr></thead><tbody><tr><td style="text-align:center">/</td><td style="text-align:left">/home区的一半吧</td><td style="text-align:left">安装系统软件的地方</td></tr><tr><td style="text-align:center">/boot</td><td style="text-align:left">几百兆就行，我一般用一两个G</td><td style="text-align:left">用于启动</td></tr><tr><td style="text-align:center">/swap</td><td style="text-align:left">和内存一样大</td><td style="text-align:left">内存交换</td></tr><tr><td style="text-align:center">/home</td><td style="text-align:left">剩下的</td><td style="text-align:left">用户分区，存储用户的内容</td></tr></tbody></table><h3 id="win10"><a class="markdownIt-Anchor" href="#win10"></a> win10</h3><p>对于win10系统，微软官方给出了安装工具，<a href="https://www.microsoft.com/zh-cn/software-download/windows10" target="_blank" rel="noopener">点击这里</a></p><p>使用鲁大师安装驱动。</p><p>比较糟心的是office和visio的安装类型要保持一致。</p>]]></content>
+    <content type="html"><![CDATA[<p>在物理机上安装win10和linux(ubuntu, centos)操作系统</p><a id="more"></a><h2 id="linux"><a class="markdownIt-Anchor" href="#linux"></a> linux</h2><p>对于linux系统，使用 <code>ultraIso</code> 烧录到U盘中进行安装，分四个区</p><table><thead><tr><th style="text-align:center">分区</th><th style="text-align:left">大小</th><th style="text-align:left">备注</th></tr></thead><tbody><tr><td style="text-align:center">/</td><td style="text-align:left">/home区的一半吧</td><td style="text-align:left">安装系统软件的地方</td></tr><tr><td style="text-align:center">/boot</td><td style="text-align:left">几百兆就行，我一般用一两个G</td><td style="text-align:left">用于启动</td></tr><tr><td style="text-align:center">/swap</td><td style="text-align:left">和内存一样大</td><td style="text-align:left">内存交换</td></tr><tr><td style="text-align:center">/home</td><td style="text-align:left">剩下的</td><td style="text-align:left">用户分区，存储用户的内容</td></tr></tbody></table><h2 id="win10"><a class="markdownIt-Anchor" href="#win10"></a> win10</h2><p>对于win10系统，微软官方给出了安装工具，<a href="https://www.microsoft.com/zh-cn/software-download/windows10" target="_blank" rel="noopener">点击这里</a></p><p>使用鲁大师安装驱动。</p><p>比较糟心的是office和visio的安装类型要保持一致。</p><p>使用kms来破解win10和office。</p>]]></content>
     
     <summary type="html">
     
@@ -451,28 +469,6 @@
     
     
       <category term="linux" scheme="http://www.wugengan.cn/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo备份恢复</title>
-    <link href="http://www.wugengan.cn/2020/04/11/hexo%E5%A4%87%E4%BB%BD%E6%81%A2%E5%A4%8D/"/>
-    <id>http://www.wugengan.cn/2020/04/11/hexo备份恢复/</id>
-    <published>2020-04-11T00:23:37.000Z</published>
-    <updated>2020-04-18T15:41:41.828Z</updated>
-    
-    <content type="html"><![CDATA[<p>hexo 备份如何恢复</p><a id="more"></a><h3 id="下载仓库"><a class="markdownIt-Anchor" href="#下载仓库"></a> 下载仓库</h3><p>从git上下载仓库，并切换分支</p><h3 id="安装模块"><a class="markdownIt-Anchor" href="#安装模块"></a> 安装模块</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 先安装npm</span><br><span class="line">yum install npm</span><br><span class="line"># 查看版本</span><br><span class="line">npm -v</span><br><span class="line">node -v</span><br></pre></td></tr></table></figure><p>下载完之后，<a href="/2020/04/10/npm-%E6%9B%B4%E6%8D%A2%E6%BA%90/">更换npm下载源</a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 安装modules, 速度非常慢, 可以先更换npm下载源</span><br><span class="line">npm install</span><br><span class="line">npm install -g hexo-cli</span><br><span class="line"># 查看hexo是否安装成功</span><br><span class="line">hexo -v</span><br></pre></td></tr></table></figure><p>如果执行<code>hexo</code>命令显示异常，如下图：</p><p><img src="exception.png" alt="exception"></p><p>那么需要更新nodejs</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 更新npm</span><br><span class="line">npm i -g npm@latest</span><br><span class="line"># 更新nodejs</span><br><span class="line">npm install -g n</span><br><span class="line">n latest</span><br><span class="line">n # 查看已安装的版本</span><br><span class="line">node -v # 查看是否更新成功</span><br></pre></td></tr></table></figure><h3 id="部署git"><a class="markdownIt-Anchor" href="#部署git"></a> 部署git</h3><p>主要是两个方面：</p><ul><li>设置全局用户名和邮箱(用于<code>commit</code>)</li><li>生成密钥(用于<code>push</code>权限)</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;your name&quot;</span><br><span class="line">git config --global user.email &quot;your email&quot;</span><br><span class="line">ssh-keygen -t rsa -C &quot;1301862177@qq.com&quot;</span><br><span class="line"># 生成公钥之后，复制到github账户的ssh_and_GPG_keys</span><br><span class="line"># 然后测试链接是否成功</span><br><span class="line">ssh -T git@github.com</span><br><span class="line"># 设置下面不用每次push时输入账号密码</span><br><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure><h3 id="关于-hexo-server"><a class="markdownIt-Anchor" href="#关于-hexo-server"></a> 关于 hexo-server</h3><p>因为是放在服务器上，所以希望执行 <code>hexo server</code> 之后，外网也可以预览。</p><p>修改 <code>node_modules/hexo-server/lib/server.js</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function formatAddress(ip, port, root) &#123;</span><br><span class="line">  // if (ip === &apos;0.0.0.0&apos;) ip = &apos;localhost&apos;; 把这一行注释掉</span><br><span class="line"></span><br><span class="line">  return format(&apos;http://%s:%d%s&apos;, ip, port, root);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>然后打开服务器 <code>4000</code> 端口, <a href="/2020/04/11/linux%E5%BC%80%E5%90%AF%E7%AB%AF%E5%8F%A3/">服务器打开端口在这</a></p><p>执行命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server -i 0.0.0.0</span><br></pre></td></tr></table></figure><p>打开浏览器，打开控制台，看看缺少哪些js文件，就到<code>theme</code>的<code>_config.yml</code>中找github地址进行下载</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;hexo 备份如何恢复&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="hexo" scheme="http://www.wugengan.cn/categories/hexo/"/>
-    
-    
-      <category term="hexo" scheme="http://www.wugengan.cn/tags/hexo/"/>
     
   </entry>
   

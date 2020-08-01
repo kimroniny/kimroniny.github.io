@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[linux自定义服务]]></title>
+    <url>%2F2020%2F08%2F01%2Flinux%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9C%8D%E5%8A%A1%2F</url>
+    <content type="text"><![CDATA[在linux系统中自定义 service 并设置开机启动。 Tip: SELinux prevents you from running a system service where the binary is in a user’s home directory, or in your case, the root user’s home directory. To fix the problem, copy the binary to a proper directory such as /usr/local/bin and call it from there. Source: https://serverfault.com/questions/957084/failed-at-step-exec-spawning-permission-denied service 文件存放在 /usr/lib/systemd/system/ 文件夹下 示例 123456789101112131415[Unit]Description=Frp Server ServiceAfter=network.target[Service]Type=simpleUser=nobodyRestart=on-failureRestartSec=5sExecStart=/usr/bin/frps_start.shExecReload=/usr/bin/frps_reload.shExecStop=/usr/bin/frps_stop.sh[Install]WantedBy=multi-user.target 关于开机启动 123systemctl enable servicename # 开机启动systemctl disable servicename # 关闭开机启动systemctl list-units --type=service # 列出已经启动的服务]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[物理机安装操作系统]]></title>
     <url>%2F2020%2F08%2F01%2F%E7%89%A9%E7%90%86%E6%9C%BA%E5%AE%89%E8%A3%85%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%2F</url>
-    <content type="text"><![CDATA[在物理机上安装win10和linux(ubuntu, centos)操作系统 linux 对于linux系统，使用 ultraIso 烧录到U盘中进行安装，分四个区 分区 大小 备注 / /home区的一半吧 安装系统软件的地方 /boot 几百兆就行，我一般用一两个G 用于启动 /swap 和内存一样大 内存交换 /home 剩下的 用户分区，存储用户的内容 win10 对于win10系统，微软官方给出了安装工具，点击这里 使用鲁大师安装驱动。 比较糟心的是office和visio的安装类型要保持一致。]]></content>
+    <content type="text"><![CDATA[在物理机上安装win10和linux(ubuntu, centos)操作系统 linux 对于linux系统，使用 ultraIso 烧录到U盘中进行安装，分四个区 分区 大小 备注 / /home区的一半吧 安装系统软件的地方 /boot 几百兆就行，我一般用一两个G 用于启动 /swap 和内存一样大 内存交换 /home 剩下的 用户分区，存储用户的内容 win10 对于win10系统，微软官方给出了安装工具，点击这里 使用鲁大师安装驱动。 比较糟心的是office和visio的安装类型要保持一致。 使用kms来破解win10和office。]]></content>
       <categories>
         <category>linux</category>
         <category>win10</category>
