@@ -2,23 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.wugengan.cn/2020/07/13/vmware%E5%AE%89%E8%A3%85win10/</loc>
+    <loc>http://www.wugengan.cn/2020/08/01/linux%E5%BC%80%E5%90%AFssh%E6%9C%8D%E5%8A%A1/</loc>
     
-    <lastmod>2020-07-23T14:31:28.211Z</lastmod>
+    <lastmod>2020-08-01T08:29:17.465Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.wugengan.cn/2020/08/01/linux%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7/</loc>
+    
+    <lastmod>2020-08-01T08:16:14.278Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.wugengan.cn/2020/08/01/centos7%E5%8D%87%E7%BA%A7git/</loc>
+    
+    <lastmod>2020-08-01T03:26:33.514Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.wugengan.cn/2020/04/11/linux%E5%BC%80%E5%90%AF%E7%AB%AF%E5%8F%A3/</loc>
+    
+    <lastmod>2020-08-01T01:13:27.097Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.wugengan.cn/2020/07/23/golang%E8%A7%A3%E5%86%B3%E4%B8%8B%E8%BD%BD%E9%97%AE%E9%A2%98/</loc>
     
-    <lastmod>2020-07-23T14:31:28.167Z</lastmod>
+    <lastmod>2020-07-31T22:50:47.166Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.wugengan.cn/2020/07/13/pycharm%E6%96%87%E4%BB%B6%E6%A8%A1%E6%9D%BF/</loc>
     
-    <lastmod>2020-07-23T14:31:28.047Z</lastmod>
+    <lastmod>2020-07-31T22:49:21.046Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.wugengan.cn/2020/07/13/vmware%E5%AE%89%E8%A3%85win10/</loc>
+    
+    <lastmod>2020-07-23T14:31:28.211Z</lastmod>
     
   </url>
   
@@ -234,13 +262,6 @@
   
   <url>
     <loc>http://www.wugengan.cn/2019/12/01/hexo%E8%AE%BE%E7%BD%AE%E5%9F%9F%E5%90%8D/</loc>
-    
-    <lastmod>2020-04-18T15:41:41.828Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.wugengan.cn/2020/04/11/linux%E5%BC%80%E5%90%AF%E7%AB%AF%E5%8F%A3/</loc>
     
     <lastmod>2020-04-18T15:41:41.828Z</lastmod>
     
