@@ -2,9 +2,17 @@
 title: pycharm 文件模板
 date: 2020-07-13 10:05:34
 tags: 
-- vmware
+- python
+- pycharm
 categories:
-- vmware
+- python
+- pycharm
+---
+
+pycharm 创建python文件时自动导入模板
+
+<!--more-->
+
 ---
 |变量|说明|
 |---|---|
