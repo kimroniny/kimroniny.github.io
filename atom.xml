@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wugengan.cn/"/>
-  <updated>2020-08-01T08:29:17.465Z</updated>
+  <updated>2020-08-01T13:24:13.117Z</updated>
   <id>http://www.wugengan.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>物理机安装操作系统</title>
+    <link href="http://www.wugengan.cn/2020/08/01/%E7%89%A9%E7%90%86%E6%9C%BA%E5%AE%89%E8%A3%85%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    <id>http://www.wugengan.cn/2020/08/01/物理机安装操作系统/</id>
+    <published>2020-08-01T13:13:05.000Z</published>
+    <updated>2020-08-01T13:24:13.117Z</updated>
+    
+    <content type="html"><![CDATA[<p>在物理机上安装win10和linux(ubuntu, centos)操作系统</p><a id="more"></a><h3 id="linux"><a class="markdownIt-Anchor" href="#linux"></a> linux</h3><p>对于linux系统，使用 <code>ultraIso</code> 烧录到U盘中进行安装，分四个区</p><table><thead><tr><th style="text-align:center">分区</th><th style="text-align:left">大小</th><th style="text-align:left">备注</th></tr></thead><tbody><tr><td style="text-align:center">/</td><td style="text-align:left">/home区的一半吧</td><td style="text-align:left">安装系统软件的地方</td></tr><tr><td style="text-align:center">/boot</td><td style="text-align:left">几百兆就行，我一般用一两个G</td><td style="text-align:left">用于启动</td></tr><tr><td style="text-align:center">/swap</td><td style="text-align:left">和内存一样大</td><td style="text-align:left">内存交换</td></tr><tr><td style="text-align:center">/home</td><td style="text-align:left">剩下的</td><td style="text-align:left">用户分区，存储用户的内容</td></tr></tbody></table><h3 id="win10"><a class="markdownIt-Anchor" href="#win10"></a> win10</h3><p>对于win10系统，微软官方给出了安装工具，<a href="https://www.microsoft.com/zh-cn/software-download/windows10" target="_blank" rel="noopener">点击这里</a></p><p>使用鲁大师安装驱动。</p><p>比较糟心的是office和visio的安装类型要保持一致。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在物理机上安装win10和linux(ubuntu, centos)操作系统&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="linux" scheme="http://www.wugengan.cn/categories/linux/"/>
+    
+      <category term="win10" scheme="http://www.wugengan.cn/categories/win10/"/>
+    
+    
+      <category term="linux" scheme="http://www.wugengan.cn/tags/linux/"/>
+    
+      <category term="win10" scheme="http://www.wugengan.cn/tags/win10/"/>
+    
+  </entry>
   
   <entry>
     <title>linux开启ssh服务</title>
@@ -447,28 +473,6 @@
     
     
       <category term="hexo" scheme="http://www.wugengan.cn/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>npm 安装模块</title>
-    <link href="http://www.wugengan.cn/2020/04/10/npm-%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6/"/>
-    <id>http://www.wugengan.cn/2020/04/10/npm-安装插件/</id>
-    <published>2020-04-10T14:48:42.000Z</published>
-    <updated>2020-04-18T15:41:41.828Z</updated>
-    
-    <content type="html"><![CDATA[<p>npm install [–save]</p><a id="more"></a><h3 id="npm-install-modulename-命令"><a class="markdownIt-Anchor" href="#npm-install-modulename-命令"></a> npm install moduleName 命令</h3><ol><li>安装模块到项目node_modules目录下。</li><li>不会将模块依赖写入devDependencies或dependencies 节点。</li><li>运行 npm install 初始化项目时不会下载模块。</li></ol><h3 id="npm-install-g-modulename-命令"><a class="markdownIt-Anchor" href="#npm-install-g-modulename-命令"></a> npm install -g moduleName 命令</h3><ol><li>安装模块到全局，不会在项目node_modules目录中保存模块包。</li><li>不会将模块依赖写入devDependencies或dependencies 节点。</li><li>运行 npm install 初始化项目时不会下载模块。</li></ol><h3 id="npm-install-save-modulename-命令"><a class="markdownIt-Anchor" href="#npm-install-save-modulename-命令"></a> npm install -save moduleName 命令</h3><ol><li>安装模块到项目node_modules目录下。</li><li>会将模块依赖写入dependencies 节点。</li><li>运行 npm install 初始化项目时，会将模块下载到项目目录下。</li><li>运行npm install --production或者注明NODE_ENV变量值为production时，会自动下载模块到node_modules目录中。</li></ol><h3 id="npm-install-save-dev-modulename-命令"><a class="markdownIt-Anchor" href="#npm-install-save-dev-modulename-命令"></a> npm install -save-dev moduleName 命令</h3><ol><li>安装模块到项目node_modules目录下。</li><li>会将模块依赖写入devDependencies 节点。</li><li>运行 npm install 初始化项目时，会将模块下载到项目目录下。</li><li>运行npm install --production或者注明NODE_ENV变量值为production时，不会自动下载模块到node_modules目录中。</li></ol><h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3><p>devDependencies 节点下的模块是我们在开发时需要用的，比如项目中使用的 gulp ，压缩css、js的模块。这些模块在我们的项目部署后是不需要的，所以我们可以使用 -save-dev 的形式安装。像 express 这些模块是项目运行必备的，应该安装在 dependencies 节点下，所以我们应该使用 -save 的形式安装。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;npm install [–save]&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="npm" scheme="http://www.wugengan.cn/categories/npm/"/>
-    
-    
-      <category term="npm" scheme="http://www.wugengan.cn/tags/npm/"/>
     
   </entry>
   

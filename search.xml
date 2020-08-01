@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[物理机安装操作系统]]></title>
+    <url>%2F2020%2F08%2F01%2F%E7%89%A9%E7%90%86%E6%9C%BA%E5%AE%89%E8%A3%85%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%2F</url>
+    <content type="text"><![CDATA[在物理机上安装win10和linux(ubuntu, centos)操作系统 linux 对于linux系统，使用 ultraIso 烧录到U盘中进行安装，分四个区 分区 大小 备注 / /home区的一半吧 安装系统软件的地方 /boot 几百兆就行，我一般用一两个G 用于启动 /swap 和内存一样大 内存交换 /home 剩下的 用户分区，存储用户的内容 win10 对于win10系统，微软官方给出了安装工具，点击这里 使用鲁大师安装驱动。 比较糟心的是office和visio的安装类型要保持一致。]]></content>
+      <categories>
+        <category>linux</category>
+        <category>win10</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>win10</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[linux开启ssh服务]]></title>
     <url>%2F2020%2F08%2F01%2Flinux%E5%BC%80%E5%90%AFssh%E6%9C%8D%E5%8A%A1%2F</url>
     <content type="text"><![CDATA[在Ubuntu和centos上开启ssh服务的过程 Ubuntu 12345sudo apt-get updatesudo apt-get install openssh-server# 查看ssh状态service ssh status Centos 12yum install openssh-serverservice sshd start 不要忘记开启22端口, 点击这里查看这篇文章]]></content>
