@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wugengan.cn/"/>
-  <updated>2020-08-01T15:20:11.895Z</updated>
+  <updated>2020-08-02T14:08:15.671Z</updated>
   <id>http://www.wugengan.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode0114</title>
+    <link href="http://www.wugengan.cn/2020/08/02/leetcode0114/"/>
+    <id>http://www.wugengan.cn/2020/08/02/leetcode0114/</id>
+    <published>2020-08-02T13:35:24.000Z</published>
+    <updated>2020-08-02T14:08:15.671Z</updated>
+    
+    <content type="html"><![CDATA[<p>leetcode 0114 心得</p><a id="more"></a><p>自己的做法：先调换顺序，再把右子树搞成链，并获取链尾指针，然后把左子树添加到链尾，再返回新的链尾</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">flatten</span><span class="params">(TreeNode* root)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">deal</span><span class="params">(TreeNode* root)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Solution::flatten(TreeNode* root)&#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;deal(root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">TreeNode* Solution::deal(TreeNode* root)&#123;</span><br><span class="line">    <span class="keyword">if</span> (!root) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    <span class="comment">// swap left and right</span></span><br><span class="line">    <span class="keyword">if</span> (root-&gt;left)&#123;  <span class="comment">// 如果左边没有子树，那就不需要调整；只有有左子树的时候，才需要和右子树上交换，然后把右子树调整到它的下面去，从而保证顺序顺序</span></span><br><span class="line">        TreeNode *temp = root-&gt;right;</span><br><span class="line">        root-&gt;right = root-&gt;left;</span><br><span class="line">        root-&gt;left = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    TreeNode *righttail = <span class="keyword">this</span>-&gt;deal(root-&gt;right);  <span class="comment">// 先处理右子树，搞成一条链，并返回链的末尾，然后把左子树连接到末尾。</span></span><br><span class="line">    <span class="keyword">if</span> (!righttail) <span class="keyword">return</span> root; <span class="comment">// 最终找到的末尾是NULL，所以要返回NULL的父节点。</span></span><br><span class="line">    righttail-&gt;right = root-&gt;left;</span><br><span class="line">    root-&gt;left = <span class="literal">NULL</span>; <span class="comment">// 把左子树连接到右子树链的末尾之后，左子树要置空。</span></span><br><span class="line">    TreeNode *lefttail = <span class="keyword">this</span>-&gt;deal(righttail-&gt;right); <span class="comment">//把左子树也搞成一条链。</span></span><br><span class="line">    <span class="keyword">if</span> (!lefttail) <span class="keyword">return</span> righttail; <span class="comment">// 最终找到的末尾是NULL，所以要返回NULL的父节点</span></span><br><span class="line">    <span class="keyword">return</span> lefttail; <span class="comment">// 返回tail节点</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在题解里面看到了更简洁的做法。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">flatten</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root || (!root-&gt;left &amp;&amp; !root-&gt;right)) <span class="keyword">return</span>; <span class="comment">// 到达叶子节点</span></span><br><span class="line">        flatten(root-&gt;left);</span><br><span class="line">        flatten(root-&gt;right);</span><br><span class="line">        TreeNode *right = root-&gt;right; <span class="comment">// 先保存原右子树</span></span><br><span class="line">        root-&gt;right = root-&gt;left;  <span class="comment">// 把原左子树移到右边</span></span><br><span class="line">        root-&gt;left = <span class="literal">nullptr</span>; <span class="comment">// 把现左子树置空</span></span><br><span class="line">        TreeNode *cur = root;</span><br><span class="line">        <span class="keyword">while</span>(cur-&gt;right) cur = cur-&gt;right; <span class="comment">// 找到现右子树的末尾</span></span><br><span class="line">        cur-&gt;right = right;  <span class="comment">// 因为左右子树在递归的过程中，都已经成为链，所以只需要简单的添加到现右子树末尾即可。</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>比较了一下两种解法，我的是属于先调换顺序（其实调换顺序这里可以直接把左子树放到右边，右子树放到temp存着，而不用放到），把右子树搞成链，然后把左子树添加到右子树末尾，再把左子树搞成链；而题解里的做法是先把左右子树都搞成链，然后调换顺序，找到右子树的末尾，把左子树拼接上去。</p><p>从题解里面又深入理解了递归的意义：每一部分的递归都是求解子问题，然后对于当前的问题，考虑如何把已经求解成功的子问题拼接在一起，考虑如何处理叶子节点（也就是边界）。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;leetcode 0114 心得&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="ACM" scheme="http://www.wugengan.cn/categories/ACM/"/>
+    
+      <category term="leetcode" scheme="http://www.wugengan.cn/categories/ACM/leetcode/"/>
+    
+    
+      <category term="ACM" scheme="http://www.wugengan.cn/tags/ACM/"/>
+    
+      <category term="leetcode" scheme="http://www.wugengan.cn/tags/leetcode/"/>
+    
+  </entry>
   
   <entry>
     <title>python生成器与迭代器</title>
@@ -441,32 +467,6 @@
     
     
       <category term="docker" scheme="http://www.wugengan.cn/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Anaconda更新下载源</title>
-    <link href="http://www.wugengan.cn/2020/04/18/Anaconda%E6%9B%B4%E6%96%B0%E4%B8%8B%E8%BD%BD%E6%BA%90/"/>
-    <id>http://www.wugengan.cn/2020/04/18/Anaconda更新下载源/</id>
-    <published>2020-04-18T15:15:55.000Z</published>
-    <updated>2020-04-18T15:25:47.801Z</updated>
-    
-    <content type="html"><![CDATA[<p>Anaconda 更新下载源</p><a id="more"></a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 清除索引</span></span><br><span class="line">conda clean -i</span><br><span class="line"><span class="comment"># url 不可以加引号</span></span><br><span class="line">conda config --add channels  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">conda config --add channels  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free</span><br><span class="line">conda config --add channels  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">conda config --add channels  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/pro</span><br><span class="line">conda config --add channels  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line"><span class="comment"># 搜索时显示通道地址</span></span><br><span class="line">conda config --<span class="built_in">set</span> show_channel_urls yes</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Anaconda 更新下载源&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="python" scheme="http://www.wugengan.cn/categories/python/"/>
-    
-      <category term="Anaconda" scheme="http://www.wugengan.cn/categories/python/Anaconda/"/>
-    
-    
-      <category term="python" scheme="http://www.wugengan.cn/tags/python/"/>
-    
-      <category term="Anaconda" scheme="http://www.wugengan.cn/tags/Anaconda/"/>
     
   </entry>
   

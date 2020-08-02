@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode0114]]></title>
+    <url>%2F2020%2F08%2F02%2Fleetcode0114%2F</url>
+    <content type="text"><![CDATA[leetcode 0114 心得 自己的做法：先调换顺序，再把右子树搞成链，并获取链尾指针，然后把左子树添加到链尾，再返回新的链尾 123456789101112131415161718192021222324252627class Solution &#123;public: void flatten(TreeNode* root);private: TreeNode* deal(TreeNode* root);&#125;;void Solution::flatten(TreeNode* root)&#123; this-&gt;deal(root);&#125;TreeNode* Solution::deal(TreeNode* root)&#123; if (!root) return NULL; // swap left and right if (root-&gt;left)&#123; // 如果左边没有子树，那就不需要调整；只有有左子树的时候，才需要和右子树上交换，然后把右子树调整到它的下面去，从而保证顺序顺序 TreeNode *temp = root-&gt;right; root-&gt;right = root-&gt;left; root-&gt;left = temp; &#125; TreeNode *righttail = this-&gt;deal(root-&gt;right); // 先处理右子树，搞成一条链，并返回链的末尾，然后把左子树连接到末尾。 if (!righttail) return root; // 最终找到的末尾是NULL，所以要返回NULL的父节点。 righttail-&gt;right = root-&gt;left; root-&gt;left = NULL; // 把左子树连接到右子树链的末尾之后，左子树要置空。 TreeNode *lefttail = this-&gt;deal(righttail-&gt;right); //把左子树也搞成一条链。 if (!lefttail) return righttail; // 最终找到的末尾是NULL，所以要返回NULL的父节点 return lefttail; // 返回tail节点&#125; 在题解里面看到了更简洁的做法。 1234567891011121314class Solution &#123;public: void flatten(TreeNode* root) &#123; if(!root || (!root-&gt;left &amp;&amp; !root-&gt;right)) return; // 到达叶子节点 flatten(root-&gt;left); flatten(root-&gt;right); TreeNode *right = root-&gt;right; // 先保存原右子树 root-&gt;right = root-&gt;left; // 把原左子树移到右边 root-&gt;left = nullptr; // 把现左子树置空 TreeNode *cur = root; while(cur-&gt;right) cur = cur-&gt;right; // 找到现右子树的末尾 cur-&gt;right = right; // 因为左右子树在递归的过程中，都已经成为链，所以只需要简单的添加到现右子树末尾即可。 &#125;&#125;; 比较了一下两种解法，我的是属于先调换顺序（其实调换顺序这里可以直接把左子树放到右边，右子树放到temp存着，而不用放到），把右子树搞成链，然后把左子树添加到右子树末尾，再把左子树搞成链；而题解里的做法是先把左右子树都搞成链，然后调换顺序，找到右子树的末尾，把左子树拼接上去。 从题解里面又深入理解了递归的意义：每一部分的递归都是求解子问题，然后对于当前的问题，考虑如何把已经求解成功的子问题拼接在一起，考虑如何处理叶子节点（也就是边界）。]]></content>
+      <categories>
+        <category>ACM</category>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>ACM</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[python生成器与迭代器]]></title>
     <url>%2F2020%2F08%2F01%2Fpython%E7%94%9F%E6%88%90%E5%99%A8%E4%B8%8E%E8%BF%AD%E4%BB%A3%E5%99%A8%2F</url>
     <content type="text"><![CDATA[区分python中生成器与迭代器 可迭代对象(Iterable)不是迭代器(Iterator)。 生成器(generator)。 可用于for循环的数据类型: for, list, str, dict等 generator 统称为 Iterable（可迭代的对象），实现了__iter__()函数 迭代器既实现了__iter__()，有实现了__next__()的对象被称作迭代器 把Iterable对象变成Iterator，可以使用iter([1, 2, 3])函数 yield的典例: 12345678910111213141516171819"""实现斐波那契数。若想获得generator函数的返回值，必须抛异常，用e.value获取返回值"""def fib(max): n,a,b =0,0,1 while n &lt; max: yield b a,b =b,a+b n = n+1 return 'done'g = fib(6)while True: try: x = next(g) print('generator: ',x) except StopIteration as e: print("生成器返回值：",e.value) break 123456789101112131415161718192021222324"""生产者消费者模式。只有调用next()函数的时候，才执行generator函数"""import timedef consumer(name): print("%s 准备学习啦!" %name) while True: lesson = yield print("开始[%s]了,[%s]老师来讲课了!" %(lesson,name)) def producer(name): c = consumer('A') c2 = consumer('B') c.__next__() c2.__next__() print("同学们开始上课 了!") for i in range(10): time.sleep(1) print("到了两个同学!") c.send(i) c2.send(i)]]></content>
