@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wugengan.cn/"/>
-  <updated>2020-08-02T14:08:15.671Z</updated>
+  <updated>2020-08-04T01:39:00.986Z</updated>
   <id>http://www.wugengan.cn/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ubuntu18部署gitlab</title>
+    <link href="http://www.wugengan.cn/2020/08/04/ubuntu18%E9%83%A8%E7%BD%B2gitlab/"/>
+    <id>http://www.wugengan.cn/2020/08/04/ubuntu18部署gitlab/</id>
+    <published>2020-08-04T01:32:36.000Z</published>
+    <updated>2020-08-04T01:39:00.986Z</updated>
+    
+    <content type="html"><![CDATA[<p>部署私人git服务器</p><a id="more"></a><ol><li><p>安装gitlab还挺占存储空间的，主要是 <code>/</code> 目录下的空间，大概要允出 5-10 个G的空间。</p></li><li><p>另外一个就是找个网络不错的地方，要下载将近1G的安装包。</p></li><li><p>服务器内存要足够大，大概要8个G左右（之前虚拟机配置了4个G内存，依旧不能运行成功）。</p></li></ol><p>其他的按照官网教程来就行。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install -y curl openssh-server ca-certificates</span><br><span class="line">sudo apt-get install -y postfix</span><br><span class="line">curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash</span><br><span class="line">sudo EXTERNAL_URL=<span class="string">"https://本机IP地址"</span> apt-get install gitlab-ee</span><br></pre></td></tr></table></figure><p>如果EXTERNAL_URL配置错误，就修改文件 <code>/etc/gitlab/gitlab.rb</code> 中的EXTERNAL_URL，然后执行下面的命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-ctl reconfigure</span><br></pre></td></tr></table></figure><p>查看gitlab的状态</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-ctl status</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;部署私人git服务器&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>leetcode0114</title>
@@ -445,28 +463,6 @@
     
     
       <category term="vmware" scheme="http://www.wugengan.cn/tags/vmware/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>docker基本命令</title>
-    <link href="http://www.wugengan.cn/2020/04/18/docker%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/"/>
-    <id>http://www.wugengan.cn/2020/04/18/docker基本命令/</id>
-    <published>2020-04-18T15:27:55.000Z</published>
-    <updated>2020-04-18T15:28:52.201Z</updated>
-    
-    <content type="html"><![CDATA[<p>关于docker使用的一些基本命令</p><a id="more"></a><h3 id="镜像-容器-仓库的概念区分"><a class="markdownIt-Anchor" href="#镜像-容器-仓库的概念区分"></a> 镜像、容器、仓库的概念区分</h3><p><img src="docker_1.png" alt="镜像容器仓库"></p><h3 id="docker用户组加入当前用户"><a class="markdownIt-Anchor" href="#docker用户组加入当前用户"></a> docker用户组加入当前用户</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#添加docker用户组</span></span><br><span class="line">sudo groupadd docker     </span><br><span class="line"><span class="comment">#将登陆用户加入到docker用户组中</span></span><br><span class="line">sudo gpasswd -a <span class="variable">$USER</span> docker     </span><br><span class="line"><span class="comment">#更新用户组</span></span><br><span class="line">newgrp docker     </span><br><span class="line"><span class="comment">#测试docker命令是否可以使用sudo正常使用</span></span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure><h3 id="docker镜像源"><a class="markdownIt-Anchor" href="#docker镜像源"></a> docker镜像源</h3><p>打开<code>/etc/docker/daemon.json</code>，添加如下信息</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"registry-mirrors"</span>: [<span class="string">"https://docker.mirrors.ustc.edu.cn"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="基本命令"><a class="markdownIt-Anchor" href="#基本命令"></a> 基本命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> -i 交互式; -t 在新容器内指定一个终端</span></span><br><span class="line">docker run -i -t ubuntu /bin/bash</span><br><span class="line"><span class="meta">#</span><span class="bash"> 在交互式中，查看系统版本，都可以</span></span><br><span class="line">cat /proc/version</span><br><span class="line">cat /etc/lsb-release</span><br><span class="line">uname -a</span><br><span class="line"><span class="meta">#</span><span class="bash"> 退出容器</span></span><br><span class="line">exit</span><br><span class="line"><span class="meta">#</span><span class="bash"> 显示所有的容器</span></span><br><span class="line">docker ps -a</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看容器的标准输出，2b1b7a428627是容器的ID号 </span></span><br><span class="line">docker logs 2b1b7a428627</span><br><span class="line"><span class="meta">#</span><span class="bash"> 拉取镜像到本地</span></span><br><span class="line">docker pull centos</span><br><span class="line"><span class="meta">#</span><span class="bash"> 停止容器</span></span><br><span class="line">docker stop 2b1b7a428627</span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动已经停止的容器</span></span><br><span class="line">docker start 2b1b7a428627</span><br><span class="line">docker restart 2b1b7a428627</span><br><span class="line"><span class="meta">#</span><span class="bash"> -d 是从后台运行容器</span></span><br><span class="line">docker run -itd --name ubuntu-test ubuntu /bin/bash</span><br><span class="line"><span class="meta">#</span><span class="bash"> 进入放在后台的容器，当使用<span class="built_in">exit</span>退出的时候，不会停止容器的运行</span></span><br><span class="line">docker exec -it 2b1b7a428627 /bin/bash</span><br><span class="line"><span class="meta">#</span><span class="bash"> 导出容器</span></span><br><span class="line">docker export 2b1b7a428627 &gt; ubuntu.tar</span><br><span class="line"><span class="meta">#</span><span class="bash"> 导入容器</span></span><br><span class="line">cat ubuntu.tar | docker import - ubuntu:v1</span><br><span class="line">docker import http://example.com/exampleimage.tgz imagerepo</span><br><span class="line"><span class="meta">#</span><span class="bash"> 显示本地镜像</span></span><br><span class="line">docker images</span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除容器</span></span><br><span class="line">docker rm -f 2b1b7a428627</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;关于docker使用的一些基本命令&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="docker" scheme="http://www.wugengan.cn/categories/docker/"/>
-    
-    
-      <category term="docker" scheme="http://www.wugengan.cn/tags/docker/"/>
     
   </entry>
   
