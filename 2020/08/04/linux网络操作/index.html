@@ -136,7 +136,7 @@
 <meta property="og:description" content="关于 linux 的一些网络操作。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.wugengan.cn/2020/08/04/linux网络操作/network-service.jpg">
-<meta property="og:updated_time" content="2020-08-04T15:21:02.926Z">
+<meta property="og:updated_time" content="2020-08-04T15:27:04.673Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux网络操作">
 <meta name="twitter:description" content="关于 linux 的一些网络操作。">
@@ -415,7 +415,7 @@
                 
               
 
-              <time title="创建时间：2020-08-04 14:24:50 / 修改时间：23:21:02" itemprop="dateCreated datePublished" datetime="2020-08-04T14:24:50+08:00">2020-08-04</time>
+              <time title="创建时间：2020-08-04 14:24:50 / 修改时间：23:27:04" itemprop="dateCreated datePublished" datetime="2020-08-04T14:24:50+08:00">2020-08-04</time>
             
 
             
@@ -530,7 +530,7 @@
         <p>关于 linux 的一些网络操作。</p>
 <a id="more"></a>
 <p>下面是几个常用的命令来查看网络信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ifconfig <span class="comment"># 查看网卡</span></span><br><span class="line"></span><br><span class="line">netstat -rn <span class="comment"># 查看路由表，可以看到网关和子网掩码</span></span><br><span class="line"></span><br><span class="line">arp -n <span class="comment"># 查看近期的网络链接缓存，如果最近有其他ip访问你这台机器，那执行该命令的输出结果中就包含该ip的相关信息</span></span><br><span class="line"></span><br><span class="line">ifquery -a --list <span class="comment"># 列出所有的网卡名称</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ifconfig <span class="comment"># 查看网卡</span></span><br><span class="line"></span><br><span class="line">netstat -rn <span class="comment"># 查看路由表，可以看到网关和子网掩码</span></span><br><span class="line"></span><br><span class="line">arp -n <span class="comment"># 查看近期的网络链接缓存，如果最近有其他ip访问你这台机器，那执行该命令的输出结果中就包含该ip的相关信息</span></span><br><span class="line"></span><br><span class="line">ifquery -a --list <span class="comment"># 列出所有的网卡名称</span></span><br><span class="line"></span><br><span class="line">traceroute IP地址 <span class="comment"># 连接到ip地址，需要经过的路由。</span></span><br></pre></td></tr></table></figure>
 <p>关于Ubuntu桌面版进行网络配置的注意事项:</p>
 <ol>
 <li>因为是桌面版，所以增加了network-manager来执行可视化的网络管理（就是在桌面UI中管理网络配置），配置文件是那个 <code>/etc/NetworkManager/NetworkManager.conf</code>，操作服务是 <code>service network-manager restart</code>；</li>
