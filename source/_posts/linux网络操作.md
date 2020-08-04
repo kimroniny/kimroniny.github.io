@@ -23,6 +23,8 @@ netstat -rn # 查看路由表，可以看到网关和子网掩码
 arp -n # 查看近期的网络链接缓存，如果最近有其他ip访问你这台机器，那执行该命令的输出结果中就包含该ip的相关信息
 
 ifquery -a --list # 列出所有的网卡名称
+
+traceroute IP地址 # 连接到ip地址，需要经过的路由。
 ```
 
 关于Ubuntu桌面版进行网络配置的注意事项:
@@ -31,7 +33,7 @@ ifquery -a --list # 列出所有的网卡名称
 3. 所以说，如果两个类型的网络管理服务出现了冲突，那么Ubuntu采用的处理方式是，以network-manager的配置为准，在network-manager一直负责网络配置的过程中，修改`/etc/network/interfaces`是没有意义的，所以如果想使用`/etc/network/interfaces`的配置，就需要让network-manager摆脱对网络配置的管理（直接stop掉network-manager，或者修改network-manager的配置文件managed子项为false，在下面有详细命令）。
 
 
-以下是对网络进行配置的相关操作
+以下是对网络进行配置的相关操作（适用于ubuntu 16，ubuntu 18）
 ```bash
 /etc/NetworkManager/NetworkManager.conf # network-manager服务的配置文件，修改managed子项，从true改为false，可以关闭网络桌面管理工具对网络配置管理
 # managed=false
