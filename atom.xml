@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.wugengan.cn/"/>
-  <updated>2020-08-04T15:29:27.185Z</updated>
+  <updated>2020-08-09T14:06:13.971Z</updated>
   <id>http://www.wugengan.cn/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ssh登陆密钥警告</title>
+    <link href="http://www.wugengan.cn/2020/08/09/ssh%E7%99%BB%E9%99%86%E5%AF%86%E9%92%A5%E8%AD%A6%E5%91%8A/"/>
+    <id>http://www.wugengan.cn/2020/08/09/ssh登陆密钥警告/</id>
+    <published>2020-08-09T14:03:54.000Z</published>
+    <updated>2020-08-09T14:06:13.971Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用ssh时出现警告: <em>WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!</em></p><p>警告信息中会有公钥文件的位置信息，打开之后，删除掉对应ip和port的条目，再重新ssh</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;使用ssh时出现警告: &lt;em&gt;WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;警告信息中会有公钥文件的位置信息，打开之后，删除掉对应ip和port的条目，再重新ssh&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="ssh" scheme="http://www.wugengan.cn/categories/ssh/"/>
+    
+    
+      <category term="ssh" scheme="http://www.wugengan.cn/tags/ssh/"/>
+    
+  </entry>
   
   <entry>
     <title>linux网络操作</title>
@@ -449,28 +476,6 @@
     
     
       <category term="speech" scheme="http://www.wugengan.cn/tags/speech/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>windows修改控制台默认编码</title>
-    <link href="http://www.wugengan.cn/2020/04/18/windows%E4%BF%AE%E6%94%B9%E6%8E%A7%E5%88%B6%E5%8F%B0%E9%BB%98%E8%AE%A4%E7%BC%96%E7%A0%81/"/>
-    <id>http://www.wugengan.cn/2020/04/18/windows修改控制台默认编码/</id>
-    <published>2020-04-18T15:31:34.000Z</published>
-    <updated>2020-04-18T15:35:32.258Z</updated>
-    
-    <content type="html"><![CDATA[<p>修改windows控制台cmd的默认编码方式</p><a id="more"></a><p>命令行输入 <code>chcp</code>， 显示当前的控制台编码</p><p>输入 <code>chcp 65001</code> 会转到新的代码页，编码方式是 <code>UTF-8</code></p><p>永久修改方式，修改注册表</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_CURRENT_USER\Console\%SystemRoot%_System32_WindowsPowerShell_v1.0_powershell.exe]</span><br><span class="line"><span class="string">"CodePage"</span>=dword:0000fde9</span><br></pre></td></tr></table></figure><p><code>fde9</code> 是 <code>65001</code> 的16进制</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;修改windows控制台cmd的默认编码方式&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="windows" scheme="http://www.wugengan.cn/categories/windows/"/>
-    
-    
-      <category term="windows" scheme="http://www.wugengan.cn/tags/windows/"/>
     
   </entry>
   
