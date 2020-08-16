@@ -85,6 +85,8 @@ mysql -uroot -p
 mysqladmin -uroot -p password 123456
 # 登录之后修改
 set password for root@localhost = password('123'); 
+# 在windows里面上述命令总报错，遂使用下面这个
+SET PASSWORD = '123';
 # update编辑user表
 use mysql;
 update user set password=password('123') where user='root' and host='localhost'; 
