@@ -2,7 +2,10 @@
 title: linux开启ssh服务
 date: 2020-08-01 16:18:30
 tags:
+- linux
 categories:
+- linux
+- ssh
 ---
 
 在Ubuntu和centos上开启ssh服务的过程

@@ -5,6 +5,7 @@ tags:
 - linux
 categories:
 - linux
+- user
 ---
 
 linux添加用户的命令

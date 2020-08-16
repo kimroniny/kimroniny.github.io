@@ -5,6 +5,7 @@ tags:
 - linux
 categories:
 - linux
+- port
 ---
 
 关于linux系统中端口的那些事儿

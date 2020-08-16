@@ -5,6 +5,7 @@ tags:
 - linux
 categories:
 - linux
+- power
 ---
 
 笔记本安装linux服务器关闭盖子不休眠。
