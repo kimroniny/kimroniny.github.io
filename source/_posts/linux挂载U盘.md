@@ -62,3 +62,4 @@ umount -v /dev/sda1          # 通过设备名卸载
 lsof | grep mymount          # 查找mymount分区里打开的文件  
 umount -vl /mnt/mymount/     # 执行延迟卸载 
 ```
+[参考链接](http://www.linuxso.com/command/umount.html)

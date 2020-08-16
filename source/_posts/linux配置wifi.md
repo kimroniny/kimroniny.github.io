@@ -73,4 +73,6 @@ sudo netplan generate # Generate backend specific configuration files from
 sudo netplan apply # Apply current netplan config to running system
 ```
 
-[参考链接](https://www.cnblogs.com/free-ys/p/10162388.html)
+[参考链接-wifi](https://www.cnblogs.com/free-ys/p/10162388.html)
+
+[参考链接-netplan](https://netplan.io/examples/)
