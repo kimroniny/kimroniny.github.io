@@ -135,7 +135,7 @@
 <meta property="og:site_name" content="五 · 更 · 案">
 <meta property="og:description" content="关于mysql的基本操作，平时自己用的比较多的，以后方便用。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-07-13T02:05:50.345Z">
+<meta property="og:updated_time" content="2020-08-16T01:42:40.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql常用指令和知识">
 <meta name="twitter:description" content="关于mysql的基本操作，平时自己用的比较多的，以后方便用。">
@@ -430,7 +430,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-07-13 10:05:50" itemprop="dateModified" datetime="2020-07-13T10:05:50+08:00">2020-07-13</time>
+                <time title="修改时间：2020-08-16 09:42:40" itemprop="dateModified" datetime="2020-08-16T09:42:40+08:00">2020-08-16</time>
               
             
           </span>
@@ -503,7 +503,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">5.1k</span>
+                <span title="本文字数">5.2k</span>
               
 
               
@@ -607,7 +607,7 @@
 <h2 id="登录"><a class="markdownIt-Anchor" href="#登录"></a> 登录</h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -h12.228.12.12 -P3306 -uroot -p<span class="string">'adadfafaf'</span>  -Dtest_db -A --default-character-set=utf8</span><br><span class="line"><span class="comment"># 简化版</span></span><br><span class="line">mysql -uroot -p</span><br></pre></td></tr></table></figure>
 <h2 id="更改密码"><a class="markdownIt-Anchor" href="#更改密码"></a> 更改密码</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 mysqladmin</span></span><br><span class="line">mysqladmin -uroot -p password 123456</span><br><span class="line"><span class="comment"># 登录之后修改</span></span><br><span class="line"><span class="built_in">set</span> password <span class="keyword">for</span> root@localhost = password(<span class="string">'123'</span>); </span><br><span class="line"><span class="comment"># update编辑user表</span></span><br><span class="line">use mysql;</span><br><span class="line">update user <span class="built_in">set</span> password=password(<span class="string">'123'</span>) <span class="built_in">where</span> user=<span class="string">'root'</span> and host=<span class="string">'localhost'</span>; </span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 mysqladmin</span></span><br><span class="line">mysqladmin -uroot -p password 123456</span><br><span class="line"><span class="comment"># 登录之后修改</span></span><br><span class="line"><span class="built_in">set</span> password <span class="keyword">for</span> root@localhost = password(<span class="string">'123'</span>); </span><br><span class="line"><span class="comment"># 在windows里面上述命令总报错，遂使用下面这个</span></span><br><span class="line">SET PASSWORD = <span class="string">'123'</span>;</span><br><span class="line"><span class="comment"># update编辑user表</span></span><br><span class="line">use mysql;</span><br><span class="line">update user <span class="built_in">set</span> password=password(<span class="string">'123'</span>) <span class="built_in">where</span> user=<span class="string">'root'</span> and host=<span class="string">'localhost'</span>; </span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
 <p>忘记密码的时候可以这样：</p>
 <ul>
 <li>关闭正在运行的MySQL服务。</li>
@@ -1041,7 +1041,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-count">59</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1122,7 +1122,25 @@
                     
                       
                     
-                    <span class="site-state-item-count">34</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1326,7 +1344,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">135k</span>
+    <span title="站点总字数">141k</span>
   
 
   
@@ -1337,7 +1355,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">2:03</span>
+    <span title="站点阅读时长">2:09</span>
   
 </div>
 
