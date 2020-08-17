@@ -13,33 +13,33 @@ categories:
 
 <!--more-->
 
-
-- [下载与安装](#%e4%b8%8b%e8%bd%bd%e4%b8%8e%e5%ae%89%e8%a3%85)
+- [下载与安装](#下载与安装)
   - [windows](#windows)
   - [linux](#linux)
-- [基本操作](#%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c)
-  - [登录](#%e7%99%bb%e5%bd%95)
-  - [更改密码](#%e6%9b%b4%e6%94%b9%e5%af%86%e7%a0%81)
-  - [查询基本信息](#%e6%9f%a5%e8%af%a2%e5%9f%ba%e6%9c%ac%e4%bf%a1%e6%81%af)
-  - [增删改查](#%e5%a2%9e%e5%88%a0%e6%94%b9%e6%9f%a5)
+  - [解决必须使用root登录mysql的问题](#解决必须使用root登录mysql的问题)
+- [基本操作](#基本操作)
+  - [登录](#登录)
+  - [更改密码](#更改密码)
+  - [查询基本信息](#查询基本信息)
+  - [增删改查](#增删改查)
     - [select](#select)
     - [insert](#insert)
     - [update](#update)
     - [delete](#delete)
-  - [复制表](#%e5%a4%8d%e5%88%b6%e8%a1%a8)
-  - [修改表结构](#%e4%bf%ae%e6%94%b9%e8%a1%a8%e7%bb%93%e6%9e%84)
-  - [创建](#%e5%88%9b%e5%bb%ba)
-    - [创建数据库](#%e5%88%9b%e5%bb%ba%e6%95%b0%e6%8d%ae%e5%ba%93)
-    - [创建表](#%e5%88%9b%e5%bb%ba%e8%a1%a8)
-  - [执行sql文件](#%e6%89%a7%e8%a1%8csql%e6%96%87%e4%bb%b6)
-  - [数据备份](#%e6%95%b0%e6%8d%ae%e5%a4%87%e4%bb%bd)
-- [基本知识](#%e5%9f%ba%e6%9c%ac%e7%9f%a5%e8%af%86)
-  - [各种引号](#%e5%90%84%e7%a7%8d%e5%bc%95%e5%8f%b7)
+  - [复制表](#复制表)
+  - [修改表结构](#修改表结构)
+  - [创建](#创建)
+    - [数据库](#数据库)
+    - [表](#表)
+  - [执行sql文件](#执行sql文件)
+  - [数据备份](#数据备份)
+- [基本知识](#基本知识)
+  - [各种引号](#各种引号)
   - [datetime](#datetime)
-  - [数据类型](#%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b)
-    - [数值](#%e6%95%b0%e5%80%bc)
-    - [日期](#%e6%97%a5%e6%9c%9f)
-    - [字符串](#%e5%ad%97%e7%ac%a6%e4%b8%b2)
+  - [数据类型](#数据类型)
+    - [数值](#数值)
+    - [日期](#日期)
+    - [字符串](#字符串)
 
 # 下载与安装
 
@@ -66,6 +66,12 @@ sudo apt install mysql-server
 sudo mysql_secure_installation
 sudo mysql -uroot -p # 注意这里必须使用 sudo
 service mysql status
+```
+
+## 解决必须使用root登录mysql的问题
+```shell
+​ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+flush privileges;
 ```
 
 # 基本操作

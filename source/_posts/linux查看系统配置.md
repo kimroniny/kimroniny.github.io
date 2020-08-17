@@ -87,40 +87,27 @@ chkconfig --list | grep on    # 列出所有启动的系统服务
 ```
 
 程序
-
-# rpm -qa                # 查看所有安装的软件包
- 
+```shell
+rpm -qa                # 查看所有安装的软件包
+```
 
 常用命令整理如下：
-查看主板的序列号: dmidecode | grep -i ’serial number’
-
-用硬件检测程序kuduz探测新硬件：service kudzu start ( or restart)
-
-查看CPU信息：cat /proc/cpuinfo [dmesg | grep -i 'cpu'][dmidecode -t processor]
-
-查看内存信息：cat /proc/meminfo [free -m][vmstat]
-
-查看板卡信息：cat /proc/pci
-
-查看显卡/声卡信息：lspci |grep -i ‘VGA’[dmesg | grep -i 'VGA']
-
-查看网卡信息：dmesg | grep -i ‘eth’[cat /etc/sysconfig/hwconf | grep -i eth][lspci | grep -i 'eth']
-<!--more-->
-查看PCI信息：lspci (相比cat /proc/pci更直观）
-
-查看USB设备：cat /proc/bus/usb/devices
-
-查看键盘和鼠标:cat /proc/bus/input/devices
-
-查看系统硬盘信息和使用情况：fdisk & disk – l & df
-
-查看各设备的中断请求(IRQ):cat /proc/interrupts
-
-查看系统体系结构：uname -a
-
-查看及启动系统的32位或64位内核模式：isalist –v [isainfo –v][isainfo –b]
-
-dmidecode查看硬件信息，包括bios、cpu、内存等信息
+```shell
+dmidecode | grep -i ’serial number’ # 查看主板的序列号
+service kudzu start ( or restart) # 用硬件检测程序kuduz探测新硬件
+cat /proc/cpuinfo, dmesg | grep -i 'cpu', dmidecode -t processor # 查看CPU信息
+cat /proc/meminfo, free -m, vmstat # 查看内存信息
+cat /proc/pci # 查看板卡信息
+lspci |grep -i 'VGA', dmesg | grep -i 'VGA' # 查看显卡/声卡信息
+dmesg | grep -i 'eth', cat /etc/sysconfig/hwconf | grep -i eth, lspci | grep -i 'eth' # 查看网卡信息
+lspci (相比cat /proc/pci更直观）# 查看PCI信息
+cat /proc/bus/usb/devices  # 查看USB设备
+cat /proc/bus/input/devices # 查看键盘和鼠标
+fdisk & disk – l & df # 查看系统硬盘信息和使用情况
+cat /proc/interrupts # 查看各设备的中断请求(IRQ)
+uname -a # 查看系统体系结构
+isalist –v, isainfo –v, isainfo –b # 查看及启动系统的32位或64位内核模式
+```
 
 测定当前的显示器刷新频率：/usr/sbin/ffbconfig –rev \?
 
@@ -168,7 +155,7 @@ rpm -qpi Linux-1.4-6.i368.rpm
 
 rpm -qpl Linux-1.4-6.i368.rpm
 
-3. 选择安装方式后，开始安装。我们可以用rpm-ivh Linux-1.4-6.i368.rpm命令安装此软件。在安装过程中，若系统提示此软件已安装过或因其他原因无法继续安装，但若我们确实想执行安装命 令，可以在 -ivh后加一参数“-replacepkgs”：
+1. 选择安装方式后，开始安装。我们可以用rpm-ivh Linux-1.4-6.i368.rpm命令安装此软件。在安装过程中，若系统提示此软件已安装过或因其他原因无法继续安装，但若我们确实想执行安装命 令，可以在 -ivh后加一参数“-replacepkgs”：
 
 rpm -ivh -replacepkgs Linux-1.4-6.i368.rpm
 
