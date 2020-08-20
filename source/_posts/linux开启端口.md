@@ -32,6 +32,7 @@ systemctl restart firewalld
 systemctl stop firewalld
 # 打开端口
 firewall-cmd --zone=public --add-port=4000/tcp --permanent 
+firewall-cmd --zone=public --add-port=100-500/tcp --permanent # 连续端口
 # 关闭端口
 firewall-cmd --zone=public --remove-port=4000/tcp --permanent
 # 重启防火墙
@@ -94,6 +95,7 @@ ufw allow 11200:11299/tcp
 
 **iptables**
 
-```
+```shell
 iptables -I INPUT -p tcp -m state --state NEW -m tcp --dport 4000 -j ACCEPT
+iptables -I INPUT -p tcp -m state --state NEW -m tcp --dport 4000:5000 -j ACCEPT # 连续端口
 ```
