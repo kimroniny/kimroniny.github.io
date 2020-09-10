@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.wugengan.cn/2020/04/23/mysql%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E5%92%8C%E7%9F%A5%E8%AF%86/</loc>
+    
+    <lastmod>2020-09-10T02:46:49.269Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.wugengan.cn/2020/04/10/npm-%E6%9B%B4%E6%8D%A2%E6%BA%90/</loc>
     
     <lastmod>2020-09-09T12:34:15.731Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://www.wugengan.cn/2020/04/11/linux%E5%BC%80%E5%90%AF%E7%AB%AF%E5%8F%A3/</loc>
     
     <lastmod>2020-08-20T13:11:40.218Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.wugengan.cn/2020/04/23/mysql%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E5%92%8C%E7%9F%A5%E8%AF%86/</loc>
-    
-    <lastmod>2020-08-17T12:32:41.508Z</lastmod>
     
   </url>
   
@@ -240,14 +240,14 @@
   </url>
   
   <url>
-    <loc>http://www.wugengan.cn/2018/08/21/pycharm-2018-02-%E6%BF%80%E6%B4%BB%E7%A0%81/</loc>
+    <loc>http://www.wugengan.cn/2020/04/10/pip-%E6%9B%B4%E6%8D%A2%E6%BA%90/</loc>
     
     <lastmod>2020-04-18T15:41:41.829Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.wugengan.cn/2020/04/10/pip-%E6%9B%B4%E6%8D%A2%E6%BA%90/</loc>
+    <loc>http://www.wugengan.cn/2018/08/21/pycharm-2018-02-%E6%BF%80%E6%B4%BB%E7%A0%81/</loc>
     
     <lastmod>2020-04-18T15:41:41.829Z</lastmod>
     
@@ -261,14 +261,14 @@
   </url>
   
   <url>
-    <loc>http://www.wugengan.cn/2019/12/05/python-%E7%B3%BB%E7%BB%9F%E7%BA%A7%E6%93%8D%E4%BD%9C/</loc>
+    <loc>http://www.wugengan.cn/2019/12/04/python-%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
     
     <lastmod>2020-04-18T15:41:41.829Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.wugengan.cn/2019/12/04/python-%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    <loc>http://www.wugengan.cn/2019/12/05/python-%E7%B3%BB%E7%BB%9F%E7%BA%A7%E6%93%8D%E4%BD%9C/</loc>
     
     <lastmod>2020-04-18T15:41:41.829Z</lastmod>
     
