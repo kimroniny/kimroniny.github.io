@@ -70,7 +70,9 @@ service mysql status
 
 ## 解决必须使用root登录mysql的问题
 ```shell
-​ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+set global validate_password_policy=0;
+set global validate_password_length=4;
+​ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY '123456';
 flush privileges;
 ```
 
