@@ -32,9 +32,14 @@ sudo EXTERNAL_URL="https://本机IP地址" apt-get install gitlab-ee
 gitlab-ctl reconfigure
 ```
 
-查看gitlab的状态
+gitlab-ctl基本操作
 
 ```bash
-gitlab-ctl status
+gitlab-ctl start/stop/restart/status/reconfigure
 ```
 
+tips
+
+1. clone的时候，如果使用`git@****`，那么链接的是服务器的22端口，所以服务器防火墙要开放22端口
+2. 同样是clone的时候，当然不限于clone操作，都会要求密码，所以说需要在你的git账户里添加ssh_key，`ssh-keygen -t rsa -b 2048 -C "email@example.com"
+`
