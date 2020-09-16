@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.wugengan.cn/2020/08/04/ubuntu18%E9%83%A8%E7%BD%B2gitlab/</loc>
+    
+    <lastmod>2020-09-16T08:56:20.677Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.wugengan.cn/2020/04/23/mysql%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E5%92%8C%E7%9F%A5%E8%AF%86/</loc>
     
     <lastmod>2020-09-10T02:46:49.269Z</lastmod>
@@ -117,13 +124,6 @@
     <loc>http://www.wugengan.cn/2020/08/04/linux%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C/</loc>
     
     <lastmod>2020-08-04T15:29:27.185Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.wugengan.cn/2020/08/04/ubuntu18%E9%83%A8%E7%BD%B2gitlab/</loc>
-    
-    <lastmod>2020-08-04T06:25:12.575Z</lastmod>
     
   </url>
   
