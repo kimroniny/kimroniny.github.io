@@ -23,3 +23,9 @@ touch .gitignore
 git config --local user.name ""
 git config --local user.email ""
 ```
+
+### 不用每次输入账号密码
+
+```bash
+git config --global credential.helper store
+```
