@@ -1,10 +1,9 @@
----
 title: ubuntu更新下载源
-date: 2020-10-02 19:36:21
-tags: 
-- linux
+tags:
+  - linux
 categories:
-- linux
+  - linux
+date: 2020-10-02 19:36:00
 ---
 
 更新ubuntu的apt下载源

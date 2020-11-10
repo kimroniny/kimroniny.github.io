@@ -1,11 +1,10 @@
----
 title: linux查看系统配置
-date: 2020-08-17 15:38:21
 tags:
-- linux
+  - linux
 categories:
-- linux
-- system
+  - linux
+  - system
+date: 2020-08-17 15:38:00
 ---
 
 从命令行查看系统配置
