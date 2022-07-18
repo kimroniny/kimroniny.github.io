@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 五 · 更 · 案
+title: kimroniny
 subtitle:
-description: 三更灯火五更鸡，正是男儿读书时
+description: universe contains everything
 keywords:
 author: kimroniny
 language: zh-CN
@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://www.wugengan.cn
+url: http://www.kimroniny.top
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:

@@ -155,11 +155,11 @@ site_state: true
 # Value before `||` delimeter is the target permalink.
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.
 social:
-  GitHub: https://github.com/kimroniny || github
+  #GitHub: https://github.com/kimroniny || github
   #E-Mail: mailto:yourname@gmail.com || envelope
   #Google: https://plus.google.com/yourname || google
   #Twitter: https://twitter.com/kimroniny || twitter
-  FB Page: https://www.facebook.com/profile.php?id=100021735524497 || facebook
+  #FB Page: https://www.facebook.com/profile.php?id=100021735524497 || facebook
   #VK Group: https://vk.com/yourname || vk
   #StackOverflow: https://stackoverflow.com/yourname || stack-overflow
   #YouTube: https://youtube.com/yourname || youtube
@@ -183,15 +183,11 @@ social_icons:
 
 # Blog rolls
 links_icon: link
-links_title: 友情链接
+links_title: 
 #links_layout: block
 links_layout: inline
 links:
-  Github: https://www.github.com
-  V2EX: https://www.v2ex.com/
-  掘金: https://juejin.im/
-  36氪: http://36kr.com/
-  知乎: https://www.zhihu.com/
+  
 
 # Sidebar Avatar
 avatar:
@@ -478,7 +474,7 @@ pangu: false
 #swiftype_key:
 
 # Baidu Analytics ID
-baidu_analytics: b36c865c67d2bd4db9ebe2412384f9e1
+baidu_analytics: 3a4c00a44a327e4894b77702fff22860
 
 # Disqus
 disqus:
@@ -507,7 +503,7 @@ valine:
   avatar: mm # gravatar style
   guest_info: nick,mail,link # custom comment header
   pageSize: 10 # pagination size
-  visitor: false # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
+  visitor: true # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
 
 # Support for LiveRe comments system.
 # You can get your uid from https://livere.com/insight/myCode (General web site)
@@ -668,7 +664,7 @@ busuanzi_count:
 
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
-baidu_push: true
+baidu_push: false
 
 # Google Calendar
 # Share your recent schedule to others via calendar page
@@ -944,7 +940,7 @@ vendors:
   # Internal version: 1.0
   # https://github.com/theme-next/theme-next-reading-progress
   # Example: https://cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1.1/reading_progress.min.js
-  reading_progress:
+  reading_progress:  
 
   # valine comment
   # Example: https://cdn.jsdelivr.net/npm/valine@1.1.8/dist/Valine.min.js
