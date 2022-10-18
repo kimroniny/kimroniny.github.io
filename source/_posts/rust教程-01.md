@@ -36,15 +36,19 @@ rustup self uninstall # 卸载
 rustc --version # 版本
 ```
 
-开发工具：vscode，插件：rust。
+开发工具：`vscode`
+
+插件：`rust`
 
 ## 基本程序
 
-后缀名：.rs
+后缀名：`.rs`
 
-文件命名规范：hello_world.rs
+文件命名规范：`hello_world.rs`
 
 编译：`rustc main.rs`，产生可执行文件
+
+编译需要服务器安装 `gcc`
 
 rust 是 ahead-of-time 编译的语言，可以先编译，然后把可执行文件交给别人运行（无需安装 rust）。
 
@@ -85,6 +89,18 @@ cargo check
 # 编译时会进行优化，代码运行的更快，但是编译时间会更长
 # target/release
 cargo build --release
+```
+
+cargo 更换国内源，在 `~/.cargo/config` 文件中填写下面内容，网络上提供了很多国内源，但是好像只有中科大的能用。
+```config
+[source.crates-io]
+registry = "https://github.com/rust-lang/crates.io-index"
+# 指定镜像
+replace-with = 'ustc'
+
+# 中国科学技术大学
+[source.ustc]
+registry = "git://mirrors.ustc.edu.cn/crates.io-index"
 ```
 
 ---
