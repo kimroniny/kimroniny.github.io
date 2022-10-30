@@ -198,3 +198,8 @@ fn main() {
 
 }
 ```
+---
+
+## 参考
+1. https://www.youtube.com/watch?v=e3-2uxHhbzs&list=PL3azK8C0kje1DUJbaOqce19j3R_-tIc4_&index=1&t=140s
+2. 《rust权威指南(The Rust Programming Language)》
