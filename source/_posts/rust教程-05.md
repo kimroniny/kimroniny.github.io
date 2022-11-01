@@ -2,10 +2,12 @@
 title: rust教程-05
 date: 2022-10-25 23:12:51
 tags:
+- rust
 categories:
+- rust
 ---
 
-rust 教程 05 基本内容
+rust 教程 05: struct
 
 <!--more-->
 

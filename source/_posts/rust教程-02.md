@@ -7,7 +7,7 @@ categories:
 - rust
 ---
 
-rust 基础教程 02
+rust 教程 02: 例子
 
 <!--more-->
 

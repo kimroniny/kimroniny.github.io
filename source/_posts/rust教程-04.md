@@ -2,10 +2,12 @@
 title: rust教程-04
 date: 2022-10-24 19:32:18
 tags:
+- rust
 categories:
+- rust
 ---
 
-rust 教程 04 所有权
+rust 教程 04: 所有权
 
 <!--more-->
 

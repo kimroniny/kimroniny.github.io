@@ -2,10 +2,12 @@
 title: rust教程-03
 date: 2022-10-20 19:28:22
 tags:
+- rust
 categories:
+- rust
 ---
 
-rust 教程 03 基本内容
+rust 教程 03: 基本内容
 
 <!--more-->
 

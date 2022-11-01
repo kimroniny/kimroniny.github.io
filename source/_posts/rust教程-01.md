@@ -7,7 +7,7 @@ categories:
 - rust
 ---
 
-rust教程 - 01 - 基础
+rust 教程 01: 环境部署
 
 <!--more-->
 
