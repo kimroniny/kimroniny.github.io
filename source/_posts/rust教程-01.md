@@ -36,6 +36,12 @@ rustup self uninstall # 卸载
 rustc --version # 版本
 ```
 
+安装的时候可能会出现 openssl 的问题, 此时需要设置
+```bash
+export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
+export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
+```
+
 开发工具：`vscode`
 
 插件：`rust`
@@ -90,6 +96,9 @@ cargo check
 # target/release
 cargo build --release
 ```
+
+> 第一次执行的时候, 可能出现缺少 `cc` 的问题. 
+> 可以通过 `apt install build-essential` 解决
 
 cargo 更换国内源，在 `~/.cargo/config` 文件中填写下面内容，网络上提供了很多国内源，但是好像只有中科大的能用。
 ```config
