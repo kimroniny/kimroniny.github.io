@@ -1,3 +1,3 @@
 hexo 博客文档
 
-测试 action
+测试 actions
