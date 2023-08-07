@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/2019/12/01/hexo%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87/</loc>
+    <loc>http://www.kimroniny.top/2020/04/11/hexo%E5%A4%87%E4%BB%BD%E6%81%A2%E5%A4%8D/</loc>
     
     <lastmod>2023-08-07</lastmod>
     
@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/2020/04/11/hexo%E5%A4%87%E4%BB%BD%E6%81%A2%E5%A4%8D/</loc>
+    <loc>http://www.kimroniny.top/2019/12/01/hexo%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87/</loc>
     
     <lastmod>2023-08-07</lastmod>
     
@@ -110,7 +110,7 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/2020/08/16/linux%E5%90%88%E7%9B%96%E7%94%B5%E6%BA%90%E8%AE%BE%E7%BD%AE/</loc>
+    <loc>http://www.kimroniny.top/2020/08/16/linux%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6/</loc>
     
     <lastmod>2023-08-07</lastmod>
     
@@ -119,7 +119,7 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/2020/08/16/linux%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6/</loc>
+    <loc>http://www.kimroniny.top/2020/08/16/linux%E5%90%88%E7%9B%96%E7%94%B5%E6%BA%90%E8%AE%BE%E7%BD%AE/</loc>
     
     <lastmod>2023-08-07</lastmod>
     
@@ -164,15 +164,6 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/2020/08/16/linux%E6%8C%82%E8%BD%BDU%E7%9B%98/</loc>
-    
-    <lastmod>2023-08-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://www.kimroniny.top/2020/08/01/linux%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7/</loc>
     
     <lastmod>2023-08-07</lastmod>
@@ -200,6 +191,15 @@
   </url>
   
   <url>
+    <loc>http://www.kimroniny.top/2020/08/16/linux%E6%8C%82%E8%BD%BDU%E7%9B%98/</loc>
+    
+    <lastmod>2023-08-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://www.kimroniny.top/2020/08/16/linux%E9%85%8D%E7%BD%AEwifi/</loc>
     
     <lastmod>2023-08-07</lastmod>
@@ -209,7 +209,7 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/2020/04/23/mysql%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E5%92%8C%E7%9F%A5%E8%AF%86/</loc>
+    <loc>http://www.kimroniny.top/2020/04/10/npm-%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6/</loc>
     
     <lastmod>2023-08-07</lastmod>
     
@@ -218,7 +218,7 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/2020/04/10/npm-%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6/</loc>
+    <loc>http://www.kimroniny.top/2020/04/23/mysql%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E5%92%8C%E7%9F%A5%E8%AF%86/</loc>
     
     <lastmod>2023-08-07</lastmod>
     
@@ -245,15 +245,6 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/2020/07/13/pycharm%E6%96%87%E4%BB%B6%E6%A8%A1%E6%9D%BF/</loc>
-    
-    <lastmod>2023-08-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://www.kimroniny.top/2020/04/10/pip-%E6%9B%B4%E6%8D%A2%E6%BA%90/</loc>
     
     <lastmod>2023-08-07</lastmod>
@@ -263,7 +254,7 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/2020/04/09/python-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</loc>
+    <loc>http://www.kimroniny.top/2020/07/13/pycharm%E6%96%87%E4%BB%B6%E6%A8%A1%E6%9D%BF/</loc>
     
     <lastmod>2023-08-07</lastmod>
     
@@ -272,7 +263,7 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/2019/12/04/python-%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    <loc>http://www.kimroniny.top/2020/04/09/python-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</loc>
     
     <lastmod>2023-08-07</lastmod>
     
@@ -335,6 +326,15 @@
   </url>
   
   <url>
+    <loc>http://www.kimroniny.top/2019/12/04/python-%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    
+    <lastmod>2023-08-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://www.kimroniny.top/2022/10/20/rust%E6%95%99%E7%A8%8B-03/</loc>
     
     <lastmod>2023-08-07</lastmod>
@@ -380,15 +380,6 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/2022/11/13/rust%E6%95%99%E7%A8%8B-08/</loc>
-    
-    <lastmod>2023-08-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://www.kimroniny.top/2022/10/30/screen-%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</loc>
     
     <lastmod>2023-08-07</lastmod>
@@ -407,7 +398,7 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/2022/10/21/serverless%E5%9F%BA%E7%A1%80/</loc>
+    <loc>http://www.kimroniny.top/2022/11/13/rust%E6%95%99%E7%A8%8B-08/</loc>
     
     <lastmod>2023-08-07</lastmod>
     
@@ -416,7 +407,7 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/2020/04/22/solidity%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-%E4%BD%BF%E7%94%A8remix/</loc>
+    <loc>http://www.kimroniny.top/2022/10/21/serverless%E5%9F%BA%E7%A1%80/</loc>
     
     <lastmod>2023-08-07</lastmod>
     
@@ -434,7 +425,7 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/2020/08/09/ssh%E7%99%BB%E9%99%86%E5%AF%86%E9%92%A5%E8%AD%A6%E5%91%8A/</loc>
+    <loc>http://www.kimroniny.top/2020/04/22/solidity%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-%E4%BD%BF%E7%94%A8remix/</loc>
     
     <lastmod>2023-08-07</lastmod>
     
@@ -444,6 +435,15 @@
   
   <url>
     <loc>http://www.kimroniny.top/2022/10/18/ssh-%E7%99%BB%E5%BD%95%E5%88%B0-wsl/</loc>
+    
+    <lastmod>2023-08-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.kimroniny.top/2020/08/09/ssh%E7%99%BB%E9%99%86%E5%AF%86%E9%92%A5%E8%AD%A6%E5%91%8A/</loc>
     
     <lastmod>2023-08-07</lastmod>
     
@@ -677,6 +677,15 @@
   </url>
   
   <url>
+    <loc>http://www.kimroniny.top/2020/04/26/Abama-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%B8%8A%E5%AD%A6/</loc>
+    
+    <lastmod>2023-08-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://www.kimroniny.top/2020/04/18/Anaconda%E6%9B%B4%E6%96%B0%E4%B8%8B%E8%BD%BD%E6%BA%90/</loc>
     
     <lastmod>2023-08-07</lastmod>
@@ -695,7 +704,7 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/2020/04/26/Abama-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%B8%8A%E5%AD%A6/</loc>
+    <loc>http://www.kimroniny.top/2022/10/12/NAT%E7%AE%80%E4%BB%8B/</loc>
     
     <lastmod>2023-08-07</lastmod>
     
@@ -713,7 +722,7 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/2022/10/12/NAT%E7%AE%80%E4%BB%8B/</loc>
+    <loc>http://www.kimroniny.top/2020/03/06/Wb-Spider-Description/</loc>
     
     <lastmod>2023-08-07</lastmod>
     
@@ -740,7 +749,7 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/2020/03/06/Wb-Spider-Description/</loc>
+    <loc>http://www.kimroniny.top/2020/08/01/centos7%E5%8D%87%E7%BA%A7git/</loc>
     
     <lastmod>2023-08-07</lastmod>
     
@@ -750,15 +759,6 @@
   
   <url>
     <loc>http://www.kimroniny.top/2020/04/18/docker%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</loc>
-    
-    <lastmod>2023-08-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.kimroniny.top/2020/08/01/centos7%E5%8D%87%E7%BA%A7git/</loc>
     
     <lastmod>2023-08-07</lastmod>
     
@@ -785,6 +785,13 @@
 
   
   <url>
+    <loc>http://www.kimroniny.top/tags/speech/</loc>
+    <lastmod>2023-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://www.kimroniny.top/tags/python/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -799,13 +806,6 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/tags/speech/</loc>
-    <lastmod>2023-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://www.kimroniny.top/tags/network/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -814,20 +814,6 @@
   
   <url>
     <loc>http://www.kimroniny.top/tags/nat/</loc>
-    <lastmod>2023-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.kimroniny.top/tags/centos/</loc>
-    <lastmod>2023-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.kimroniny.top/tags/vmware/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -856,6 +842,20 @@
   
   <url>
     <loc>http://www.kimroniny.top/tags/private/</loc>
+    <lastmod>2023-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.kimroniny.top/tags/centos/</loc>
+    <lastmod>2023-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.kimroniny.top/tags/vmware/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -918,6 +918,13 @@
   </url>
   
   <url>
+    <loc>http://www.kimroniny.top/tags/npm/</loc>
+    <lastmod>2023-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://www.kimroniny.top/tags/database/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -926,13 +933,6 @@
   
   <url>
     <loc>http://www.kimroniny.top/tags/mysql/</loc>
-    <lastmod>2023-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.kimroniny.top/tags/npm/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1002,6 +1002,13 @@
   </url>
   
   <url>
+    <loc>http://www.kimroniny.top/tags/solidity/</loc>
+    <lastmod>2023-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://www.kimroniny.top/tags/blockchain/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -1016,7 +1023,7 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/tags/solidity/</loc>
+    <loc>http://www.kimroniny.top/tags/wsl/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1024,13 +1031,6 @@
   
   <url>
     <loc>http://www.kimroniny.top/tags/ssh/</loc>
-    <lastmod>2023-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.kimroniny.top/tags/wsl/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1109,13 +1109,6 @@
 
   
   <url>
-    <loc>http://www.kimroniny.top/categories/python/</loc>
-    <lastmod>2023-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://www.kimroniny.top/categories/speech/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -1123,7 +1116,7 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/categories/python/Anaconda/</loc>
+    <loc>http://www.kimroniny.top/categories/python/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1137,13 +1130,6 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/categories/vmware/</loc>
-    <lastmod>2023-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://www.kimroniny.top/categories/spider/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -1151,7 +1137,28 @@
   </url>
   
   <url>
+    <loc>http://www.kimroniny.top/categories/python/Anaconda/</loc>
+    <lastmod>2023-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.kimroniny.top/categories/vmware/</loc>
+    <lastmod>2023-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://www.kimroniny.top/categories/docker/</loc>
+    <lastmod>2023-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.kimroniny.top/categories/network/nat/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1172,6 +1179,13 @@
   </url>
   
   <url>
+    <loc>http://www.kimroniny.top/categories/spider/weibo/</loc>
+    <lastmod>2023-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://www.kimroniny.top/categories/python/grpc/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -1180,13 +1194,6 @@
   
   <url>
     <loc>http://www.kimroniny.top/categories/hexo/</loc>
-    <lastmod>2023-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.kimroniny.top/categories/network/nat/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1214,7 +1221,7 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/categories/spider/weibo/</loc>
+    <loc>http://www.kimroniny.top/categories/npm/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1222,13 +1229,6 @@
   
   <url>
     <loc>http://www.kimroniny.top/categories/database/</loc>
-    <lastmod>2023-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.kimroniny.top/categories/npm/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1250,13 +1250,6 @@
   
   <url>
     <loc>http://www.kimroniny.top/categories/python/unittest/</loc>
-    <lastmod>2023-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.kimroniny.top/categories/python/threading/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1291,6 +1284,13 @@
   </url>
   
   <url>
+    <loc>http://www.kimroniny.top/categories/python/threading/</loc>
+    <lastmod>2023-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://www.kimroniny.top/categories/linux/timezone/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -1298,7 +1298,7 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/categories/linux/power/</loc>
+    <loc>http://www.kimroniny.top/categories/linux/compress/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1306,6 +1306,13 @@
   
   <url>
     <loc>http://www.kimroniny.top/categories/python/selenium/</loc>
+    <lastmod>2023-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.kimroniny.top/categories/linux/power/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1326,20 +1333,6 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/categories/linux/compress/</loc>
-    <lastmod>2023-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.kimroniny.top/categories/ssh/</loc>
-    <lastmod>2023-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://www.kimroniny.top/categories/linux/ftp/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -1354,14 +1347,21 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/categories/gitlab/</loc>
+    <loc>http://www.kimroniny.top/categories/linux/ssh/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/categories/linux/ssh/</loc>
+    <loc>http://www.kimroniny.top/categories/ssh/</loc>
+    <lastmod>2023-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.kimroniny.top/categories/gitlab/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1382,6 +1382,13 @@
   </url>
   
   <url>
+    <loc>http://www.kimroniny.top/categories/linux/user/</loc>
+    <lastmod>2023-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://www.kimroniny.top/categories/windows/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -1389,14 +1396,14 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/categories/linux/mount/</loc>
+    <loc>http://www.kimroniny.top/categories/linux/network/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/categories/linux/user/</loc>
+    <loc>http://www.kimroniny.top/categories/linux/service/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1417,7 +1424,7 @@
   </url>
   
   <url>
-    <loc>http://www.kimroniny.top/categories/linux/network/</loc>
+    <loc>http://www.kimroniny.top/categories/linux/mount/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1425,13 +1432,6 @@
   
   <url>
     <loc>http://www.kimroniny.top/categories/dao/</loc>
-    <lastmod>2023-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.kimroniny.top/categories/linux/service/</loc>
     <lastmod>2023-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

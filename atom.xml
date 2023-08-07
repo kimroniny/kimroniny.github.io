@@ -266,9 +266,9 @@
     <category term="wsl" scheme="http://www.kimroniny.top/categories/wsl/"/>
     
     
-    <category term="ssh" scheme="http://www.kimroniny.top/tags/ssh/"/>
-    
     <category term="wsl" scheme="http://www.kimroniny.top/tags/wsl/"/>
+    
+    <category term="ssh" scheme="http://www.kimroniny.top/tags/ssh/"/>
     
   </entry>
   
