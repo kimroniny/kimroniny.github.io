@@ -54,7 +54,7 @@ jobs:
   # Deployment job
   deploy:
     environment:
-      name: github-pages
+      name: master
       url: "https://www.kimroniny.top/"
     runs-on: ubuntu-latest
     needs: build
