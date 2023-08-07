@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kimroniny.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="rust 教程 07: vector, string, hashmap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rust教程-08">
+<meta property="og:url" content="http://www.kimroniny.top/2022/11/13/rust%E6%95%99%E7%A8%8B-08/index.html">
+<meta property="og:site_name" content="kimroniny">
+<meta property="og:description" content="rust 教程 07: vector, string, hashmap">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-13T10:04:45.000Z">
+<meta property="article:modified_time" content="2023-08-07T00:17:53.081Z">
+<meta property="article:author" content="kimroniny">
+<meta property="article:tag" content="rust">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.kimroniny.top/2022/11/13/rust%E6%95%99%E7%A8%8B-08/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.kimroniny.top/2022/11/13/rust%E6%95%99%E7%A8%8B-08/","path":"2022/11/13/rust教程-08/","title":"rust教程-08"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>rust教程-08 | kimroniny</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="kimroniny" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">kimroniny</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">46</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">56</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#vector"><span class="nav-number">1.</span> <span class="nav-text"> Vector</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vector-%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text"> vector 的基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vector-%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">1.2.</span> <span class="nav-text"> vector 的例子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#string"><span class="nav-number">2.</span> <span class="nav-text"> String</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hashmapk-v"><span class="nav-number">3.</span> <span class="nav-text"> HashMap&lt;K, V&gt;</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kimroniny"
+      src="/images/tianefei.jpg">
+  <p class="site-author-name" itemprop="name">kimroniny</p>
+  <div class="site-description" itemprop="description">universe contains everything</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    相关文章
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2020/08/11/leetcode0030/" rel="bookmark">
+        <time class="popular-posts-time">2020-08-11</time>
+        <br>
+      leetcode0030
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2022/10/20/rust%E6%95%99%E7%A8%8B-03/" rel="bookmark">
+        <time class="popular-posts-time">2022-10-20</time>
+        <br>
+      rust教程-03
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2020/04/22/solidity%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-%E4%BD%BF%E7%94%A8remix/" rel="bookmark">
+        <time class="popular-posts-time">2020-04-22</time>
+        <br>
+      solidity单元测试(使用remix)
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2022/10/24/rust%E6%95%99%E7%A8%8B-04/" rel="bookmark">
+        <time class="popular-posts-time">2022-10-24</time>
+        <br>
+      rust教程-04
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.kimroniny.top/2022/11/13/rust%E6%95%99%E7%A8%8B-08/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tianefei.jpg">
+      <meta itemprop="name" content="kimroniny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kimroniny">
+      <meta itemprop="description" content="universe contains everything">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="rust教程-08 | kimroniny">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          rust教程-08
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-13 18:04:45" itemprop="dateCreated datePublished" datetime="2022-11-13T18:04:45+08:00">2022-11-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-08-07 08:17:53" itemprop="dateModified" datetime="2023-08-07T08:17:53+08:00">2023-08-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/rust/" itemprop="url" rel="index"><span itemprop="name">rust</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>rust 教程 07: vector, string, hashmap</p>
+<span id="more"></span>
+<h2 id="vector"><a class="markdownIt-Anchor" href="#vector"></a> Vector</h2>
+<h3 id="vector-的基本使用"><a class="markdownIt-Anchor" href="#vector-的基本使用"></a> vector 的基本使用</h3>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="comment">// 必须要指明类型，或者通过 push，能够让编译器知道 v 的类型</span></span><br><span class="line">    <span class="comment">// 离开作用域的时候，v 就被删除了</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span>: <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt; = <span class="type">Vec</span>::<span class="title function_ invoke__">new</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 不用显示指明类型</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v2</span> = <span class="built_in">vec!</span>[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 因为 push 了一个 i32 类型的数据，所以不需要显示地指明类型</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">v3</span> = <span class="type">Vec</span>::<span class="title function_ invoke__">new</span>();</span><br><span class="line">    v3.<span class="title function_ invoke__">push</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// -------</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 两种读取 vector 元素的方法</span></span><br><span class="line">    <span class="comment">// 1. 通过索引</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span> = &amp;v2[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 通过 get 方法</span></span><br><span class="line">    <span class="keyword">match</span> v2.<span class="title function_ invoke__">get</span>(<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="title function_ invoke__">Some</span>(x) =&gt; &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">&quot;x is: &#123;&#125;&quot;</span>, x);</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="literal">None</span> =&gt; &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">&quot;x is None&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// -------</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 不能在同一作用域内同时拥有可变和不可变引用</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">v4</span> = <span class="type">Vec</span>::<span class="title function_ invoke__">new</span>();</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">first</span> = &amp;v4[<span class="number">1</span>]; <span class="comment">// 不可变借用</span></span><br><span class="line">    v4.<span class="title function_ invoke__">push</span>(<span class="number">10</span>); <span class="comment">// 可变借用，和上面的不可变借用发生冲突，</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;first is &#123;&#125;&quot;</span>, first);</span><br><span class="line">    <span class="comment">// 因为 push 的过程如果 vector 内存不够，则导致 vector 重新分配内润地址，所以此时不可变借用就失效了，因此编译器不允许这种情况出现</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// -------</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// for 循环</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">v5</span> = <span class="built_in">vec!</span>[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> &amp;<span class="keyword">mut</span> v5 &#123;</span><br><span class="line">        *i += <span class="number">10</span>; <span class="comment">// 修改 v5 的值</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> &amp;v5 &#123; <span class="comment">// 循环打印</span></span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;i is &#123;&#125;&quot;</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="vector-的例子"><a class="markdownIt-Anchor" href="#vector-的例子"></a> vector 的例子</h3>
+<p>使用 enum 改变 vector 元素的类型</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">SheetCell</span> &#123;</span><br><span class="line">    <span class="title function_ invoke__">Int</span>(<span class="type">i32</span>),</span><br><span class="line">    <span class="title function_ invoke__">Float</span>(<span class="type">f64</span>),</span><br><span class="line">    <span class="title function_ invoke__">Text</span>(<span class="type">String</span>),</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">row</span> = <span class="built_in">vec!</span>[</span><br><span class="line">        SheetCell::<span class="title function_ invoke__">Int</span>(<span class="number">1</span>),</span><br><span class="line">        SheetCell::<span class="title function_ invoke__">Float</span>(<span class="number">10.0</span>),</span><br><span class="line">        SheetCell::<span class="title function_ invoke__">Text</span>(<span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;asdasd&quot;</span>)),</span><br><span class="line">    ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="string"><a class="markdownIt-Anchor" href="#string"></a> String</h2>
+<p>rust 的核心语言层面，只有一个字符串类型，即字符串切片 str 或者 &amp;str，对存储在其他地方、UTF-8编码的字符串的引用</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="comment">// -------</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建字符串类型的几种方法</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;asdasd&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s1</span> = <span class="string">&quot;adadad&quot;</span>.<span class="title function_ invoke__">to_string</span>();</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">data</span> = <span class="string">&quot;dasdad&quot;</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s2</span> = data.<span class="title function_ invoke__">to_string</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// -------</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 更新 string</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">s3</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;asdada&quot;</span>);</span><br><span class="line">    s3.<span class="title function_ invoke__">push_str</span>(<span class="string">&quot;asdadasd&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s4</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;sdasd&quot;</span>);</span><br><span class="line">    s3.<span class="title function_ invoke__">push_str</span>(&amp;s4); <span class="comment">// 不会改变 s4 的所有权</span></span><br><span class="line">    s3.<span class="title function_ invoke__">push</span>(<span class="string">&#x27;1&#x27;</span>); <span class="comment">// 附加一个字符</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 取得了 s3 的所有权，s3会失效</span></span><br><span class="line">    <span class="comment">// &amp;s4 被强制转换为字符串切片 &amp;str，解引用强制类型转换</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s5</span> = s3+&amp;s4; </span><br><span class="line"></span><br><span class="line">    <span class="comment">// 可以直接用 format 来构建新字符串，这样不会改变所有权</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s5</span> = <span class="built_in">format!</span>(<span class="string">&quot;&#123;&#125;-&#123;&#125;-&#123;&#125;&quot;</span>, s1, s2, s5);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// -------</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 访问字符串元素</span></span><br><span class="line">    <span class="comment">// String 不支持索引形式访问元素</span></span><br><span class="line">    <span class="comment">// String 是对 vec&lt;u8&gt; 的包装</span></span><br><span class="line">    <span class="comment">// 由于 String 是一种 utF-8 编码，所以索引的位置指代的不一定就是字符的位置，有可能是某个字节</span></span><br><span class="line">    <span class="keyword">for</span> <span class="variable">w</span> <span class="keyword">in</span> s5.<span class="title function_ invoke__">chars</span>() &#123; <span class="comment">// 获得标量值</span></span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, w);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">w</span> <span class="keyword">in</span> s5.<span class="title function_ invoke__">bytes</span>() &#123; <span class="comment">// 获得字节</span></span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, w);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 字符串切片</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s6</span> = &amp;s5[<span class="number">0</span>..<span class="number">4</span>]; <span class="comment">// 必须沿着字符的边界进行切割（比如一个字符占两个字节)，否则就会 panic</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="hashmapk-v"><a class="markdownIt-Anchor" href="#hashmapk-v"></a> HashMap&lt;K, V&gt;</h2>
+<p>以键值对的形式存储数据，一个键对应一个值</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::collections::HashMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// -----------</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// hashmap 是同构的，即 k 必须是同一类型，v 必须是同一类型</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">scores</span> = HashMap::<span class="title function_ invoke__">new</span>();</span><br><span class="line">    scores.<span class="title function_ invoke__">insert</span>(<span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;asdads&quot;</span>), <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通过 collect 来创建 hashmap</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">teams</span> = <span class="built_in">vec!</span>[</span><br><span class="line">        <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;asdad&quot;</span>),</span><br><span class="line">        <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;agdfgd&quot;</span>),</span><br><span class="line">    ];</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">initial_scores</span> = <span class="built_in">vec!</span>[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">scores</span>: HashMap&lt;_,_&gt; = <span class="comment">// 用下划线是因为编译器可以根据 vector 中的元素推导出 k v 的类型</span></span><br><span class="line">        teams.<span class="title function_ invoke__">iter</span>().<span class="title function_ invoke__">zip</span>(initial_scores.<span class="title function_ invoke__">iter</span>()).<span class="title function_ invoke__">collect</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 所有权问题</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s1</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;asdasd&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s2</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;asdasd&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">map</span> = HashMap::<span class="title function_ invoke__">new</span>();</span><br><span class="line">    map.<span class="title function_ invoke__">insert</span>(&amp;s1, &amp;s2); <span class="comment">// 传递引用不会改变所有权</span></span><br><span class="line">    <span class="comment">// map.insert(s1, s2); // 会改变 s1 和 s2 的所有权</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通过 get 取得 hashmap 的值</span></span><br><span class="line">    <span class="keyword">match</span> map.<span class="title function_ invoke__">get</span>(&amp;<span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;asdas&quot;</span>)) &#123;</span><br><span class="line">        <span class="title function_ invoke__">Some</span>(x) =&gt; &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, x);</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="literal">None</span> =&gt; &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">&quot;None&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通过 for 循环遍历 hashmap 的值</span></span><br><span class="line">    <span class="title function_ invoke__">for</span> (k,v) <span class="keyword">in</span> &amp;map &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;, &#123;&#125;&quot;</span>, k, v);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 更新 hashmap</span></span><br><span class="line">    <span class="comment">// 每个 k 同时只能对应一个 v</span></span><br><span class="line">    <span class="comment">// 更新 hashmap 中的数据</span></span><br><span class="line">    <span class="comment">// 1. k 已经存在，对应一个 v</span></span><br><span class="line">    <span class="comment">// - 替换现有的 v</span></span><br><span class="line">    <span class="comment">// - 保留现有的 v，忽略新的 v</span></span><br><span class="line">    <span class="comment">// - 合并现有的 v 和新的 v</span></span><br><span class="line">    <span class="comment">// 2. k 不存在</span></span><br><span class="line">    <span class="comment">// - 添加一对 (k, v)</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">scores</span> = HashMap::<span class="title function_ invoke__">new</span>();</span><br><span class="line">    scores.<span class="title function_ invoke__">insert</span>(<span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;asdsd&quot;</span>), <span class="number">10</span>);</span><br><span class="line">    scores.<span class="title function_ invoke__">insert</span>(<span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;asdsd&quot;</span>), <span class="number">12</span>); <span class="comment">// asdsd 的值已经改为 12，无论值是否存在，都在被设置为 12 </span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对于 entry 而言</span></span><br><span class="line">    <span class="comment">// 如果 k 存在，则返回对应的 v 的一个可变引用</span></span><br><span class="line">    <span class="comment">// 如果 k 不存在，则将新的值插入进去，然后返回该值的可变引用</span></span><br><span class="line">    scores.<span class="title function_ invoke__">entry</span>(<span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;asdsd&quot;</span>)).<span class="title function_ invoke__">or_insert</span>(<span class="number">49</span>); <span class="comment">// 如果不存在则插入并返回新值的引用，如果存在则返回已有的值的引用</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">e</span> = scores.<span class="title function_ invoke__">entry</span>(<span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;asdsd&quot;</span>));</span><br><span class="line">    e.<span class="title function_ invoke__">or_insert</span>(<span class="number">666</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 基于现有的值 v 来更新</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">text</span> = <span class="string">&quot;asdasd adfs asdsd asda&quot;</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">map</span> = HashMap::<span class="title function_ invoke__">new</span>();</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">word</span> <span class="keyword">in</span> text.<span class="title function_ invoke__">split_whitespace</span>() &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">count</span>: &amp;<span class="keyword">mut</span> <span class="type">i32</span> = map.<span class="title function_ invoke__">entry</span>(word).<span class="title function_ invoke__">or_insert</span>(<span class="number">0</span>);</span><br><span class="line">        *count += <span class="number">1</span>; <span class="comment">// 注意 count 是一个可变引用</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat-receive.jpg" alt="kimroniny 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay-receive.jpg" alt="kimroniny 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/rust/" rel="tag"><i class="fa fa-tag"></i> rust</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/11/13/rust%E6%95%99%E7%A8%8B-07/" rel="prev" title="rust教程-07">
+                  <i class="fa fa-angle-left"></i> rust教程-07
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/07/28/wsl-%E4%BB%A3%E7%90%86%E9%97%AE%E9%A2%98/" rel="next" title="wsl-代理问题">
+                  wsl-代理问题 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kimroniny</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">112k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:42</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

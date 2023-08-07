@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kimroniny.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="rust 教程 07: 包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rust教程-07">
+<meta property="og:url" content="http://www.kimroniny.top/2022/11/13/rust%E6%95%99%E7%A8%8B-07/index.html">
+<meta property="og:site_name" content="kimroniny">
+<meta property="og:description" content="rust 教程 07: 包">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-13T08:31:00.000Z">
+<meta property="article:modified_time" content="2023-08-07T00:17:53.081Z">
+<meta property="article:author" content="kimroniny">
+<meta property="article:tag" content="rust">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.kimroniny.top/2022/11/13/rust%E6%95%99%E7%A8%8B-07/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.kimroniny.top/2022/11/13/rust%E6%95%99%E7%A8%8B-07/","path":"2022/11/13/rust教程-07/","title":"rust教程-07"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>rust教程-07 | kimroniny</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="kimroniny" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">kimroniny</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">46</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">56</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#package-%E5%92%8C-crate"><span class="nav-number">1.</span> <span class="nav-text"> package 和 crate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#module"><span class="nav-number">2.</span> <span class="nav-text"> Module</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#path-%E8%B7%AF%E5%BE%84"><span class="nav-number">3.</span> <span class="nav-text"> path 路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%81%E6%9C%89%E6%80%A7"><span class="nav-number">4.</span> <span class="nav-text"> 私有性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#super-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">5.</span> <span class="nav-text"> super 关键字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pub-struct"><span class="nav-number">6.</span> <span class="nav-text"> pub struct</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pub-enum"><span class="nav-number">7.</span> <span class="nav-text"> pub enum：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#use-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">8.</span> <span class="nav-text"> use 关键字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%A4%96%E9%83%A8%E5%8C%85-package"><span class="nav-number">9.</span> <span class="nav-text"> 使用外部包 package</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%86%E6%A8%A1%E5%9D%97%E5%86%85%E5%AE%B9%E7%A7%BB%E5%8A%A8%E5%88%B0%E5%85%B6%E4%BB%96%E6%96%87%E4%BB%B6"><span class="nav-number">10.</span> <span class="nav-text"> 将模块内容移动到其他文件</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kimroniny"
+      src="/images/tianefei.jpg">
+  <p class="site-author-name" itemprop="name">kimroniny</p>
+  <div class="site-description" itemprop="description">universe contains everything</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    相关文章
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2022/10/25/rust%E6%95%99%E7%A8%8B-05/" rel="bookmark">
+        <time class="popular-posts-time">2022-10-25</time>
+        <br>
+      rust教程-05
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2022/10/17/rust%E6%95%99%E7%A8%8B-01/" rel="bookmark">
+        <time class="popular-posts-time">2022-10-17</time>
+        <br>
+      rust教程-01
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2019/12/05/grpc/" rel="bookmark">
+        <time class="popular-posts-time">2019-12-05</time>
+        <br>
+      grpc
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2022/10/18/wsl-%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/" rel="bookmark">
+        <time class="popular-posts-time">2022-10-18</time>
+        <br>
+      wsl 数据迁移
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2020/08/01/linux%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9C%8D%E5%8A%A1/" rel="bookmark">
+        <time class="popular-posts-time">2020-08-01</time>
+        <br>
+      linux自定义服务
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.kimroniny.top/2022/11/13/rust%E6%95%99%E7%A8%8B-07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tianefei.jpg">
+      <meta itemprop="name" content="kimroniny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kimroniny">
+      <meta itemprop="description" content="universe contains everything">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="rust教程-07 | kimroniny">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          rust教程-07
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-13 16:31:00" itemprop="dateCreated datePublished" datetime="2022-11-13T16:31:00+08:00">2022-11-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-08-07 08:17:53" itemprop="dateModified" datetime="2023-08-07T08:17:53+08:00">2023-08-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/rust/" itemprop="url" rel="index"><span itemprop="name">rust</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>rust 教程 07: 包</p>
+<span id="more"></span>
+<h2 id="package-和-crate"><a class="markdownIt-Anchor" href="#package-和-crate"></a> package 和 crate</h2>
+<p>crate 的类型：</p>
+<ul>
+<li>binary</li>
+<li>library</li>
+</ul>
+<p>crate root：</p>
+<ul>
+<li>源代码文件</li>
+<li>rust 编译器从这里开始，组成 crate 的根 module</li>
+</ul>
+<p>package：</p>
+<ul>
+<li>包含 1 个 crate.toxl，他描述了如何构建这些 crates</li>
+<li>只能包含 0-1 个 library crate</li>
+<li>可以包含任意数量的 binary crate</li>
+<li>但必须至少包含一个 crate（library 或者 binary）</li>
+</ul>
+<p>cargo 的惯例：</p>
+<ul>
+<li>src/main.rs：binary crate
+<ul>
+<li>bianry crate 的 crate root</li>
+<li>crate 名与 package 名相同</li>
+</ul>
+</li>
+<li>src/lib.rs：library crate
+<ul>
+<li>package 包含一个 library code</li>
+<li>library crate 的 crate root</li>
+<li>crate 名与 package 名相同</li>
+</ul>
+</li>
+<li>crago 把 crate root 文件交给 rustc 来构建 library 或者 binary</li>
+<li>一个 package 可以同时包含 src/main.rs 和 src/lib.rs</li>
+<li>一个 package 可以有多个 binary crate</li>
+</ul>
+<h2 id="module"><a class="markdownIt-Anchor" href="#module"></a> Module</h2>
+<p>Module：</p>
+<ul>
+<li>在一个 crate 内，将代码进行分组</li>
+<li>增加可读性</li>
+<li>控制项目的私有性：public、private</li>
+</ul>
+<p>建立 module：</p>
+<ul>
+<li>mod 关键字</li>
+<li>可嵌套</li>
+<li>可以包含其他项的定义</li>
+</ul>
+<h2 id="path-路径"><a class="markdownIt-Anchor" href="#path-路径"></a> path 路径</h2>
+<p>为了在 rust 的模块中找到某个条目，需要使用路径，两种形式：</p>
+<ul>
+<li>绝对路径：从 crate root 开始，使用 crate 名或者字面值 crate</li>
+<li>相对路径：从当前模块开始，使用 self、super 或者当前模块的标识符</li>
+<li>路径至少由一个标识符组成，标识符之间使用 ::</li>
+</ul>
+<h2 id="私有性"><a class="markdownIt-Anchor" href="#私有性"></a> 私有性</h2>
+<ul>
+<li>模块不仅可以组织代码，还可以定义私有边界</li>
+<li>如果想把函数或者 struct 等设为私有，可以将其放到某个模块中</li>
+<li>rust 中所有的条目（函数、方法、struct、enum、模块、常量）等默认都是私有的</li>
+<li>父级模块无法访问子模块中的私有条目</li>
+<li>子模块可以使用所有祖先模块中的条目</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mod</span> front_of_house &#123;</span><br><span class="line">    <span class="comment">// 声明为公共的</span></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">mod</span> hosting &#123;</span><br><span class="line">        <span class="keyword">fn</span> <span class="title function_">add_to_waitlist</span>() &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">eat_at_restaurant</span>() &#123;</span><br><span class="line">    <span class="comment">// 绝对路径</span></span><br><span class="line">    crate::front_of_house::hosting::<span class="title function_ invoke__">add_to_waitlist</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 相对路径</span></span><br><span class="line">    front_of_house::hosting::<span class="title function_ invoke__">add_to_waitlist</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="super-关键字"><a class="markdownIt-Anchor" href="#super-关键字"></a> super 关键字</h2>
+<p>访问父级模块或者方法</p>
+<h2 id="pub-struct"><a class="markdownIt-Anchor" href="#pub-struct"></a> pub struct</h2>
+<ul>
+<li>struct 是公共的</li>
+<li>struct 的字段默认是私有的</li>
+<li>想把哪个字段设置为公有的，就在其前面设置为 pub</li>
+</ul>
+<h2 id="pub-enum"><a class="markdownIt-Anchor" href="#pub-enum"></a> pub enum：</h2>
+<ul>
+<li>enum 是公共的</li>
+<li>所有元素也是公共的，不需要单独设置为 pub</li>
+</ul>
+<h2 id="use-关键字"><a class="markdownIt-Anchor" href="#use-关键字"></a> use 关键字</h2>
+<ul>
+<li>对于函数，引入到父级，即上一级即可；</li>
+<li>对于 struct、enum，引入到同一级；</li>
+<li>也就是对于同名条目，引入到父级即可</li>
+<li>使用 use 导入到作用域内后，该名称在该作用域内是私有的
+<ul>
+<li>使用 pub use 重导出，外部代码就可以引入到他们的作用域</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mod</span> front_of_house &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">mod</span> hosting &#123;</span><br><span class="line">        <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">add_to_waitlist</span>() &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用绝对路径引入 hosting</span></span><br><span class="line"><span class="comment">// 使用 as 搞个别名</span></span><br><span class="line"><span class="keyword">use</span> crate::front_of_house::hosting <span class="keyword">as</span> hosting1;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用相对路径引入 hosting</span></span><br><span class="line"><span class="comment">// 针对函数，一般是引入到上一级，避免引入多个相同名字的函数</span></span><br><span class="line"><span class="keyword">use</span> front_of_house::hosting <span class="keyword">as</span> hosting2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">eat_at_restaurant</span>() &#123;</span><br><span class="line">    <span class="comment">// 绝对路径</span></span><br><span class="line">    crate::front_of_house::hosting::<span class="title function_ invoke__">add_to_waitlist</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 相对路径</span></span><br><span class="line">    front_of_house::hosting::<span class="title function_ invoke__">add_to_waitlist</span>();</span><br><span class="line"></span><br><span class="line">    hosting::<span class="title function_ invoke__">add_to_waitlist</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用外部包-package"><a class="markdownIt-Anchor" href="#使用外部包-package"></a> 使用外部包 package</h2>
+<ul>
+<li>cargo.toml 添加依赖的包 package</li>
+<li>use 将特定条目引入到作用域</li>
+<li>std 包不需要放入到 c</li>
+</ul>
+<p>cargo.toml 中</p>
+<p>使用嵌套路径来引入相同 package 下的多个条目</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std:: &#123;</span><br><span class="line">    cmd::Ordering,</span><br><span class="line">    io</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">use</span> std::io&#123;</span><br><span class="line">    <span class="keyword">self</span>, <span class="comment">// 引入自己</span></span><br><span class="line">    write</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="将模块内容移动到其他文件"><a class="markdownIt-Anchor" href="#将模块内容移动到其他文件"></a> 将模块内容移动到其他文件</h2>
+<p>模块定义时，如果模块后边是 “;”，而不是代码块：</p>
+<ul>
+<li>rust 会从与模块同名的文件中加载内容</li>
+<li>模块树的结构不会变化</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">src/</span><br><span class="line">├── front_of_house</span><br><span class="line">│   └── hosting.rs</span><br><span class="line">├── front_of_house.rs</span><br><span class="line">├── lib.rs</span><br><span class="line">└── main.rs</span><br></pre></td></tr></table></figure>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/front_of_house.rs</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">mod</span> hosting; <span class="comment">// 依旧要声明为 pub，公有类型</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// src/front_of_house/hosting.rs</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">add_to_waitlist</span>() &#123;&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat-receive.jpg" alt="kimroniny 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay-receive.jpg" alt="kimroniny 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/rust/" rel="tag"><i class="fa fa-tag"></i> rust</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/11/01/rust%E6%95%99%E7%A8%8B-06/" rel="prev" title="rust教程-06">
+                  <i class="fa fa-angle-left"></i> rust教程-06
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/11/13/rust%E6%95%99%E7%A8%8B-08/" rel="next" title="rust教程-08">
+                  rust教程-08 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kimroniny</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">112k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:42</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

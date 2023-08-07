@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kimroniny.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="在linux服务器上开启ftp服务。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux开启ftp服务">
+<meta property="og:url" content="http://www.kimroniny.top/2020/08/16/linux%E5%BC%80%E5%90%AFftp%E6%9C%8D%E5%8A%A1/index.html">
+<meta property="og:site_name" content="kimroniny">
+<meta property="og:description" content="在linux服务器上开启ftp服务。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-16T15:19:50.000Z">
+<meta property="article:modified_time" content="2023-08-07T00:17:53.081Z">
+<meta property="article:author" content="kimroniny">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.kimroniny.top/2020/08/16/linux%E5%BC%80%E5%90%AFftp%E6%9C%8D%E5%8A%A1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.kimroniny.top/2020/08/16/linux%E5%BC%80%E5%90%AFftp%E6%9C%8D%E5%8A%A1/","path":"2020/08/16/linux开启ftp服务/","title":"linux开启ftp服务"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>linux开启ftp服务 | kimroniny</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="kimroniny" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">kimroniny</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">46</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">56</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ubuntu"><span class="nav-number">1.</span> <span class="nav-text"> Ubuntu</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kimroniny"
+      src="/images/tianefei.jpg">
+  <p class="site-author-name" itemprop="name">kimroniny</p>
+  <div class="site-description" itemprop="description">universe contains everything</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    相关文章
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2020/04/02/solidity%E5%90%88%E7%BA%A6%E5%BC%80%E5%8F%91/" rel="bookmark">
+        <time class="popular-posts-time">2020-04-02</time>
+        <br>
+      solidity合约开发
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2020/08/01/linux%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7/" rel="bookmark">
+        <time class="popular-posts-time">2020-08-01</time>
+        <br>
+      linux添加用户
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2020/10/02/ubuntu%E6%9B%B4%E6%96%B0%E4%B8%8B%E8%BD%BD%E6%BA%90/" rel="bookmark">
+        <time class="popular-posts-time">2020-10-02</time>
+        <br>
+      ubuntu更新下载源
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.kimroniny.top/2020/08/16/linux%E5%BC%80%E5%90%AFftp%E6%9C%8D%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tianefei.jpg">
+      <meta itemprop="name" content="kimroniny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kimroniny">
+      <meta itemprop="description" content="universe contains everything">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="linux开启ftp服务 | kimroniny">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          linux开启ftp服务
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-16 23:19:50" itemprop="dateCreated datePublished" datetime="2020-08-16T23:19:50+08:00">2020-08-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-08-07 08:17:53" itemprop="dateModified" datetime="2023-08-07T08:17:53+08:00">2023-08-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/linux/ftp/" itemprop="url" rel="index"><span itemprop="name">ftp</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>在linux服务器上开启ftp服务。</p>
+<span id="more"></span>
+<h2 id="ubuntu"><a class="markdownIt-Anchor" href="#ubuntu"></a> Ubuntu</h2>
+<p>使用的软件: vsftpd</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vsftpd</span><br></pre></td></tr></table></figure>
+<p>需要配置的文件: <code>/etc/vsftpd.conf</code></p>
+<p>首先备份一下该文件，然后创建新配置文件，并输入以下内容。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">listen=NO</span><br><span class="line">listen_ipv6=YES</span><br><span class="line">anonymous_enable=NO</span><br><span class="line">local_enable=YES</span><br><span class="line">write_enable=YES</span><br><span class="line">local_umask=022</span><br><span class="line">dirmessage_enable=YES</span><br><span class="line">use_localtime=YES</span><br><span class="line">xferlog_enable=YES</span><br><span class="line">connect_from_port_20=YES</span><br><span class="line">chroot_local_user=YES</span><br><span class="line">secure_chroot_dir=/var/run/vsftpd/empty</span><br><span class="line">pam_service_name=vsftpd</span><br><span class="line">rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem</span><br><span class="line">rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key</span><br><span class="line">ssl_enable=NO</span><br><span class="line">pasv_enable=Yes # 打开被动模式</span><br><span class="line">pasv_min_port=10000 # 被动模式的端口</span><br><span class="line">pasv_max_port=10100 # 被动模式的端口</span><br><span class="line">allow_writeable_chroot=YES # 必须要有</span><br></pre></td></tr></table></figure>
+<p>操作服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service vsftpd start/restart/stop</span><br></pre></td></tr></table></figure>
+<p>使用该机器上的任意帐户登录即可，登录即到自己的用户帐户下。</p>
+<p>关于ftp的两种工作模式：被动模式（PASV方式，passive）和主动模式（PORT方式）。</p>
+<p><strong>必须用被动模式！！！</strong></p>
+<p>FTP是仅基于TCP的服务，不支持UDP。默认情况下FTP协议使用TCP端口中的 20和21这两个端口，一个数据端口和一个命令端口（也可叫做控制端口），也就是20号端口用于传输数据，21号端口用于传输控制信息。但是，是否使用20作为传输数据的端口与FTP使用的传输模式有关，如果采用主动模式，那么数据传输端口就是20；如果采用被动模式，则具体最终使用哪个端口要服务器端和客户端协商决定。这就是主动与被动FTP的最大不同之处。</p>
+<ul>
+<li>命令连接：当FTP客户端需要登陆到FTP服务器上的时候，服务器与客户端需要进行一系列的身份验证过程，这个过程就叫做命令连接。</li>
+<li>数据连接：如果此时客户端需要往FTP服务器上上传或者下载文件的话，就需要在客户端与服务器端再建立一条额外的数据传输连接。</li>
+</ul>
+<ol>
+<li>主动模式。FTP客户端从任意的非特殊的端口（N &gt;1024）连入到FTP服务器的命令端口——21端口。然后客户端在N+1端口监听，并且通过该N+1端口发送PORT命令给FTP服务器，接着服务器会从它自己的数据端口（20）连接到客户端指定的数据端口（N+1）。在主动传输模式下，FTP的数据连接和控制连接的方向是相反的，也就是说：是客户端向服务器建立控制连接，服务器向客户端建立数据连接，其中，客户端的控制连接和数据连接的端口号是大于1024的两个端口号（临时端口），而FTP服务器的数据端口为20，控制端口为21。</br></br>主动方式FTP的主要问题实际上在于客户端。FTP的客户端并没有实际建立一个到服务器数据端口的连接，它只是简单地告诉服务器自己监听的端口号，服务器再回来连接客户端这个指定的端口。<strong>对于客户端的防火墙来说，这是从外部系统建立到内部客户端的连接，这是通常会被阻塞的。</strong></li>
+</ol>
+<ul>
+<li>C:N -&gt; S:21</li>
+<li>connection success</li>
+<li>C open port N+1</li>
+<li>C:N+1 -&gt; CMD: PORT -&gt; S:21</li>
+<li>S:20 -&gt; C:N+1</li>
+</ul>
+<ol start="2">
+<li>被动模式。在被动方式FTP中，命令连接和数据连接都由客户端发起，只要求服务器端产生一个监听相应端口的进程，这样就可以解决从服务器到客户端的数据端口的入方向连接被防火墙过滤掉的问题。<br />
+</br></br>当开启一个FTP连接时，客户端随机打开一个大于1024的本地端口N向服务器的21号端口发起连接，同时会开启N+1号端口。然后向服务器提交 PASV命令，通知服务器自己处于被动模式。那么服务器收到命令后就会开启一个任意的非特权端口（P &gt; 1024）监听，并发送PORT P命令给客户端通知自己的数据端口是P。然后客户端通过本地端口N+1连接到服务器的端口P的连接用来传送数据。在被动模式下，FTP的数据连接和控制连接的方向都是一致的，也就是说：是客户端向服务器发起一个用于数据传输的连接，客户端的连接端口是发起这个数据连接请求时使用的端口。客户端的控制连接和数据连接的端口号是大于1024的两个端口号（临时端口），而服务器端的数据端口是临时端口，而不一定是常规的20。</li>
+</ol>
+<ul>
+<li>C:N -&gt; S:21</li>
+<li>connection success</li>
+<li>C open port N+1</li>
+<li>C:N -&gt; CMD: PASV -&gt; S:21</li>
+<li>S open random port P(P&gt;1024)</li>
+<li>S:21 -&gt; port P -&gt; C:N</li>
+<li>C:N+1 -&gt; S:P</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.linuxidc.com/Linux/2018-08/153491.htm">参考链接 - 配置</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_16038125/article/details/72851142">参考链接 - 被动与主动</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wumenglu1018/article/details/54233826">参考链接 - 被动与主动</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010154760/article/details/45458219">参考链接 - 被动与主动</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat-receive.jpg" alt="kimroniny 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay-receive.jpg" alt="kimroniny 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i> linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/08/16/linux%E9%85%8D%E7%BD%AEwifi/" rel="prev" title="linux配置wifi">
+                  <i class="fa fa-angle-left"></i> linux配置wifi
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/08/17/linux%E4%BF%AE%E6%94%B9%E6%97%B6%E5%8C%BA/" rel="next" title="linux修改时区">
+                  linux修改时区 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kimroniny</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">112k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:42</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

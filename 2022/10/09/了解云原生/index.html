@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kimroniny.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="什么是云原生？要解决什么关键问题？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="了解云原生">
+<meta property="og:url" content="http://www.kimroniny.top/2022/10/09/%E4%BA%86%E8%A7%A3%E4%BA%91%E5%8E%9F%E7%94%9F/index.html">
+<meta property="og:site_name" content="kimroniny">
+<meta property="og:description" content="什么是云原生？要解决什么关键问题？">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-09T04:57:45.000Z">
+<meta property="article:modified_time" content="2023-08-07T00:17:53.081Z">
+<meta property="article:author" content="kimroniny">
+<meta property="article:tag" content="云原生">
+<meta property="article:tag" content="云计算">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.kimroniny.top/2022/10/09/%E4%BA%86%E8%A7%A3%E4%BA%91%E5%8E%9F%E7%94%9F/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.kimroniny.top/2022/10/09/%E4%BA%86%E8%A7%A3%E4%BA%91%E5%8E%9F%E7%94%9F/","path":"2022/10/09/了解云原生/","title":"了解云原生"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>了解云原生 | kimroniny</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="kimroniny" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">kimroniny</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">46</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">56</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kimroniny"
+      src="/images/tianefei.jpg">
+  <p class="site-author-name" itemprop="name">kimroniny</p>
+  <div class="site-description" itemprop="description">universe contains everything</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    相关文章
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2020/04/18/docker%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" rel="bookmark">
+        <time class="popular-posts-time">2020-04-18</time>
+        <br>
+      docker基本命令
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.kimroniny.top/2022/10/09/%E4%BA%86%E8%A7%A3%E4%BA%91%E5%8E%9F%E7%94%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tianefei.jpg">
+      <meta itemprop="name" content="kimroniny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kimroniny">
+      <meta itemprop="description" content="universe contains everything">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="了解云原生 | kimroniny">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          了解云原生
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-09 12:57:45" itemprop="dateCreated datePublished" datetime="2022-10-09T12:57:45+08:00">2022-10-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-08-07 08:17:53" itemprop="dateModified" datetime="2023-08-07T08:17:53+08:00">2023-08-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">云计算</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/%E4%BA%91%E5%8E%9F%E7%94%9F/" itemprop="url" rel="index"><span itemprop="name">云原生</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>什么是云原生？要解决什么关键问题？</p>
+<span id="more"></span>
+<p>技术的变革，一定是思想先行。</p>
+<p>Pivotal公司的Matt Stine于2013年首次提出云原生（CloudNative）的概念。</p>
+<p>云原生是一种构建和运行应用程序的方法，是一套技术体系和方法论。</p>
+<p>云原生（CloudNative）是一个组合词，Cloud+Native。<br />
+Cloud表示应用程序位于云中，而不是传统的数据中心；<br />
+Native表示应用程序从设计之初即考虑到云的环境，原生为云而设计，在云上以最佳姿势运行，<strong>充分利用和发挥云平台的弹性+分布式优势</strong>。</p>
+<p>符合云原生架构的应用程序应该是：</p>
+<ul>
+<li>采用开源堆栈（K8S+Docker）进行容器化，</li>
+<li>基于微服务架构提高灵活性和可维护性，</li>
+<li>借助敏捷方法、DevOps支持持续迭代和运维自动化，</li>
+<li>利用云平台设施实现弹性伸缩、动态调度、优化资源利用率</li>
+</ul>
+<p>云原生的四个要素：</p>
+<ul>
+<li><strong>微服务</strong>。几乎每个云原生的定义都包含微服务，跟微服务相对的是单体应用，微服务有理论基础，那就是康威定律。</li>
+<li><strong>容器化</strong>。Docker 和 K8S(容器编排系统)。</li>
+<li><strong>DevOps</strong>。Dev+Ops，就是开发和运维合体。</li>
+<li><strong>持续交付</strong>。不误时开发，不停机更新，小步快跑，反传统瀑布式开发模型</li>
+</ul>
+<p>云计算是云原生的基础。</p>
+<p>随着<strong>虚拟化技术的成熟和分布式框架的普及</strong>，在容器技术、可持续交付、编排系统等开源社区的推动下，以及微服务等开发理念的带动下，应用上云已经是不可逆转的趋势。</p>
+<p>云计算三层：基础设施即服务(IaaS)、平台即服务(PaaS)、软件即服务(SaaS)。</p>
+<p>真正的云化不仅仅是基础设施和平台的变化，应用也需要做出改变，摈弃传统的土方法，在<strong>架构设计、开发方式、部署维护等各个阶段和方面</strong>都基于云的特点，重新设计，从而建设全新的云化的应用，即云原生应用。</p>
+<p>云的特点：</p>
+<ul>
+<li>编程语言。由传统的 c/c++、java 转换为<strong>以网络为中心</strong>的 go、nodejs 语言。</li>
+<li>不停机更新。传统应用可能需要停机更新，但是<strong>云支持频繁变更</strong>，持续交付，蓝绿部署。</li>
+<li>弹性资源。传统应用需要冗余资源以抵抗流量高峰，而云原生应用<strong>利用云的弹性自动伸缩</strong>，通过共享降本增效。</li>
+<li>网络资源。传统应用对网络资源，比如ip、端口等有依赖，甚至是硬编码，而云原生应用对网络和存储都没有这种限制</li>
+<li>运维。传统应用通常人肉部署手工运维，而云原生应用这一切都是<strong>自动化</strong>的。</li>
+<li>系统环境。传统应用通常依赖系统环境，而云原生应用不会硬连接到任何系统环境，而是<strong>依赖抽象的基础架构</strong>，从而获得良好移植性</li>
+<li>微服务。基于微服务架构的云原生应用，纵向划分服务，模块化更合理。</li>
+</ul>
+<p>软件设计有两个关键目标：<strong>高内聚、低耦合</strong>。</p>
+<p>纵观近二十年的科技互联网发展历程，<strong>大的趋势是技术下沉</strong>，<br />
+特别是近些年，随着云计算的发展和普及，基础设施越来越厚实，<strong>业务开发变得越来越容易，也越来越没有技术含量</strong>，<br />
+而之前困扰小团队的性能、负载、安全性、扩展性问题都不复存在。</p>
+<p>虽然不可否认技术的重要性在降低，但也还不至于那么悲观。<br />
+遥想PC时代，当VB、Delphi、MFC出现的时候，也有类似论调，所见即所得，点点鼠标，就可以开发PC桌面程序，是不是很高端？<br />
+那时候码农的担心相比现在恐怕是只多不少吧，<br />
+但后来随着互联网兴起，出现了后端开发这个工种，<br />
+码农很快找到了新的战场，网络、分布式、数据库、海量服务、容灾防错，<br />
+于是又玩出一堆新花样。</p>
+<p>如果说PC时代的基础设施是控件库，互联网时代的基础实施是云，那AI时代基础设施是什么？又会有什么高端玩法？</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904197859590151">原文链接</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat-receive.jpg" alt="kimroniny 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay-receive.jpg" alt="kimroniny 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/" rel="tag"><i class="fa fa-tag"></i> 云原生</a>
+              <a href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" rel="tag"><i class="fa fa-tag"></i> 云计算</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/10/08/%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BA%E4%B8%80%E5%90%8D%E6%9E%B6%E6%9E%84%E5%B8%88/" rel="prev" title="如何成为一名架构师">
+                  <i class="fa fa-angle-left"></i> 如何成为一名架构师
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/10/12/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%B5%81%E7%A8%8B/" rel="next" title="软件设计流程">
+                  软件设计流程 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kimroniny</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">112k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:42</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

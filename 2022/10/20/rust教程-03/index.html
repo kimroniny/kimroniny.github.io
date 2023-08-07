@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kimroniny.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="rust 教程 03: 基本内容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rust教程-03">
+<meta property="og:url" content="http://www.kimroniny.top/2022/10/20/rust%E6%95%99%E7%A8%8B-03/index.html">
+<meta property="og:site_name" content="kimroniny">
+<meta property="og:description" content="rust 教程 03: 基本内容">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-20T11:28:22.000Z">
+<meta property="article:modified_time" content="2023-08-07T00:17:53.081Z">
+<meta property="article:author" content="kimroniny">
+<meta property="article:tag" content="rust">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.kimroniny.top/2022/10/20/rust%E6%95%99%E7%A8%8B-03/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.kimroniny.top/2022/10/20/rust%E6%95%99%E7%A8%8B-03/","path":"2022/10/20/rust教程-03/","title":"rust教程-03"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>rust教程-03 | kimroniny</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="kimroniny" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">kimroniny</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">46</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">56</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F-%E5%B8%B8%E9%87%8F-%E9%9A%90%E8%97%8F"><span class="nav-number">1.</span> <span class="nav-text"> 变量、常量、隐藏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F"><span class="nav-number">1.1.</span> <span class="nav-text"> 变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F"><span class="nav-number">1.2.</span> <span class="nav-text"> 常量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%90%E8%97%8F"><span class="nav-number">1.3.</span> <span class="nav-text"> 隐藏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%BA%E7%B1%BB%E5%9E%8B%E8%AF%AD%E8%A8%80"><span class="nav-number">2.</span> <span class="nav-text"> 强类型语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text"> 标量类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.1.</span> <span class="nav-text"> 整数类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.2.</span> <span class="nav-text"> 浮点类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%83%E5%B0%94%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.3.</span> <span class="nav-text"> 布尔类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.4.</span> <span class="nav-text"> 字符类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.</span> <span class="nav-text"> 复合类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tuple"><span class="nav-number">4.1.</span> <span class="nav-text"> Tuple</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84"><span class="nav-number">4.2.</span> <span class="nav-text"> 数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">5.</span> <span class="nav-text"> 函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E6%B5%81-%E6%9D%A1%E4%BB%B6%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">6.</span> <span class="nav-text"> 控制流: 条件表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E6%B5%81-%E5%BE%AA%E7%8E%AF"><span class="nav-number">7.</span> <span class="nav-text"> 控制流: 循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">8.</span> <span class="nav-text"> 参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kimroniny"
+      src="/images/tianefei.jpg">
+  <p class="site-author-name" itemprop="name">kimroniny</p>
+  <div class="site-description" itemprop="description">universe contains everything</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    相关文章
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2022/11/13/rust%E6%95%99%E7%A8%8B-08/" rel="bookmark">
+        <time class="popular-posts-time">2022-11-13</time>
+        <br>
+      rust教程-08
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2020/08/11/leetcode0030/" rel="bookmark">
+        <time class="popular-posts-time">2020-08-11</time>
+        <br>
+      leetcode0030
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2022/10/18/rust%E6%95%99%E7%A8%8B-02/" rel="bookmark">
+        <time class="popular-posts-time">2022-10-18</time>
+        <br>
+      rust教程-02
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2022/10/25/rust%E6%95%99%E7%A8%8B-05/" rel="bookmark">
+        <time class="popular-posts-time">2022-10-25</time>
+        <br>
+      rust教程-05
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2022/10/17/rust%E6%95%99%E7%A8%8B-01/" rel="bookmark">
+        <time class="popular-posts-time">2022-10-17</time>
+        <br>
+      rust教程-01
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.kimroniny.top/2022/10/20/rust%E6%95%99%E7%A8%8B-03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tianefei.jpg">
+      <meta itemprop="name" content="kimroniny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kimroniny">
+      <meta itemprop="description" content="universe contains everything">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="rust教程-03 | kimroniny">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          rust教程-03
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-20 19:28:22" itemprop="dateCreated datePublished" datetime="2022-10-20T19:28:22+08:00">2022-10-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-08-07 08:17:53" itemprop="dateModified" datetime="2023-08-07T08:17:53+08:00">2023-08-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/rust/" itemprop="url" rel="index"><span itemprop="name">rust</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>rust 教程 03: 基本内容</p>
+<span id="more"></span>
+<h2 id="变量-常量-隐藏"><a class="markdownIt-Anchor" href="#变量-常量-隐藏"></a> 变量、常量、隐藏</h2>
+<h3 id="变量"><a class="markdownIt-Anchor" href="#变量"></a> 变量</h3>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = <span class="number">5</span>; <span class="comment">// 不可变变量</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">mul</span> x = <span class="number">3</span>; <span class="comment">// 可变变量，通过 mut 修饰符</span></span><br></pre></td></tr></table></figure>
+<h3 id="常量"><a class="markdownIt-Anchor" href="#常量"></a> 常量</h3>
+<p>常量 constant，绑定值以后也是不可变的，但是与不可变变量有很多区别</p>
+<ol>
+<li>不可以使用 mut 修饰符，常量永远不可变</li>
+<li>声明常量使用 const，且必须标注类型</li>
+<li>可以在任何作用域内声明，包括全局作用域</li>
+<li>只可以绑定到常量表达式，无法绑定到函数的调用结果或者运行时才能计算出的值<br />
+命名规范：使用全大写字母，用下划线分开单词</li>
+</ol>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> MAX_POINTS: <span class="type">u32</span> = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="隐藏"><a class="markdownIt-Anchor" href="#隐藏"></a> 隐藏</h3>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// y = y + 1; // error: 不可变变量</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = y + <span class="number">1</span>; <span class="comment">// ok: 隐藏了上一个 y</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = <span class="string">&quot;hello&quot;</span>; <span class="comment">// ok: 可以改变 y 的类型</span></span><br></pre></td></tr></table></figure>
+<h2 id="强类型语言"><a class="markdownIt-Anchor" href="#强类型语言"></a> 强类型语言</h2>
+<p>rust 是静态编译语言，在编译时必须直到所有变量的类型，即：</p>
+<ul>
+<li>基于使用的值，编译器可以推断出它的具体类型</li>
+<li>如果类型比较多，必须添加类型标注，否则编译报错</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 变量 x 必须指明类型 u32，因为 parse() 的结果产生的类型可能有很多，比如 i32，i64，u64 等等</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">x</span>: <span class="type">u32</span> = <span class="string">&quot;43&quot;</span>.<span class="title function_ invoke__">parse</span>().<span class="title function_ invoke__">expect</span>(<span class="string">&quot;pls input a number&quot;</span>); </span><br></pre></td></tr></table></figure>
+<h2 id="标量类型"><a class="markdownIt-Anchor" href="#标量类型"></a> 标量类型</h2>
+<p>一个标量类型代表一个单个的值</p>
+<p>四个标量类型：整数、浮点、布尔、字符</p>
+<h3 id="整数类型"><a class="markdownIt-Anchor" href="#整数类型"></a> 整数类型</h3>
+<ul>
+<li>十进制：97_88 可以加下划线</li>
+<li>十六进制：0xff 可以加下划线</li>
+<li>八进制：0o99 可以加下划线</li>
+<li>二进制：0b01_0101 可以加下划线</li>
+<li>字节（u8）：b’A’</li>
+</ul>
+<p>整数溢出：</p>
+<ul>
+<li>debug模式下，会 panic</li>
+<li>release 模式下，会发生“环绕”操作，不会 panic</li>
+</ul>
+<h3 id="浮点类型"><a class="markdownIt-Anchor" href="#浮点类型"></a> 浮点类型</h3>
+<ul>
+<li>f32，32位，单精度</li>
+<li>f64，64位，双精度，默认类型，精度更高，和 f32 的速度在现代 CPU 上差不多</li>
+</ul>
+<h3 id="布尔类型"><a class="markdownIt-Anchor" href="#布尔类型"></a> 布尔类型</h3>
+<p>bool</p>
+<ul>
+<li>true</li>
+<li>false</li>
+</ul>
+<h3 id="字符类型"><a class="markdownIt-Anchor" href="#字符类型"></a> 字符类型</h3>
+<p>char</p>
+<p>单引号</p>
+<p>占用 4 个字节</p>
+<p>Unicode 标量值，可以表示比 ASCII 多得多的字符内容</p>
+<ul>
+<li>U+0000 到 U+D7FF</li>
+<li>U+E000 到 U+10FFFF</li>
+</ul>
+<h2 id="复合类型"><a class="markdownIt-Anchor" href="#复合类型"></a> 复合类型</h2>
+<p>复合类型：可以将多个值放在一个类型里</p>
+<p>两种基础的复合类型：元组（Tuple）、数组</p>
+<h3 id="tuple"><a class="markdownIt-Anchor" href="#tuple"></a> Tuple</h3>
+<p>可以将多个类型的值放在一个类型里，每个位置对应一个类型</p>
+<p>长度固定，一旦声明无法改变</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">tup</span>:(<span class="type">i32</span>, <span class="type">f64</span>, <span class="type">u8</span>) = (<span class="number">400</span>, <span class="number">4.6</span>, <span class="number">1</span>); </span><br><span class="line"><span class="keyword">let</span> (x, y, z) = tup;</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;, &#123;&#125;, &#123;&#125;&quot;</span>, tup.<span class="number">0</span>, tup.<span class="number">1</span>, tup.<span class="number">2</span>); <span class="comment">// 通过 .index 的方式来取值</span></span><br></pre></td></tr></table></figure>
+<h3 id="数组"><a class="markdownIt-Anchor" href="#数组"></a> 数组</h3>
+<p>如果想要保存数据在栈而不是堆上，或者保证有固定数量的元素，就可以使用数组</p>
+<p>数组没有 vector 灵活，vector 由标准库提供</p>
+<p>优先使用 vector</p>
+<p>访问越界的话，在编译期间不会报错，但是在运行时会 panic，rust 不允许访问越界地址的内存</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">a</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="keyword">let</span> <span class="variable">a</span>: [<span class="type">i32</span>: <span class="number">5</span>] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]; <span class="comment">// [类型：长度]</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">a</span> = [<span class="number">3</span>; <span class="number">5</span>]; <span class="comment">// 等同于 let a = [3,3,3,3,3]，即 a = [初始值；长度]</span></span><br></pre></td></tr></table></figure>
+<h2 id="函数"><a class="markdownIt-Anchor" href="#函数"></a> 函数</h2>
+<p>针对函数和变量名，使用 snake case 命名规范，所有字母小写</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="title function_ invoke__">add</span>(<span class="number">34</span>,<span class="number">5</span>); <span class="comment">// argument</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// parameter, 必须声明每个参数的类型</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">add</span>(x: <span class="type">i32</span>, y: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span>&#123;  <span class="comment">// 只有返回值的类型，不可以为返回值命名</span></span><br><span class="line">    x + y <span class="comment">// 最后一个表达式即为返回值，也可以使用 return 提前返回</span></span><br><span class="line">    <span class="comment">// x + y; // 不可以加分号，如果加了分号，就是语句，语句的返回值是空的 tuple，即 () </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="控制流-条件表达式"><a class="markdownIt-Anchor" href="#控制流-条件表达式"></a> 控制流: 条件表达式</h2>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span> = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> x % <span class="number">10</span> == <span class="number">0</span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> x % <span class="number">3</span> == <span class="number">0</span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> x % <span class="number">7</span> == <span class="number">0</span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">y</span> = <span class="keyword">if</span> x % <span class="number">10</span> == <span class="number">0</span> &#123; <span class="number">5</span> &#125; <span class="keyword">else</span> &#123; <span class="number">6</span> &#125;; <span class="comment">// 返回值类型必须是统一的，即编译期间能够确定类型</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="控制流-循环"><a class="markdownIt-Anchor" href="#控制流-循环"></a> 控制流: 循环</h2>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// loop 循环</span></span><br><span class="line">    <span class="keyword">loop</span> &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;loop...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// loop 循环返回一个结果</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">counter</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">result</span> = <span class="keyword">loop</span> &#123;</span><br><span class="line">        counter += <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> counter == <span class="number">10</span> &#123;</span><br><span class="line">            <span class="keyword">break</span> counter; <span class="comment">// 通过 break 返回当前 loop 的值</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// while 循环</span></span><br><span class="line">    <span class="keyword">while</span> counter != <span class="number">100</span> &#123;</span><br><span class="line">        counter += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// for 循环</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">a</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">element</span> <span class="keyword">in</span> a.<span class="title function_ invoke__">iter</span>() &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;element is &#123;&#125;&quot;</span>, element);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// for range</span></span><br><span class="line">    <span class="keyword">for</span> <span class="variable">element</span> <span class="keyword">in</span> (<span class="number">1</span>..<span class="number">4</span>).<span class="title function_ invoke__">rev</span>() &#123; <span class="comment">// (1..4) 只有 1,2,3 不包括 4，rev 就是反转一下</span></span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;element is &#123;&#125;&quot;</span>, element);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr />
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=e3-2uxHhbzs&amp;list=PL3azK8C0kje1DUJbaOqce19j3R_-tIc4_&amp;index=1&amp;t=140s">https://www.youtube.com/watch?v=e3-2uxHhbzs&amp;list=PL3azK8C0kje1DUJbaOqce19j3R_-tIc4_&amp;index=1&amp;t=140s</a></li>
+<li>《rust权威指南(The Rust Programming Language)》</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat-receive.jpg" alt="kimroniny 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay-receive.jpg" alt="kimroniny 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/rust/" rel="tag"><i class="fa fa-tag"></i> rust</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/10/18/rust%E6%95%99%E7%A8%8B-02/" rel="prev" title="rust教程-02">
+                  <i class="fa fa-angle-left"></i> rust教程-02
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/10/21/serverless%E5%9F%BA%E7%A1%80/" rel="next" title="serverless基础">
+                  serverless基础 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kimroniny</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">112k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:42</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kimroniny.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="rust 教程 04: 所有权">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rust教程-04">
+<meta property="og:url" content="http://www.kimroniny.top/2022/10/24/rust%E6%95%99%E7%A8%8B-04/index.html">
+<meta property="og:site_name" content="kimroniny">
+<meta property="og:description" content="rust 教程 04: 所有权">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.kimroniny.top/2022/10/24/rust%E6%95%99%E7%A8%8B-04/slice.png">
+<meta property="article:published_time" content="2022-10-24T11:32:18.000Z">
+<meta property="article:modified_time" content="2023-08-07T00:17:53.081Z">
+<meta property="article:author" content="kimroniny">
+<meta property="article:tag" content="rust">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.kimroniny.top/2022/10/24/rust%E6%95%99%E7%A8%8B-04/slice.png">
+
+
+<link rel="canonical" href="http://www.kimroniny.top/2022/10/24/rust%E6%95%99%E7%A8%8B-04/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.kimroniny.top/2022/10/24/rust%E6%95%99%E7%A8%8B-04/","path":"2022/10/24/rust教程-04/","title":"rust教程-04"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>rust教程-04 | kimroniny</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="kimroniny" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">kimroniny</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">46</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">56</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%89%80%E6%9C%89%E6%9D%83"><span class="nav-number">1.</span> <span class="nav-text"> 什么是所有权？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stack-vs-heap"><span class="nav-number">2.</span> <span class="nav-text"> stack VS heap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE"><span class="nav-number">2.1.</span> <span class="nav-text"> 存储数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%95%B0%E6%8D%AE"><span class="nav-number">2.2.</span> <span class="nav-text"> 访问数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="nav-number">2.3.</span> <span class="nav-text"> 函数调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%80%E6%9C%89%E6%9D%83%E5%AD%98%E5%9C%A8%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">3.</span> <span class="nav-text"> 所有权存在的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%80%E6%9C%89%E6%9D%83%E8%A7%84%E5%88%99"><span class="nav-number">4.</span> <span class="nav-text"> 所有权规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A5-string-%E7%B1%BB%E5%9E%8B%E8%A7%A3%E9%87%8A%E6%89%80%E6%9C%89%E6%9D%83%E8%A7%84%E5%88%99"><span class="nav-number">4.1.</span> <span class="nav-text"> 以 String 类型解释所有权规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E5%92%8C%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92%E7%9A%84%E6%96%B9%E5%BC%8F%E7%A7%BB%E5%8A%A8move"><span class="nav-number">4.2.</span> <span class="nav-text"> 变量和数据交互的方式：移动(Move)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%80%E6%9C%89%E6%9D%83%E4%B8%8E%E5%87%BD%E6%95%B0"><span class="nav-number">5.</span> <span class="nav-text"> 所有权与函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E4%B8%8E%E5%80%9F%E7%94%A8"><span class="nav-number">6.</span> <span class="nav-text"> 引用与借用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E5%8F%98%E5%BC%95%E7%94%A8-%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%BC%95%E7%94%A8"><span class="nav-number">6.1.</span> <span class="nav-text"> 可变引用、不可变引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%82%AC%E7%A9%BA%E5%BC%95%E7%94%A8"><span class="nav-number">6.2.</span> <span class="nav-text"> 悬空引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E7%9A%84%E8%A7%84%E5%88%99"><span class="nav-number">6.3.</span> <span class="nav-text"> 引用的规则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%87%E7%89%87slice"><span class="nav-number">7.</span> <span class="nav-text"> 切片（slice）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">8.</span> <span class="nav-text"> 参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kimroniny"
+      src="/images/tianefei.jpg">
+  <p class="site-author-name" itemprop="name">kimroniny</p>
+  <div class="site-description" itemprop="description">universe contains everything</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    相关文章
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2022/11/13/rust%E6%95%99%E7%A8%8B-08/" rel="bookmark">
+        <time class="popular-posts-time">2022-11-13</time>
+        <br>
+      rust教程-08
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2022/10/18/rust%E6%95%99%E7%A8%8B-02/" rel="bookmark">
+        <time class="popular-posts-time">2022-10-18</time>
+        <br>
+      rust教程-02
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2022/10/25/rust%E6%95%99%E7%A8%8B-05/" rel="bookmark">
+        <time class="popular-posts-time">2022-10-25</time>
+        <br>
+      rust教程-05
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2020/04/22/solidity%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-%E4%BD%BF%E7%94%A8remix/" rel="bookmark">
+        <time class="popular-posts-time">2020-04-22</time>
+        <br>
+      solidity单元测试(使用remix)
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.kimroniny.top/2022/10/24/rust%E6%95%99%E7%A8%8B-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tianefei.jpg">
+      <meta itemprop="name" content="kimroniny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kimroniny">
+      <meta itemprop="description" content="universe contains everything">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="rust教程-04 | kimroniny">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          rust教程-04
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-24 19:32:18" itemprop="dateCreated datePublished" datetime="2022-10-24T19:32:18+08:00">2022-10-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-08-07 08:17:53" itemprop="dateModified" datetime="2023-08-07T08:17:53+08:00">2023-08-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/rust/" itemprop="url" rel="index"><span itemprop="name">rust</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>rust 教程 04: 所有权</p>
+<span id="more"></span>
+<h2 id="什么是所有权"><a class="markdownIt-Anchor" href="#什么是所有权"></a> 什么是所有权？</h2>
+<p>rust 的核心特性就是<strong>所有权</strong></p>
+<p>所有程序在运行时都必须管理它们使用计算机内存的方式</p>
+<ul>
+<li>垃圾收集机制，即程序运行时，会不断地寻找不再使用的内存</li>
+<li>程序员必须显示地分配和释放内存</li>
+</ul>
+<p>rust 则采用<strong>所有权系统</strong>来管理内存，包含一组编译器在编译时检查的规则，因为是编译时检查，所以所有权特性不会影响运行时速度</p>
+<h2 id="stack-vs-heap"><a class="markdownIt-Anchor" href="#stack-vs-heap"></a> stack VS heap</h2>
+<p>rust 这样的系统级编程语言，受到 stack 和 heap 的影响非常大</p>
+<p>stack 和 heap 都是代码运行时可用的内存，但是结构不同</p>
+<h3 id="存储数据"><a class="markdownIt-Anchor" href="#存储数据"></a> 存储数据</h3>
+<p>stack 执行 LIFO 原则，即先进后出</p>
+<p>所有存储在 stack 上的数据必须拥有已知的固定的大小</p>
+<p>而编译时大小未知的数据或运行时大小可能发生变化的数据必须存放在 heap 上</p>
+<p>heap 的内存组织性较差</p>
+<ul>
+<li>当把数据放入 heap 时，会请求一定数量的空间</li>
+<li>操作系统在 heap 里找到一块足够大的空间，并标记为在用，返回一个指针，即该空间的地址</li>
+<li>该过程称作在 heap 上进行分配</li>
+</ul>
+<p>把值压在 stack 上不叫分配，但是可以把指针存放在 stack 上</p>
+<p>把数据压到 stack 上要比在 heap 上分配快得多，因为操作系统不需要寻找用来存储新数据的空间，只要往 stack 的顶端压入数据即可</p>
+<p>在 heap 上分配空间需要做更多的工作，需要找到足够大的空间，并且要做好记录</p>
+<h3 id="访问数据"><a class="markdownIt-Anchor" href="#访问数据"></a> 访问数据</h3>
+<p>访问 heap 上的数据要比访问 stack 上的数据慢，因为需要通过指针才能找到 heap 中的数据。</p>
+<p>对于现代处理器而言，由于缓存的缘故，如果指令在内存中跳转的次数越少，那么速度就越快</p>
+<p>如果数据存放的距离比较近，则处理器处理速度更快（stack），反之更慢</p>
+<p>在 heap 上分配大量空间也会消耗事件</p>
+<h3 id="函数调用"><a class="markdownIt-Anchor" href="#函数调用"></a> 函数调用</h3>
+<p>当代码调用函数时，值被传入到函数（也包括指向 heap 的指针），函数本地的变量被压到 stack 上，函数结束时，这些值也会从 stack 上弹出</p>
+<h2 id="所有权存在的原因"><a class="markdownIt-Anchor" href="#所有权存在的原因"></a> 所有权存在的原因</h2>
+<p>所有权要解决的问题：</p>
+<ul>
+<li>跟踪代码的哪些部分正在使用 heap 的哪些数据</li>
+<li>最小化 heap 上的重复数据量</li>
+<li>清理 heap 上未使用的数据以避免空间不足</li>
+</ul>
+<p>管理 heap 数据是所有权存在的原因</p>
+<h2 id="所有权规则"><a class="markdownIt-Anchor" href="#所有权规则"></a> 所有权规则</h2>
+<p>每个值都有一个变量，这个变量是该值的所有者</p>
+<p>每个值同时只能有一个所有者</p>
+<p>当所有者超出作用域（scope）时，该值将被删除</p>
+<h3 id="以-string-类型解释所有权规则"><a class="markdownIt-Anchor" href="#以-string-类型解释所有权规则"></a> 以 String 类型解释所有权规则</h3>
+<p>String 类型的字符串内容是可变的，而字符串字面值是不可变的。因为 String 是在 heap 上分配内存，而字符串字面值是在 stack 上压入字符串</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="comment">// 声明 string 类型的变量</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">    s.<span class="title function_ invoke__">push_str</span>(<span class="string">&quot; world!&quot;</span>);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当用完 String 之后，需要使用某种方式将内存返还给操作系统</p>
+<ul>
+<li>在拥有 GC 的语言中，GC 会跟踪并清理不再使用的内存</li>
+<li>没有 GC，就需要识别何时不再使用内存；</li>
+<li>
+<ul>
+<li>如果忘了，就浪费内存</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>如果提前做了，变量就会非法</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>如果做了两次，也是 bug，一次分配对应一次释放，要求每次分配对应一次释放</li>
+</ul>
+</li>
+</ul>
+<p>当超出作用域时，系统会执行 <code>drop()</code> 函数，将变量 s 所指向的内存释放</p>
+<h3 id="变量和数据交互的方式移动move"><a class="markdownIt-Anchor" href="#变量和数据交互的方式移动move"></a> 变量和数据交互的方式：移动(Move)</h3>
+<p>在下面的这种情况下，x 和 y 所代表的两个 6 都被压入 stack 中</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = <span class="number">6</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="variable">y</span> = x;</span><br></pre></td></tr></table></figure>
+<p>而在下面的这种情况中，针对 String 类型的变量，执行 <code>s2 = s</code> 之后，s 便将字符串的所有权交给了 s2，而 s 不再拥有值</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello world!&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">s2</span> = s;</span><br></pre></td></tr></table></figure>
+<p>一个 String 由 3 部分组成：一个指向存放字符串内容的内存指针，一个长度，一个容量。这些内容存放在 stack 上，而字符串则存放在 heap 上</p>
+<p>当执行 <code>s2 = s</code>，在 stack 会赋值一份 String 的数据（指针、长度、容量)，但是并不会赋值指针所指向的 heap 上的数据，也就是两个指针指向同一个 heap 内存中的位置</p>
+<p>当变量离开作用域时，rust 会自动调用 <code>drop()</code> 函数，将变量使用的 heap 自动释放，当 s 和 s2 都离开作用域时，rust 会释放两者的内存，也就是释放相同的内存，从而造成“二次释放 bug”</p>
+<p>为了保证内存安全：</p>
+<ul>
+<li>rust 没有复制被分配的内存</li>
+<li>在执行 <code>s = s2</code> 之后，rust 是让 s 失效，所以当 s 离开作用域时，rust 不会释放任何东西</li>
+</ul>
+<p>rust 不会自动创建数据的深拷贝</p>
+<p>如果想要深度拷贝 heap 上面的 String 数据，而不仅仅是拷贝 stack 上的数据，可以使用 clone 方法，这种方法比较消耗资源</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello world!&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">s2</span> = s.<span class="title function_ invoke__">clone</span>();</span><br></pre></td></tr></table></figure>
+<p>在 stack 上的数据复制叫 copy，比如整数类型的移动，就是在 stack 上进行复制。如果一个类型实现了 copy 这个特性（trait），那么旧的变量在赋值后仍然可用；但是，如果一个类型或者该类型的一部分实现了 drop 这个特性（trait），那么 rust 不允许让它再去实现 copy 了</p>
+<p>一些拥有 copy trait 的类型：</p>
+<ul>
+<li>任何简单标量的组合类型都可以是 copy 的，如：u32, bool, char, f64, tuple(标量1,标量2…)</li>
+<li>任何需要分配内存或者资源的都不是 copy 得到</li>
+</ul>
+<h2 id="所有权与函数"><a class="markdownIt-Anchor" href="#所有权与函数"></a> 所有权与函数</h2>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s1</span> = <span class="title function_ invoke__">get_ownership</span>(); <span class="comment">// 获得 “some” 的所有权</span></span><br><span class="line">    <span class="title function_ invoke__">take_ownership</span>(s1); <span class="comment">// 所有权交给了 s，s1则失效</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s2</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello_world&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s3</span> = <span class="title function_ invoke__">take_and_give_back</span>(s2); <span class="comment">// s2 转移到了 s3 身上</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">take_ownership</span>(s:Srting) &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;s:&#123;&#125;&quot;</span>, s);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">get_ownership</span>() <span class="punctuation">-&gt;</span> <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">some</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;some&quot;</span>);</span><br><span class="line">    some;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">take_and_give_back</span>(a_string: <span class="type">String</span>) <span class="punctuation">-&gt;</span> <span class="type">String</span> &#123;</span><br><span class="line">    a_string; <span class="comment">// 返回值也会发生所有权的转移</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一个变量的所有权总是遵循同样的模式：</p>
+<ul>
+<li>把一个值赋给其他变量时就会发生移动</li>
+<li>当一个包含 heap 数据的变量离开作用域时，它的值就会被 drop 函数清理掉，除非数据的所有权移动到另一个变量上了</li>
+</ul>
+<h2 id="引用与借用"><a class="markdownIt-Anchor" href="#引用与借用"></a> 引用与借用</h2>
+<p>引用本质上是一个指针，指向这个变量在 stack 中的位置</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">len</span> = <span class="title function_ invoke__">calc_length</span>(&amp;s); <span class="comment">// 引用到 s，但是并不用 s</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;the length of s(&#123;&#125;) is &#123;&#125;&quot;</span>, s, len);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 把引用作为函数参数这个行为叫做 “借用”</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">calc_length</span>(s: &amp;<span class="type">String</span>) <span class="punctuation">-&gt;</span> <span class="type">usize</span> &#123;</span><br><span class="line">    s.<span class="title function_ invoke__">len</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="可变引用-不可变引用"><a class="markdownIt-Anchor" href="#可变引用-不可变引用"></a> 可变引用、不可变引用</h3>
+<p>不可以修改借用的东西，默认也是不可变的</p>
+<p>如果需要可变，需要加上 <code>mut</code></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">len</span> = <span class="title function_ invoke__">calc_length</span>(&amp;<span class="keyword">mut</span> s); <span class="comment">// 引用到 s，但是并不用 s</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;the length of s(&#123;&#125;) is &#123;&#125;&quot;</span>, s, len);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 把引用作为函数参数这个行为叫做 “借用”</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">calc_length</span>(s: &amp;<span class="keyword">mut</span> <span class="type">String</span>) <span class="punctuation">-&gt;</span> <span class="type">usize</span> &#123;</span><br><span class="line">    s.<span class="title function_ invoke__">len</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>可变引用</strong>有一个重要的限制：在特定作用域内，对某一块数据，<strong>只能有一个可变的引用</strong>。好处是在编译时可以防止数据竞争</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">s1</span> = &amp;<span class="keyword">mut</span> s;</span><br><span class="line"><span class="keyword">let</span> <span class="variable">s2</span> = &amp;<span class="keyword">mut</span> s; <span class="comment">// 会报错</span></span><br></pre></td></tr></table></figure>
+<p>数据竞争的几种行为：</p>
+<ul>
+<li>两个或多个指针同时访问同一个数据；</li>
+<li>至少有一个指针用于写入数据；</li>
+<li>没有使用任何机制来同步对数据的访问；</li>
+</ul>
+<p>可以通过<strong>创建新的作用域</strong>，来允许非同时的创建多个可变引用</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s1</span> = &amp;<span class="keyword">mut</span> s;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> <span class="variable">s2</span> = &amp;<span class="keyword">mut</span> s; <span class="comment">// 不会报错</span></span><br></pre></td></tr></table></figure>
+<p>另外一个限制：<strong>不可以同时拥有一个可变引用和一个不可变引用</strong>。因为可变应用修改了引用内容之后，不可变引用就失效了。但是多个不可变引用是可以同时存在的</p>
+<h3 id="悬空引用"><a class="markdownIt-Anchor" href="#悬空引用"></a> 悬空引用</h3>
+<p>Dangling References</p>
+<p>即一个指针引用了内存中的某个地址，而这块内存可能已经释放并分配给其他人使用了</p>
+<p>在 rust 里，编译器可以检查代码从而保证引用永远都不是悬空引用</p>
+<h3 id="引用的规则"><a class="markdownIt-Anchor" href="#引用的规则"></a> 引用的规则</h3>
+<p>在任何给定的时刻，只能满足下列条件之一：</p>
+<ol>
+<li>一个可变的引用</li>
+<li>人以数量不可变的引用</li>
+</ol>
+<p>引用必须一直有效</p>
+<h2 id="切片slice"><a class="markdownIt-Anchor" href="#切片slice"></a> 切片（slice）</h2>
+<p>rust 中的另外一种不持有所有权的数据类型</p>
+<p>指向字符串中一部分内容的引用</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">hello</span> = &amp;s[<span class="number">0</span>..<span class="number">5</span>]; <span class="comment">// 不包括右边界</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">hello2</span> = &amp;s[..<span class="number">5</span>]; <span class="comment">// 不包括右边界</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">world</span> = &amp;s[<span class="number">5</span>..<span class="number">11</span>];</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">world2</span> = &amp;s[<span class="number">5</span>..];</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">whole</span> = &amp;s[..];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="slice.png" alt="切片内存" /></p>
+<p>字符串切片的类型 <code>&amp;str</code>，函数返回值就用这个</p>
+<p>字符串字面值的就是个切片</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">s</span>:&amp;<span class="type">str</span> = <span class="string">&quot;hello world&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p>将字符串切片作为参数传递，从而兼容字符串字面值和 String 类型的参数</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">first_world</span>(s: &amp;<span class="type">String</span>) <span class="punctuation">-&gt;</span>&amp;<span class="type">str</span> &#123;&#125;</span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">first_world</span>(s: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span>&amp;<span class="type">str</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">s1</span> = <span class="type">String</span>:<span class="title function_ invoke__">from</span>(<span class="string">&quot;sss&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">first_world</span>(&amp;s[..]);</span><br></pre></td></tr></table></figure>
+<p>定义函数时使用字符串切片来代替字符串引用会使我们的 API 更加通用，且不会损失任何功能</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s2</span> = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line">   </span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;the first word of s is: &#123;&#125;&quot;</span>, <span class="title function_ invoke__">first_word</span>(&amp;s[..]));</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;the first word of s2 is: &#123;&#125;&quot;</span>, <span class="title function_ invoke__">first_word</span>(s2));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">first_word</span>(s: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> &amp;<span class="type">str</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">bytes</span> = s.<span class="title function_ invoke__">as_bytes</span>();</span><br><span class="line">    <span class="title function_ invoke__">for</span> (idx, &amp;item) <span class="keyword">in</span> bytes.<span class="title function_ invoke__">iter</span>().<span class="title function_ invoke__">enumerate</span>() &#123;</span><br><span class="line">        <span class="keyword">if</span> item == <span class="string">b&#x27; &#x27;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> &amp;s[..idx];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &amp;s[..]</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>其他类型的切片</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">a</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> <span class="variable">b</span>:&amp;[<span class="type">i32</span>] = &amp;a[<span class="number">1</span>..<span class="number">3</span>]; <span class="comment">// b 的类型是 &amp;[i32]</span></span><br></pre></td></tr></table></figure>
+<hr />
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=e3-2uxHhbzs&amp;list=PL3azK8C0kje1DUJbaOqce19j3R_-tIc4_&amp;index=1&amp;t=140s">https://www.youtube.com/watch?v=e3-2uxHhbzs&amp;list=PL3azK8C0kje1DUJbaOqce19j3R_-tIc4_&amp;index=1&amp;t=140s</a></li>
+<li>《rust权威指南(The Rust Programming Language)》</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat-receive.jpg" alt="kimroniny 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay-receive.jpg" alt="kimroniny 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/rust/" rel="tag"><i class="fa fa-tag"></i> rust</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/10/21/serverless%E5%9F%BA%E7%A1%80/" rel="prev" title="serverless基础">
+                  <i class="fa fa-angle-left"></i> serverless基础
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/10/25/rust%E6%95%99%E7%A8%8B-05/" rel="next" title="rust教程-05">
+                  rust教程-05 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kimroniny</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">112k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:42</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

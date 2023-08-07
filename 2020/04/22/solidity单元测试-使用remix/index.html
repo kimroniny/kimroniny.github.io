@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kimroniny.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="在remix中对solidity进行单元测试。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="solidity单元测试(使用remix)">
+<meta property="og:url" content="http://www.kimroniny.top/2020/04/22/solidity%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-%E4%BD%BF%E7%94%A8remix/index.html">
+<meta property="og:site_name" content="kimroniny">
+<meta property="og:description" content="在remix中对solidity进行单元测试。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.kimroniny.top/2020/04/22/solidity%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-%E4%BD%BF%E7%94%A8remix/plugin1.png">
+<meta property="og:image" content="http://www.kimroniny.top/2020/04/22/solidity%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-%E4%BD%BF%E7%94%A8remix/plugin2.png">
+<meta property="og:image" content="http://www.kimroniny.top/2020/04/22/solidity%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-%E4%BD%BF%E7%94%A8remix/generate.png">
+<meta property="article:published_time" content="2020-04-22T09:44:11.000Z">
+<meta property="article:modified_time" content="2023-08-07T00:17:53.081Z">
+<meta property="article:author" content="kimroniny">
+<meta property="article:tag" content="solidity">
+<meta property="article:tag" content="blockchain">
+<meta property="article:tag" content="ethereum">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.kimroniny.top/2020/04/22/solidity%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-%E4%BD%BF%E7%94%A8remix/plugin1.png">
+
+
+<link rel="canonical" href="http://www.kimroniny.top/2020/04/22/solidity%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-%E4%BD%BF%E7%94%A8remix/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.kimroniny.top/2020/04/22/solidity%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-%E4%BD%BF%E7%94%A8remix/","path":"2020/04/22/solidity单元测试-使用remix/","title":"solidity单元测试(使用remix)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>solidity单元测试(使用remix) | kimroniny</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="kimroniny" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">kimroniny</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">46</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">56</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80-%E6%BF%80%E6%B4%BB%E6%B5%8B%E8%AF%95%E6%8F%92%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text"> 一、激活测试插件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C-%E6%96%AD%E8%A8%80"><span class="nav-number">2.</span> <span class="nav-text"> 二、断言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#assertokvalue-message"><span class="nav-number">2.1.</span> <span class="nav-text"> Assert.ok(value[, message])</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#assertequalactual-expected-message"><span class="nav-number">2.2.</span> <span class="nav-text"> Assert.equal(actual, expected[, message])</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#assertnotequalactual-expected-message"><span class="nav-number">2.3.</span> <span class="nav-text"> Assert.notEqual(actual, expected[, message])</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#assertgreaterthanvalue1-value2-message"><span class="nav-number">2.4.</span> <span class="nav-text"> Assert.greaterThan(value1, value2[, message])</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#assertlesserthanvalue1-value2-message"><span class="nav-number">2.5.</span> <span class="nav-text"> Assert.lesserThan(value1, value2[, message])</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89-%E7%89%B9%E6%AE%8A%E5%87%BD%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text"> 三、特殊函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B-%E7%89%B9%E6%AE%8A%E7%9A%84%E4%BA%A4%E6%98%93%E5%8F%82%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text"> 四、特殊的交易参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94-%E6%A0%B7%E4%BE%8B%E8%AF%B4%E6%98%8E"><span class="nav-number">5.</span> <span class="nav-text"> 五、样例说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E5%9F%BA%E6%9C%AC%E6%B5%8B%E8%AF%95%E6%A0%B7%E4%BE%8B"><span class="nav-number">5.1.</span> <span class="nav-text"> （一）基本测试样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E6%B6%89%E5%8F%8A%E5%88%B0msgsender%E7%9A%84%E6%B5%8B%E8%AF%95%E6%A0%B7%E4%BE%8B"><span class="nav-number">5.2.</span> <span class="nav-text"> （二）涉及到msg.sender的测试样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E6%B6%89%E5%8F%8A%E5%88%B0-msgvalue-%E7%9A%84%E6%B5%8B%E8%AF%95%E6%A0%B7%E4%BE%8B"><span class="nav-number">5.3.</span> <span class="nav-text"> （三）涉及到 msg.value 的测试样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E6%96%B9%E6%B3%95%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="nav-number">5.4.</span> <span class="nav-text"> （四）方法执行过程中的错误处理</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kimroniny"
+      src="/images/tianefei.jpg">
+  <p class="site-author-name" itemprop="name">kimroniny</p>
+  <div class="site-description" itemprop="description">universe contains everything</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    相关文章
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2022/11/13/rust%E6%95%99%E7%A8%8B-08/" rel="bookmark">
+        <time class="popular-posts-time">2022-11-13</time>
+        <br>
+      rust教程-08
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2022/10/24/rust%E6%95%99%E7%A8%8B-04/" rel="bookmark">
+        <time class="popular-posts-time">2022-10-24</time>
+        <br>
+      rust教程-04
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2020/08/01/python%E7%94%9F%E6%88%90%E5%99%A8%E4%B8%8E%E8%BF%AD%E4%BB%A3%E5%99%A8/" rel="bookmark">
+        <time class="popular-posts-time">2020-08-01</time>
+        <br>
+      python生成器与迭代器
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.kimroniny.top/2020/04/22/solidity%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-%E4%BD%BF%E7%94%A8remix/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tianefei.jpg">
+      <meta itemprop="name" content="kimroniny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kimroniny">
+      <meta itemprop="description" content="universe contains everything">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="solidity单元测试(使用remix) | kimroniny">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          solidity单元测试(使用remix)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-04-22 17:44:11" itemprop="dateCreated datePublished" datetime="2020-04-22T17:44:11+08:00">2020-04-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-08-07 08:17:53" itemprop="dateModified" datetime="2023-08-07T08:17:53+08:00">2023-08-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/blockchain/" itemprop="url" rel="index"><span itemprop="name">blockchain</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/blockchain/ethereum/" itemprop="url" rel="index"><span itemprop="name">ethereum</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/blockchain/ethereum/solidity/" itemprop="url" rel="index"><span itemprop="name">solidity</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>8.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>8 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>在remix中对solidity进行单元测试。</p>
+<span id="more"></span>
+<ul>
+<li><a href="#%e4%b8%80%e6%bf%80%e6%b4%bb%e6%b5%8b%e8%af%95%e6%8f%92%e4%bb%b6">一、激活测试插件</a></li>
+<li><a href="#%e4%ba%8c%e6%96%ad%e8%a8%80">二、断言</a>
+<ul>
+<li><a href="#assertokvalue-message">Assert.ok(value[, message])</a></li>
+<li><a href="#assertequalactual-expected-message">Assert.equal(actual, expected[, message])</a></li>
+<li><a href="#assertnotequalactual-expected-message">Assert.notEqual(actual, expected[, message])</a></li>
+<li><a href="#assertgreaterthanvalue1-value2-message">Assert.greaterThan(value1, value2[, message])</a></li>
+<li><a href="#assertlesserthanvalue1-value2-message">Assert.lesserThan(value1, value2[, message])</a></li>
+</ul>
+</li>
+<li><a href="#%e4%b8%89%e7%89%b9%e6%ae%8a%e5%87%bd%e6%95%b0">三、特殊函数</a></li>
+<li><a href="#%e5%9b%9b%e7%89%b9%e6%ae%8a%e7%9a%84%e4%ba%a4%e6%98%93%e5%8f%82%e6%95%b0">四、特殊的交易参数</a></li>
+<li><a href="#%e4%ba%94%e6%a0%b7%e4%be%8b%e8%af%b4%e6%98%8e">五、样例说明</a>
+<ul>
+<li><a href="#%e4%b8%80%e5%9f%ba%e6%9c%ac%e6%b5%8b%e8%af%95%e6%a0%b7%e4%be%8b">（一）基本测试样例</a></li>
+<li><a href="#%e4%ba%8c%e6%b6%89%e5%8f%8a%e5%88%b0msgsender%e7%9a%84%e6%b5%8b%e8%af%95%e6%a0%b7%e4%be%8b">（二）涉及到<code>msg.sender</code>的测试样例</a></li>
+<li><a href="#%e4%b8%89%e6%b6%89%e5%8f%8a%e5%88%b0-msgvalue-%e7%9a%84%e6%b5%8b%e8%af%95%e6%a0%b7%e4%be%8b">（三）涉及到 <code>msg.value</code> 的测试样例</a></li>
+<li><a href="#%e5%9b%9b%e6%96%b9%e6%b3%95%e6%89%a7%e8%a1%8c%e8%bf%87%e7%a8%8b%e4%b8%ad%e7%9a%84%e9%94%99%e8%af%af%e5%a4%84%e7%90%86">（四）方法执行过程中的错误处理</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="一-激活测试插件"><a class="markdownIt-Anchor" href="#一-激活测试插件"></a> 一、激活测试插件</h1>
+<p><img src="plugin1.png" alt="插件列表" /></p>
+<p><img src="plugin2.png" alt="插件页面" /></p>
+<p>激活插件之后，点击 <code>Generate test file</code>，就可以创建测试文件。</p>
+<p><img src="generate.png" alt="生成测试文件" /></p>
+<h1 id="二-断言"><a class="markdownIt-Anchor" href="#二-断言"></a> 二、断言</h1>
+<p>断言很少，官方给出的只有5个。</p>
+<h2 id="assertokvalue-message"><a class="markdownIt-Anchor" href="#assertokvalue-message"></a> Assert.ok(value[, message])</h2>
+<ul>
+<li>value: bool</li>
+<li>message: string</li>
+</ul>
+<h2 id="assertequalactual-expected-message"><a class="markdownIt-Anchor" href="#assertequalactual-expected-message"></a> Assert.equal(actual, expected[, message])</h2>
+<ul>
+<li><em>actual</em>: uint | int | bool | address | bytes32 | string</li>
+<li><em>expected</em>: uint | int | bool | address | bytes32 | string</li>
+<li><em>message</em>: string</li>
+</ul>
+<h2 id="assertnotequalactual-expected-message"><a class="markdownIt-Anchor" href="#assertnotequalactual-expected-message"></a> Assert.notEqual(actual, expected[, message])</h2>
+<ul>
+<li><em>actual</em>: uint | int | bool | address | bytes32 | string</li>
+<li><em>expected</em>: uint | int | bool | address | bytes32 | string</li>
+<li><em>message</em>: string</li>
+</ul>
+<h2 id="assertgreaterthanvalue1-value2-message"><a class="markdownIt-Anchor" href="#assertgreaterthanvalue1-value2-message"></a> Assert.greaterThan(value1, value2[, message])</h2>
+<ul>
+<li><em>value1</em>: uint | int</li>
+<li><em>value2</em>: uint | int</li>
+<li><em>message</em>: string</li>
+</ul>
+<h2 id="assertlesserthanvalue1-value2-message"><a class="markdownIt-Anchor" href="#assertlesserthanvalue1-value2-message"></a> Assert.lesserThan(value1, value2[, message])</h2>
+<ul>
+<li><em>value1</em>: uint | int</li>
+<li><em>value2</em>: uint | int</li>
+<li><em>message</em>: string</li>
+</ul>
+<h1 id="三-特殊函数"><a class="markdownIt-Anchor" href="#三-特殊函数"></a> 三、特殊函数</h1>
+<ul>
+<li>beforeEach() - 在每个测试开始前运行</li>
+<li>beforeAll() - 在所有测试开始前运行</li>
+<li>afterEach() - 在每个测试结束后运行</li>
+<li>afterAll() - 在所有测试结束后运行</li>
+</ul>
+<h1 id="四-特殊的交易参数"><a class="markdownIt-Anchor" href="#四-特殊的交易参数"></a> 四、特殊的交易参数</h1>
+<p>对于涉及到 <code>msg.sender</code> 和 <code>msg.value</code> 的交易，remix采取特殊的方法来提供这两个参数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// #sender: account-0</span></span><br><span class="line"><span class="comment">/// #value: 10</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">checkSenderIs0AndValueis10</span> () public payable &#123;</span><br><span class="line">    <span class="title class_">Assert</span>.<span class="title function_">equal</span>(msg.<span class="property">sender</span>, <span class="title class_">TestsAccounts</span>.<span class="title function_">getAccount</span>(<span class="number">0</span>), <span class="string">&quot;wrong sender in checkSenderIs0AndValueis10&quot;</span>);</span><br><span class="line">    <span class="title class_">Assert</span>.<span class="title function_">equal</span>(msg.<span class="property">value</span>, <span class="number">10</span>, <span class="string">&quot;wrong value in checkSenderIs0AndValueis10&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>格式：在函数前加上 <code>/// #sender: account-0</code> 或者 <code>/// #value: 10</code></li>
+<li>目前只提供 <code>#sender</code> 和 <code>#value</code> 两种参数</li>
+<li>发送者地址的格式是固定的，就是 <code>account-x</code> 这个样子的，<code>x</code> 的取值只有三个 <code>[0-2]</code> (v0.10.0之后可以在<code>[0-9]</code>取值，提供10个地址)</li>
+<li>使用 <code>TestsAccounts.getAccount(idx)</code>  来获取测试地址，首地址是合约创建者的地址</li>
+<li>如果说用到 <code>#sender</code> 这个参数，那么必须在合约文件中导入 <code>import remix_accounts.sol</code></li>
+<li>参数 <code>#value</code> 的单位是 <code>wei</code></li>
+</ul>
+<h1 id="五-样例说明"><a class="markdownIt-Anchor" href="#五-样例说明"></a> 五、样例说明</h1>
+<h2 id="一基本测试样例"><a class="markdownIt-Anchor" href="#一基本测试样例"></a> （一）基本测试样例</h2>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// @notice - 源程序</span></span><br><span class="line"><span class="comment">/// @filename - Simple_storage.sol</span></span><br><span class="line"></span><br><span class="line">pragma solidity &gt;=<span class="number">0.4</span><span class="number">.22</span> &lt;<span class="number">0.7</span><span class="number">.0</span>;</span><br><span class="line"></span><br><span class="line">contract <span class="title class_">SimpleStorage</span> &#123;</span><br><span class="line">    uint public storedData;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params"></span>) public &#123;</span><br><span class="line">        storedData = <span class="number">100</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">set</span>(<span class="params">uint x</span>) public &#123;</span><br><span class="line">        storedData = x;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">get</span>(<span class="params"></span>) public view returns (uint retVal) &#123;</span><br><span class="line">        <span class="keyword">return</span> storedData;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// @notice - 测试程序</span></span><br><span class="line"><span class="comment">/// @filename - Simple_storage_test.sol</span></span><br><span class="line"></span><br><span class="line">pragma solidity &gt;=<span class="number">0.4</span><span class="number">.22</span> &lt;<span class="number">0.7</span><span class="number">.0</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;remix_tests.sol&quot;</span>;  <span class="comment">// 自动导入</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./Simple_storage.sol&quot;</span>;  <span class="comment">// 待测试的合约</span></span><br><span class="line"></span><br><span class="line">contract <span class="title class_">MyTest</span> &#123;</span><br><span class="line">    <span class="title class_">SimpleStorage</span> foo;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">beforeEach</span>(<span class="params"></span>) public &#123;</span><br><span class="line">        foo = <span class="keyword">new</span> <span class="title class_">SimpleStorage</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">initialValueShouldBe100</span>(<span class="params"></span>) public returns (bool) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title class_">Assert</span>.<span class="title function_">equal</span>(foo.<span class="title function_">get</span>(), <span class="number">100</span>, <span class="string">&quot;initial value is not correct&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">valueIsSet200</span>(<span class="params"></span>) public returns (bool) &#123;</span><br><span class="line">        foo.<span class="title function_">set</span>(<span class="number">200</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="title class_">Assert</span>.<span class="title function_">equal</span>(foo.<span class="title function_">get</span>(), <span class="number">200</span>, <span class="string">&quot;value is not 200&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="二涉及到msgsender的测试样例"><a class="markdownIt-Anchor" href="#二涉及到msgsender的测试样例"></a> （二）涉及到<code>msg.sender</code>的测试样例</h2>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// @notice - 源程序</span></span><br><span class="line"><span class="comment">/// @filename - Sender.sol</span></span><br><span class="line"></span><br><span class="line">pragma solidity &gt;=<span class="number">0.4</span><span class="number">.22</span> &lt;<span class="number">0.7</span><span class="number">.0</span>;</span><br><span class="line">contract <span class="title class_">Sender</span> &#123;</span><br><span class="line">    address private owner;</span><br><span class="line">    </span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params"></span>) public &#123;</span><br><span class="line">        owner = msg.<span class="property">sender</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 先判断发送者是否和当前owner一致，只有一致时才可以修改</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">updateOwner</span>(<span class="params">address newOwner</span>) public &#123;</span><br><span class="line">        <span class="built_in">require</span>(msg.<span class="property">sender</span> == owner, <span class="string">&quot;only current owner can update owner&quot;</span>);</span><br><span class="line">        owner = newOwner;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">getOwner</span>(<span class="params"></span>) public view returns (address) &#123;</span><br><span class="line">        <span class="keyword">return</span> owner;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// @notice - 测试程序</span></span><br><span class="line"><span class="comment">/// @filename - Sender_test.sol</span></span><br><span class="line"></span><br><span class="line">pragma solidity &gt;=<span class="number">0.4</span><span class="number">.22</span> &lt;<span class="number">0.7</span><span class="number">.0</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;remix_tests.sol&quot;</span>; </span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;remix_accounts.sol&quot;</span>;  <span class="comment">// 因为使用到了 #sender , 所以必须导入该package</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./Sender.sol&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意，这里是继承合约</span></span><br><span class="line">contract <span class="title class_">SenderTest</span> is <span class="title class_">Sender</span> &#123;</span><br><span class="line">    address acc0;</span><br><span class="line">    address acc1;</span><br><span class="line">    address acc2;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// 这里的TestsAccounts用来获取测试用户，acc0（首地址） 就是合约的创建者地址</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">beforeAll</span>(<span class="params"></span>) public &#123;</span><br><span class="line">        acc0 = <span class="title class_">TestsAccounts</span>.<span class="title function_">getAccount</span>(<span class="number">0</span>); </span><br><span class="line">        acc1 = <span class="title class_">TestsAccounts</span>.<span class="title function_">getAccount</span>(<span class="number">1</span>);</span><br><span class="line">        acc2 = <span class="title class_">TestsAccounts</span>.<span class="title function_">getAccount</span>(<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">testInitialOwner</span>(<span class="params"></span>) public &#123;</span><br><span class="line">        <span class="comment">// 合约初始化之后，owner代表着合约发布者的地址，也就是acc0</span></span><br><span class="line">        <span class="title class_">Assert</span>.<span class="title function_">equal</span>(<span class="title function_">getOwner</span>(), acc0, <span class="string">&#x27;owner should be acc0&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// 如果不指定 #sender 参数，那么默认 msg.sender 是测试用的首地址</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">updateOwnerOnce</span>(<span class="params"></span>) public &#123;</span><br><span class="line">        <span class="title class_">Assert</span>.<span class="title function_">ok</span>(msg.<span class="property">sender</span> == acc0, <span class="string">&#x27;caller should be default account i.e. acc0&#x27;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="title function_">updateOwner</span>(acc1);</span><br><span class="line"></span><br><span class="line">        <span class="title class_">Assert</span>.<span class="title function_">equal</span>(<span class="title function_">getOwner</span>(), acc1, <span class="string">&#x27;owner should be updated to acc1&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// 通过 #sender: account-1 来指定 msg.sender，即为测试用的编号为 1 的地址</span></span><br><span class="line">    <span class="comment">/// #sender: account-1 </span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">updateOwnerOnceAgain</span>(<span class="params"></span>) public &#123;</span><br><span class="line">        <span class="title class_">Assert</span>.<span class="title function_">ok</span>(msg.<span class="property">sender</span> == acc1, <span class="string">&#x27;caller should be custom account i.e. acc1&#x27;</span>);</span><br><span class="line">        <span class="title function_">updateOwner</span>(acc2);</span><br><span class="line">        <span class="title class_">Assert</span>.<span class="title function_">equal</span>(<span class="title function_">getOwner</span>(), acc2, <span class="string">&#x27;owner should be updated to acc2&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="三涉及到-msgvalue-的测试样例"><a class="markdownIt-Anchor" href="#三涉及到-msgvalue-的测试样例"></a> （三）涉及到 <code>msg.value</code> 的测试样例</h2>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// @notice - 源程序</span></span><br><span class="line"><span class="comment">/// @filename - Value.sol</span></span><br><span class="line"></span><br><span class="line">pragma solidity &gt;=<span class="number">0.4</span><span class="number">.22</span> &lt;<span class="number">0.7</span><span class="number">.0</span>;</span><br><span class="line">contract <span class="title class_">Value</span> &#123;</span><br><span class="line">    uint256 public tokenBalance;</span><br><span class="line">    </span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params"></span>) public &#123;</span><br><span class="line">        tokenBalance = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">addValue</span>(<span class="params"></span>) payable public &#123;</span><br><span class="line">        tokenBalance = tokenBalance + (msg.<span class="property">value</span>/<span class="number">10</span>);</span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">getTokenBalance</span>(<span class="params"></span>) view public returns (uint256) &#123;</span><br><span class="line">        <span class="keyword">return</span> tokenBalance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity &gt;=<span class="number">0.4</span><span class="number">.22</span> &lt;<span class="number">0.7</span><span class="number">.0</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;remix_tests.sol&quot;</span>; </span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./Value.sol&quot;</span>;</span><br><span class="line"></span><br><span class="line">contract <span class="title class_">ValueTest</span>&#123;</span><br><span class="line">    <span class="title class_">Value</span> v;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">beforeAll</span>(<span class="params"></span>) public &#123;</span><br><span class="line">        v = <span class="keyword">new</span> <span class="title class_">Value</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">testInitialBalance</span>(<span class="params"></span>) public &#123;</span><br><span class="line">        <span class="title class_">Assert</span>.<span class="title function_">equal</span>(v.<span class="title function_">getTokenBalance</span>(), <span class="number">0</span>, <span class="string">&#x27;token balance should be 0 initially&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// 自定义 #value ，也就是 msg.value</span></span><br><span class="line">    <span class="comment">/// #value: 200</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">addValueOnce</span>(<span class="params"></span>) public payable &#123;</span><br><span class="line">        <span class="title class_">Assert</span>.<span class="title function_">equal</span>(msg.<span class="property">value</span>, <span class="number">200</span>, <span class="string">&#x27;value should be 200&#x27;</span>);</span><br><span class="line">        <span class="comment">// execute &#x27;addValue&#x27;</span></span><br><span class="line">        v.<span class="property">addValue</span>&#123;<span class="attr">gas</span>: <span class="number">40000</span>, <span class="attr">value</span>: <span class="number">200</span>&#125;(); <span class="comment">// 注意这种写法，solidity的版本必须大于 0.6.2，若版本低于0.6.2，就采用 addValueAgain() 中的方法。</span></span><br><span class="line">        <span class="title class_">Assert</span>.<span class="title function_">equal</span>(v.<span class="title function_">getTokenBalance</span>(), <span class="number">20</span>, <span class="string">&#x27;token balance should be 20&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">/// 对于 solidity 版本小于 0.6.2 的，使用下面这种方式。</span></span><br><span class="line">    <span class="comment">/// #value: 100</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">addValueAgain</span>(<span class="params"></span>) public payable &#123;</span><br><span class="line">        <span class="title class_">Assert</span>.<span class="title function_">equal</span>(msg.<span class="property">value</span>, <span class="number">100</span>, <span class="string">&#x27;value should be 100&#x27;</span>);</span><br><span class="line">        bytes memory methodSign = abi.<span class="title function_">encodeWithSignature</span>(<span class="string">&#x27;addValue()&#x27;</span>);</span><br><span class="line">        (bool success, bytes memory data) = <span class="title function_">address</span>(v).<span class="property">call</span>.<span class="title function_">gas</span>(<span class="number">40000</span>).<span class="title function_">value</span>(<span class="number">100</span>)(methodSign);</span><br><span class="line">        <span class="title class_">Assert</span>.<span class="title function_">equal</span>(success, <span class="literal">true</span>, <span class="string">&#x27;execution should be successful&#x27;</span>);</span><br><span class="line">        <span class="title class_">Assert</span>.<span class="title function_">equal</span>(v.<span class="title function_">getTokenBalance</span>(), <span class="number">30</span>, <span class="string">&#x27;token balance should be 30&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="四方法执行过程中的错误处理"><a class="markdownIt-Anchor" href="#四方法执行过程中的错误处理"></a> （四）方法执行过程中的错误处理</h2>
+<p>如果 <code>solidity</code> 大于 0.6.0， 就是用 <code>try...catch</code> 结构，否则使用执行状态返回值的方法，具体见样例。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// @notice - 源程序</span></span><br><span class="line"><span class="comment">/// @filename - AttendanceRegister.sol</span></span><br><span class="line"></span><br><span class="line">pragma solidity &gt;=<span class="number">0.4</span><span class="number">.22</span> &lt;<span class="number">0.7</span><span class="number">.0</span>;</span><br><span class="line">contract <span class="title class_">AttendanceRegister</span> &#123;</span><br><span class="line">    struct <span class="title class_">Student</span>&#123;</span><br><span class="line">            string name;</span><br><span class="line">            uint <span class="keyword">class</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    event <span class="title class_">Added</span>(string name, uint <span class="keyword">class</span>, uint time);</span><br><span class="line"></span><br><span class="line">    <span class="title function_">mapping</span>(<span class="function"><span class="params">uint</span> =&gt;</span> <span class="title class_">Student</span>) public register; </span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">add</span>(<span class="params">uint rollNumber, string memory name, uint <span class="keyword">class</span></span>) public returns (uint256)&#123;</span><br><span class="line">        <span class="built_in">require</span>(<span class="keyword">class</span> &gt; <span class="number">0</span> &amp;&amp; <span class="keyword">class</span> &lt;= <span class="number">12</span>, <span class="string">&quot;Invalid class&quot;</span>);</span><br><span class="line">        <span class="built_in">require</span>(register[rollNumber].<span class="property">class</span> == <span class="number">0</span>, <span class="string">&quot;Roll number not available&quot;</span>);</span><br><span class="line">        <span class="title class_">Student</span> memory s = <span class="title class_">Student</span>(name, <span class="keyword">class</span>);</span><br><span class="line">        register[rollNumber] = s;</span><br><span class="line">        emit <span class="title class_">Added</span>(name, <span class="keyword">class</span>, now);</span><br><span class="line">        <span class="keyword">return</span> rollNumber;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">getStudentName</span>(<span class="params">uint rollNumber</span>) public view returns (string memory) &#123;</span><br><span class="line">        <span class="keyword">return</span> register[rollNumber].<span class="property">name</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// @notice - 测试程序</span></span><br><span class="line"><span class="comment">/// @filename - AttendanceRegister_test.sol</span></span><br><span class="line"></span><br><span class="line">pragma solidity &gt;=<span class="number">0.4</span><span class="number">.22</span> &lt;<span class="number">0.7</span><span class="number">.0</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;remix_tests.sol&quot;</span>; </span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./AttendanceRegister.sol&quot;</span>;</span><br><span class="line"></span><br><span class="line">contract <span class="title class_">AttendanceRegisterTest</span> &#123;</span><br><span class="line">   </span><br><span class="line">    <span class="title class_">AttendanceRegister</span> ar;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">beforeAll</span> () public &#123;</span><br><span class="line">        ar = <span class="keyword">new</span> <span class="title class_">AttendanceRegister</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// solidity 版本大于等于 0.6.0 的时候，使用 try-catch 结构 </span></span><br><span class="line">    <span class="comment">/// try-catch 的具体用法参考: https://solidity.readthedocs.io/en/v0.6.0/control-structures.html#try-catch</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">testAddSuccessUsingTryCatch</span>(<span class="params"></span>) public &#123;</span><br><span class="line">        <span class="keyword">try</span> ar.<span class="title function_">add</span>(<span class="number">101</span>, <span class="string">&#x27;secondStudent&#x27;</span>, <span class="number">11</span>) returns (uint256 r) &#123;</span><br><span class="line">            <span class="title class_">Assert</span>.<span class="title function_">equal</span>(r, <span class="number">101</span>, <span class="string">&#x27;wrong rollNumber&#x27;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> <span class="title class_">Error</span>(string memory <span class="comment">/*reason*/</span>) &#123;</span><br><span class="line">            <span class="title class_">Assert</span>.<span class="title function_">ok</span>(<span class="literal">false</span>, <span class="string">&#x27;failed with reason&#x27;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (bytes memory <span class="comment">/*lowLevelData*/</span>) &#123;</span><br><span class="line">            <span class="title class_">Assert</span>.<span class="title function_">ok</span>(<span class="literal">false</span>, <span class="string">&#x27;failed unexpected&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">testAddFailureUsingTryCatch2</span>(<span class="params"></span>) public &#123;</span><br><span class="line">        <span class="keyword">try</span> ar.<span class="title function_">add</span>(<span class="number">101</span>, <span class="string">&#x27;secondStudent&#x27;</span>, <span class="number">11</span>) returns (uint256 r) &#123;</span><br><span class="line">            <span class="title class_">Assert</span>.<span class="title function_">ok</span>(<span class="literal">false</span>, <span class="string">&#x27;method execution should fail&#x27;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> <span class="title class_">Error</span>(string memory reason) &#123;</span><br><span class="line">            <span class="title class_">Assert</span>.<span class="title function_">equal</span>(reason, <span class="string">&#x27;Roll number not available&#x27;</span>, <span class="string">&#x27;failed with unexpected reason&#x27;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (bytes memory <span class="comment">/*lowLevelData*/</span>) &#123;</span><br><span class="line">            <span class="title class_">Assert</span>.<span class="title function_">ok</span>(<span class="literal">false</span>, <span class="string">&#x27;failed unexpected&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// solidity版本小于 0.6.0，使用下面这种方式</span></span><br><span class="line">    <span class="comment">/// 具体参考: https://solidity.readthedocs.io/en/v0.6.0/units-and-global-variables.html#members-of-address-types</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">testAddSuccessUsingCall</span>(<span class="params"></span>) public &#123;</span><br><span class="line">        bytes memory methodSign = abi.<span class="title function_">encodeWithSignature</span>(<span class="string">&#x27;add(uint256,string,uint256)&#x27;</span>, <span class="number">102</span>, <span class="string">&#x27;firstStudent&#x27;</span>, <span class="number">10</span>);</span><br><span class="line">        (bool success, bytes memory data) = <span class="title function_">address</span>(ar).<span class="title function_">call</span>(methodSign);</span><br><span class="line">        <span class="comment">// success 代表了方法是否被正确执行。</span></span><br><span class="line">        <span class="title class_">Assert</span>.<span class="title function_">equal</span>(success, <span class="literal">true</span>, <span class="string">&#x27;execution should be successful&#x27;</span>);</span><br><span class="line">        <span class="comment">// data 代表了返回结果，需要进行解码</span></span><br><span class="line">        uint rollNumber = abi.<span class="title function_">decode</span>(data, (uint256));</span><br><span class="line">        <span class="title class_">Assert</span>.<span class="title function_">equal</span>(rollNumber, <span class="number">102</span>, <span class="string">&#x27;wrong rollNumber&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://remix-ide.readthedocs.io/en/latest/unittesting.html">https://remix-ide.readthedocs.io/en/latest/unittesting.html</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat-receive.jpg" alt="kimroniny 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay-receive.jpg" alt="kimroniny 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/solidity/" rel="tag"><i class="fa fa-tag"></i> solidity</a>
+              <a href="/tags/blockchain/" rel="tag"><i class="fa fa-tag"></i> blockchain</a>
+              <a href="/tags/ethereum/" rel="tag"><i class="fa fa-tag"></i> ethereum</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/04/18/windows%E4%BF%AE%E6%94%B9%E6%8E%A7%E5%88%B6%E5%8F%B0%E9%BB%98%E8%AE%A4%E7%BC%96%E7%A0%81/" rel="prev" title="windows修改控制台默认编码">
+                  <i class="fa fa-angle-left"></i> windows修改控制台默认编码
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/04/23/mysql%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E5%92%8C%E7%9F%A5%E8%AF%86/" rel="next" title="mysql常用指令和知识">
+                  mysql常用指令和知识 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kimroniny</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">112k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:42</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
