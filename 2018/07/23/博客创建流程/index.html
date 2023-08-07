@@ -16,8 +16,9 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.20/fancybox/fancybox.css" integrity="sha256-RvRHGSuWAxZpXKV9lLDt2e+rZ+btzn48Wp4ueS3NZKs=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kimroniny.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kimroniny.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="前言  其实从时间上可以看出来，这些字儿是在我搭建博客有一段时间之后才写的，主要是之前对这个搭建流程不是很熟悉，现在呢整体有了一个把握，将就着写写，大家也就将就着看看（不经常写博客，语言功底比较差），不懂的地方可以comment或者自行google &#x2F; baidu。">
 <meta property="og:type" content="article">
@@ -54,6 +55,8 @@
 <title>hexo+github_page 博客创建流程 | kimroniny</title>
   
 
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3a4c00a44a327e4894b77702fff22860"></script>
 
 
 
@@ -226,7 +229,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          hexo+github_page 博客创建流程
+          hexo+github_page 博客创建流程<a href="https://github.com/kimroniny/kimroniny.github.io/tree/hexo/source/_posts/%E5%8D%9A%E5%AE%A2%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -257,6 +260,13 @@
     </span>
 
   
+    <span id="/2018/07/23/%E5%8D%9A%E5%AE%A2%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="hexo+github_page 博客创建流程" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
     <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
@@ -297,25 +307,25 @@
 <h3 id="1-创建自己的github账号以及github-page"><a class="markdownIt-Anchor" href="#1-创建自己的github账号以及github-page"></a> 1. 创建自己的github账号以及github page</h3>
 <p><a target="_blank" rel="noopener" href="https://github.com/">注册或登录到github</a></p>
 <p>登录成功后，创建专门放置博客的仓库，点击新建仓库</p>
-<p><img src="http://ww1.sinaimg.cn/large/76eb1075ly1ftk1vzqv1dj20ug0dtta7.jpg" alt="点击新建仓库" /></p>
+<p><img data-src="http://ww1.sinaimg.cn/large/76eb1075ly1ftk1vzqv1dj20ug0dtta7.jpg" alt="点击新建仓库" /></p>
 <p>仓库名称必须是<code>用户名.github.io</code>，因为我已经有了这个仓库，所以提示<code>The repository kimroniny.github.io already exists on this account</code>，确定名称无误后直接<code>create repository</code>即可</p>
-<p><img src="http://ww1.sinaimg.cn/large/76eb1075ly1ftk1xlu70zj20kv0eigmn.jpg" alt="输入仓库名称" /></p>
+<p><img data-src="http://ww1.sinaimg.cn/large/76eb1075ly1ftk1xlu70zj20kv0eigmn.jpg" alt="输入仓库名称" /></p>
 <p>记录下该仓库ssh链接</p>
-<p><img src="http://ww1.sinaimg.cn/large/76eb1075ly1ftk20a2m38j20t20di75s.jpg" alt="ssh链接" /></p>
+<p><img data-src="http://ww1.sinaimg.cn/large/76eb1075ly1ftk20a2m38j20t20di75s.jpg" alt="ssh链接" /></p>
 <h3 id="2-安装nodejs"><a class="markdownIt-Anchor" href="#2-安装nodejs"></a> 2. 安装nodejs</h3>
 <p><a target="_blank" rel="noopener" href="http://nodejs.cn/download/">下载链接</a></p>
 <p>下载下来之后，直接一路到底到底安装即可，安装完成之后命令行输入以下命令检测是否安装成功，出现版本号即可</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-<p><img src="http://ww1.sinaimg.cn/large/76eb1075ly1ftk00iqlg0j20ad02j0sj.jpg" alt="图片" /></p>
+<p><img data-src="http://ww1.sinaimg.cn/large/76eb1075ly1ftk00iqlg0j20ad02j0sj.jpg" alt="图片" /></p>
 <h3 id="3-安装git并设置"><a class="markdownIt-Anchor" href="#3-安装git并设置"></a> 3. 安装git并设置</h3>
 <h4 id="安装git"><a class="markdownIt-Anchor" href="#安装git"></a> 安装git</h4>
 <p><a target="_blank" rel="noopener" href="https://git-scm.com/downloads">下载链接</a></p>
 <p>同理，一路安装即可</p>
 <p>安装完成之后，在桌面或者文件夹右击鼠标，出现如图选项可认为</p>
-<p><img src="http://ww1.sinaimg.cn/large/76eb1075ly1ftk06prcl1j205m0a0q3g.jpg" alt="git安装成功展示" /></p>
+<p><img data-src="http://ww1.sinaimg.cn/large/76eb1075ly1ftk06prcl1j205m0a0q3g.jpg" alt="git安装成功展示" /></p>
 <p>或者命令行看是否可以检测到git版本</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
-<p><img src="http://ww1.sinaimg.cn/large/76eb1075ly1ftk0a1rs3wj20bi0140si.jpg" alt="git版本检测展示" /></p>
+<p><img data-src="http://ww1.sinaimg.cn/large/76eb1075ly1ftk0a1rs3wj20bi0140si.jpg" alt="git版本检测展示" /></p>
 <h4 id="git基本设置"><a class="markdownIt-Anchor" href="#git基本设置"></a> git基本设置</h4>
 <p>开始菜单打开<code>git bash</code>，输入以下命令配置邮箱和用户名</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;your name&quot;</span><br><span class="line">git config --global user.email &quot;your email&quot;</span><br></pre></td></tr></table></figure>
@@ -332,13 +342,13 @@
 </blockquote>
 <p>windows用户直接打开文件夹<code>C:\Users\Administrator.PC-201807221731\.ssh</code>， 将<code>id_rsa.pub</code>文件中的内容copy到如图位置（前提得先创建自己的github账号，具体创建方法百度吧）：</p>
 <p>github ssh_key 设置界面</p>
-<p><img src="http://ww1.sinaimg.cn/large/76eb1075ly1ftk1gzpkhkj20t10hldh8.jpg" alt="github ssh_key 设置界面" /></p>
+<p><img data-src="http://ww1.sinaimg.cn/large/76eb1075ly1ftk1gzpkhkj20t10hldh8.jpg" alt="github ssh_key 设置界面" /></p>
 <p>github ssh_key 填写界面</p>
-<p><img src="http://ww1.sinaimg.cn/large/76eb1075ly1ftk1ia1e5kj20ss0hmq3x.jpg" alt="github ssh_key 填写界面" /></p>
+<p><img data-src="http://ww1.sinaimg.cn/large/76eb1075ly1ftk1ia1e5kj20ss0hmq3x.jpg" alt="github ssh_key 填写界面" /></p>
 <p>以上设置完成之后，打开<code>git bash</code>，输入以下命令检测是否操作成功</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
 <p>执行命令结果如下图，则成功</p>
-<p><img src="http://ww1.sinaimg.cn/large/76eb1075ly1ftk2ir7g7uj20g004s0ss.jpg" alt="操作成功展示" /></p>
+<p><img data-src="http://ww1.sinaimg.cn/large/76eb1075ly1ftk2ir7g7uj20g004s0ss.jpg" alt="操作成功展示" /></p>
 <h3 id="4-安装hexo"><a class="markdownIt-Anchor" href="#4-安装hexo"></a> 4. 安装hexo</h3>
 <p>使用nodejs自带的包管理工具<code>npm</code>进行安装</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
@@ -353,7 +363,7 @@
 <p>开启服务器，体验hexo</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
 <p>显示如图，即在本地配置成功，万里长征刚不到一半，不要着急</p>
-<p><img src="http://ww1.sinaimg.cn/large/76eb1075ly1ftk11nivd3j20bz06adi2.jpg" alt="本地配置成功展示" /></p>
+<p><img data-src="http://ww1.sinaimg.cn/large/76eb1075ly1ftk11nivd3j20bz06adi2.jpg" alt="本地配置成功展示" /></p>
 <h3 id="5-发布到github-page"><a class="markdownIt-Anchor" href="#5-发布到github-page"></a> 5. 发布到github page</h3>
 <p>在你的博客文件夹下，找到<code>_config.yml</code>文件，打开后做如下修改</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="comment"># 这里是你自己的ssh地址</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">git@github.com:kimroniny/kimroniny.github.io.git</span> </span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
@@ -437,6 +447,7 @@
 
 
 
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -479,6 +490,8 @@
     <span>0%</span>
   </div>
 
+  <a href="https://github.com/kimroniny" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
@@ -486,20 +499,29 @@
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.20/fancybox/fancybox.umd.js" integrity="sha256-q8XkJ6dj5VwSvzI8+nATCHHQG+Xv/dAZBCgqmu93zOY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 
 
 
+  <script src="/js/third-party/fancybox.js"></script>
 
 
 
   
 
 
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"mQ8vEoYrWGAjG2Aq1eI2ckaF-gzGzoHsz","app_key":"lsSNBNE0MGiUHu4P51BsqTLc","server_url":null,"security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"kimroniny","repo":"hexo-comments","client_id":"deb158a212122fb9c77d","client_secret":"2f3faa6844e1a3ed2d15a8ec0aed20b1dac97f89","admin_user":"kimroniny","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"8f958ec43c4daef1aec4dc01eb03016c"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
 </html>
