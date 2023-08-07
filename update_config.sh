@@ -1,0 +1,1 @@
+cp configs/next.yml node_modules/hexo-theme-next/_config.yml
