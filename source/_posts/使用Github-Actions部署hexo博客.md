@@ -10,4 +10,12 @@ categories:
 
 <!--more-->
 
-> https://mdnice.com/writing/5c0ea88d4f624fa2b047463a0e24a9ef
+> 参考文章 https://mdnice.com/writing/5c0ea88d4f624fa2b047463a0e24a9ef
+
+
+## 添加主题子模块
+
+使用之后有个问题, 就是主题不起作用, 必须要把主题作为子模块添加到仓库中才可以
+
+> 参考文章 https://quareia.github.io/blog/6efb1d64/
+
