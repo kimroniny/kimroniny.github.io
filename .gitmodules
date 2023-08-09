@@ -1,1 +1,4 @@
 
+[submodule "origin_themesNext"]
+	path = themes/next
+	url = https://github.com/kimroniny/hexo-theme-next.git
