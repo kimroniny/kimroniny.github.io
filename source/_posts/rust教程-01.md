@@ -97,7 +97,7 @@ cargo check
 cargo build --release
 ```
 
-> 第一次执行的时候, 可能出现缺少 `cc` 的问题. 
+> 第一次执行的时候, 可能出现缺少 `linker 'cc' not found` 的问题. 
 > 可以通过 `apt install build-essential` 解决
 
 cargo 更换国内源，在 `~/.cargo/config` 文件中填写下面内容，网络上提供了很多国内源，但是好像只有中科大的能用。
